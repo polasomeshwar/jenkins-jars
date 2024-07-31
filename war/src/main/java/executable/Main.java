@@ -286,18 +286,21 @@ public class Main {
         } catch (NoSuchFieldException e) {
             throw new AssertionError(e);
         }
-        usage.set(null, "Jenkins Automation Server Engine " + getVersion("") + "\n" +
-                "Usage: java -jar jenkins.war [--option=value] [--option=value]\n" +
-                "\n" +
-                "Options:\n" +
-                "   --webroot                = folder where the WAR file is expanded into. Default is ${JENKINS_HOME}/war\n" +
-                "   --pluginroot             = folder where the plugin archives are expanded into. Default is ${JENKINS_HOME}/plugins\n" +
-                "                              (NOTE: this option does not change the directory where the plugin archives are stored)\n" +
-                "   --extractedFilesFolder   = folder where extracted files are to be located. Default is the temp folder\n" +
-                "   " + ENABLE_FUTURE_JAVA_CLI_SWITCH + "     = allows running with Java versions which are not fully supported\n" +
-                "   --paramsFromStdIn        = Read parameters from standard input (stdin)\n" +
-                "   --version                = Print version to standard output (stdout) and exit\n" +
-                "{OPTIONS}");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Jenkins Automation Server Engine ").append(getVersion("")).append("\n")
+          .append("Usage: java -jar jenkins.war [--option=value] [--option=value]\n")
+          .append("\n")
+          .append("Options:\n")
+          .append("   --webroot                = folder where the WAR file is expanded into. Default is ${JENKINS_HOME}/war\n")
+          .append("   --pluginroot             = folder where the plugin archives are expanded into. Default is ${JENKINS_HOME}/plugins\n")
+          .append("                              (NOTE: this option does not change the directory where the plugin archives are stored)\n")
+          .append("   --extractedFilesFolder   = folder where extracted files are to be located. Default is the temp folder\n")
+          .append("   ").append(ENABLE_FUTURE_JAVA_CLI_SWITCH).append("     = allows running with Java versions which are not fully supported\n")
+          .append("   --paramsFromStdIn        = Read parameters from standard input (stdin)\n")
+          .append("   --version                = Print version to standard output (stdout) and exit\n")
+          .append("{OPTIONS}");
+
+        usage.set(null, sb.toString());
 
         if (!DISABLE_CUSTOM_JSESSIONID_COOKIE_NAME) {
             /*

@@ -185,21 +185,24 @@ public class SetupWizard extends PageDecorator {
             if (iapf.exists()) {
                 String setupKey = iapf.readToString().trim();
                 String ls = System.lineSeparator();
-                LOGGER.info(ls + ls + "*************************************************************" + ls
-                        + "*************************************************************" + ls
-                        + "*************************************************************" + ls
-                        + ls
-                        + "Jenkins initial setup is required. An admin user has been created and "
-                        + "a password generated." + ls
-                        + "Please use the following password to proceed to installation:" + ls
-                        + ls
-                        + setupKey + ls
-                        + ls
-                        + "This may also be found at: " + iapf.getRemote() + ls
-                        + ls
-                        + "*************************************************************" + ls
-                        + "*************************************************************" + ls
-                        + "*************************************************************" + ls);
+                LOGGER.info(new StringBuilder()
+                	    .append(ls).append(ls)
+                	    .append("*************************************************************").append(ls)
+                	    .append("*************************************************************").append(ls)
+                	    .append("*************************************************************").append(ls)
+                	    .append(ls)
+                	    .append("Jenkins initial setup is required. An admin user has been created and ")
+                	    .append("a password generated.").append(ls)
+                	    .append("Please use the following password to proceed to installation:").append(ls)
+                	    .append(ls)
+                	    .append(setupKey).append(ls)
+                	    .append(ls)
+                	    .append("This may also be found at: ").append(iapf.getRemote()).append(ls)
+                	    .append(ls)
+                	    .append("*************************************************************").append(ls)
+                	    .append("*************************************************************").append(ls)
+                	    .append("*************************************************************").append(ls)
+                	    .toString());
             }
         }
 

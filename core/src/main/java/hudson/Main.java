@@ -120,7 +120,15 @@ public class Main {
             if (auth != null) con.setRequestProperty("Authorization", auth);
             con.connect();
             if (con.getResponseCode() != 200) {
-                System.err.println(jobURL + " is not a valid external job (" + con.getResponseCode() + " " + con.getResponseMessage() + ")");
+            	System.err.println(new StringBuilder()
+            		    .append(jobURL)
+            		    .append(" is not a valid external job (")
+            		    .append(con.getResponseCode())
+            		    .append(" ")
+            		    .append(con.getResponseMessage())
+            		    .append(")")
+            		    .toString());
+
                 return -1;
             }
         }

@@ -48,14 +48,27 @@ public class DefaultScriptListener implements ScriptListener {
     public void onScriptExecution(String script, Binding binding, @NonNull Object feature, Object context, @NonNull String correlationId, User user) {
         String userFragment = user == null ? " (no user)" : " by user: '" + user + "'";
         LOGGER.log(Level.FINE, LOGGER.isLoggable(Level.FINEST) ? new Exception() : null,
-                () -> "Execution of script: '" + script + "' with binding: '" + stringifyBinding(binding) + "' in feature: '" + feature + "' and context: '" + context + "' with correlation: '" + correlationId + "'" + userFragment);
+                () -> new StringBuilder()
+                    .append("Execution of script: '").append(script)
+                    .append("' with binding: '").append(stringifyBinding(binding))
+                    .append("' in feature: '").append(feature)
+                    .append("' and context: '").append(context)
+                    .append("' with correlation: '").append(correlationId)
+                    .append("'").append(userFragment).toString()
+        );
     }
 
     @Override
     public void onScriptOutput(String output, @NonNull Object feature, Object context, @NonNull String correlationId, User user) {
         String userFragment = user == null ? " (no user)" : " for user: '" + user + "'";
         LOGGER.log(Level.FINER, LOGGER.isLoggable(Level.FINEST) ? new Exception() : null,
-                () -> "Script output: '" + output + "' in feature: '" + feature + "' and context: '" + context + "' with correlation: '" + correlationId + "'" + userFragment);
+                () -> new StringBuilder()
+                    .append("Script output: '").append(output)
+                    .append("' in feature: '").append(feature)
+                    .append("' and context: '").append(context)
+                    .append("' with correlation: '").append(correlationId)
+                    .append("'").append(userFragment).toString()
+        );
     }
 
     private static String stringifyBinding(Binding binding) {
