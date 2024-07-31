@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,7 +70,7 @@ public final class PluginServletFilter implements Filter, ExtensionPoint {
      * starts functioning, when we are not sure which Jenkins instance a filter belongs to, put it here,
      * and let the first Jenkins instance take over.
      */
-    private static final List<Filter> LEGACY = new Vector<>();
+    private static final List<Filter> LEGACY = new ArrayList<>();
 
     private static final String KEY = PluginServletFilter.class.getName();
 

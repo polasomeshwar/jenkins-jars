@@ -55,7 +55,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -862,7 +862,7 @@ public class Fingerprint implements ModelObject, Saveable {
     /**
      * Range of builds that use this file keyed by a job full name.
      */
-    private Hashtable<String, RangeSet> usages = new Hashtable<>();
+    private HashMap<String, RangeSet> usages = new HashMap<>();
 
     PersistedList<FingerprintFacet> facets = new PersistedList<>(this);
 
@@ -970,7 +970,7 @@ public class Fingerprint implements ModelObject, Saveable {
         return r;
     }
 
-    public @CheckForNull Hashtable<String, RangeSet> getUsages() {
+    public @CheckForNull HashMap<String, RangeSet> getUsages() {
         return usages;
     }
 
@@ -1030,7 +1030,7 @@ public class Fingerprint implements ModelObject, Saveable {
     @SuppressFBWarnings(value = "IS2_INCONSISTENT_SYNC", justification = "nothing should be competing with XStream during deserialization")
     protected Object readResolve() {
         if (usages == null) {
-            usages = new Hashtable<>();
+            usages = new HashMap<>();
         }
         return this;
     }
@@ -1085,7 +1085,7 @@ public class Fingerprint implements ModelObject, Saveable {
     public synchronized boolean trim() throws IOException {
         boolean modified = false;
 
-        for (Map.Entry<String, RangeSet> e : new Hashtable<>(usages).entrySet()) { // copy because we mutate
+        for (Map.Entry<String, RangeSet> e : new HashMap<>(usages).entrySet()) { // copy because we mutate
             Job j = Jenkins.get().getItemByFullName(e.getKey(), Job.class);
             if (j == null) { // no such job any more. recycle the record
                 modified = true;

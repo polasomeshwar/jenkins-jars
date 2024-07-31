@@ -89,7 +89,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -192,7 +192,7 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
     /**
      * List of created {@link UpdateCenterJob}s. Access needs to be synchronized.
      */
-    private final Vector<UpdateCenterJob> jobs = new Vector<>();
+    private final ArrayList<UpdateCenterJob> jobs = new ArrayList<>();
 
     /**
      * {@link UpdateSite}s from which we've already installed a plugin at least once.
@@ -1633,7 +1633,7 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
      * Tests the internet connectivity.
      */
     public final class ConnectionCheckJob extends UpdateCenterJob {
-        private final Vector<String> statuses = new Vector<>();
+        private final ArrayList<String> statuses = new ArrayList<>();
 
         final Map<String, ConnectionStatus> connectionStates = new ConcurrentHashMap<>();
 

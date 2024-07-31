@@ -30,7 +30,7 @@ import edu.umd.cs.findbugs.annotations.NonNull;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.TimeZone;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.kohsuke.accmod.Restricted;
@@ -42,10 +42,10 @@ import org.kohsuke.accmod.restrictions.NoExternalUse;
  * @author Kohsuke Kawaguchi
  */
 public final class CronTabList {
-    private final Vector<CronTab> tabs;
+    private final ArrayList<CronTab> tabs;
 
     public CronTabList(Collection<CronTab> tabs) {
-        this.tabs = new Vector<>(tabs);
+        this.tabs = new ArrayList<>(tabs);
     }
 
     /**
@@ -104,7 +104,7 @@ public final class CronTabList {
      * @throws IllegalArgumentException if the crontab entry cannot be parsed
      */
     public static CronTabList create(@NonNull String format, Hash hash) {
-        Vector<CronTab> r = new Vector<>();
+        ArrayList<CronTab> r = new ArrayList<>();
         int lineNumber = 0;
         String timezone = null;
 

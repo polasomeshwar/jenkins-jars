@@ -52,7 +52,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -84,7 +84,7 @@ public class LabelAtom extends Label implements Saveable {
             new DescribableList<>(this);
 
     @CopyOnWrite
-    protected transient volatile List<Action> transientActions = new Vector<>();
+    protected transient volatile List<Action> transientActions = new ArrayList<>();
 
     private String description;
 
@@ -116,7 +116,7 @@ public class LabelAtom extends Label implements Saveable {
     @Override
     public List<Action> getActions() {
         // add all the transient actions, too
-        List<Action> actions = new Vector<>(super.getActions());
+        List<Action> actions = new ArrayList<>(super.getActions());
         actions.addAll(transientActions);
         // return the read only list to cause a failure on plugins who try to add an action here
         return Collections.unmodifiableList(actions);
@@ -125,7 +125,7 @@ public class LabelAtom extends Label implements Saveable {
     // TODO implement addAction, addOrReplaceAction, removeAction, removeActions, replaceActions
 
     protected void updateTransientActions() {
-        Vector<Action> ta = new Vector<>();
+        ArrayList<Action> ta = new ArrayList<>();
 
         for (LabelAtomProperty p : properties)
             ta.addAll(p.getActions(this));
