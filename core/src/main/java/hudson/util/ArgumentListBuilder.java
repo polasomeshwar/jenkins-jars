@@ -100,7 +100,7 @@ public class ArgumentListBuilder implements Serializable, Cloneable {
     public ArgumentListBuilder prepend(String... args) {
         // left-shift the mask
         BitSet nm = new BitSet(this.args.size() + args.length);
-        for (int i = 0; i < this.args.size(); i++)
+        for (int i = 0; i < this.args.size(); ++i)
             nm.set(i + args.length, mask.get(i));
         mask = nm;
 
@@ -332,7 +332,7 @@ public class ArgumentListBuilder implements Serializable, Cloneable {
     public ArgumentListBuilder toWindowsCommand(boolean escapeVars) {
         ArgumentListBuilder windowsCommand = new ArgumentListBuilder().add("cmd.exe", "/C");
         boolean quoted, percent;
-        for (int i = 0; i < args.size(); i++) {
+        for (int i = 0; i < args.size(); ++i) {
             StringBuilder quotedArgs = new StringBuilder();
             String arg = args.get(i);
             quoted = percent = false;
@@ -409,7 +409,7 @@ public class ArgumentListBuilder implements Serializable, Cloneable {
      */
     public boolean[] toMaskArray() {
         boolean[] mask = new boolean[args.size()];
-        for (int i = 0; i < mask.length; i++)
+        for (int i = 0; i < mask.length; ++i)
             mask[i] = this.mask.get(i);
         return mask;
     }
@@ -432,7 +432,7 @@ public class ArgumentListBuilder implements Serializable, Cloneable {
     @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < args.size(); i++) {
+        for (int i = 0; i < args.size(); ++i) {
             String arg = args.get(i);
             if (mask.get(i))
                 arg = "******";

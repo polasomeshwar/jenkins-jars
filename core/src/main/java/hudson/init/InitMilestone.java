@@ -132,7 +132,7 @@ public enum InitMilestone implements Milestone {
     public static TaskBuilder ordering() {
         TaskGraphBuilder b = new TaskGraphBuilder();
         InitMilestone[] v = values();
-        for (int i = 0; i < v.length - 1; i++)
+        for (int i = 0; i < v.length - 1; ++i)
             b.add(null, Executable.NOOP).requires(v[i]).attains(v[i + 1]);
         return b;
     }

@@ -913,7 +913,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                 try {
                     byte[] cmdline = Files.readAllBytes(Util.fileToPath(getFile("cmdline")));
                     int pos = 0;
-                    for (int i = 0; i < cmdline.length; i++) {
+                    for (int i = 0; i < cmdline.length; ++i) {
                         byte b = cmdline[i];
                         if (b == 0) {
                             arguments.add(new String(cmdline, pos, i - pos, StandardCharsets.UTF_8));
@@ -937,7 +937,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                 try {
                     byte[] environ = Files.readAllBytes(Util.fileToPath(getFile("environ")));
                     int pos = 0;
-                    for (int i = 0; i < environ.length; i++) {
+                    for (int i = 0; i < environ.length; ++i) {
                         byte b = environ[i];
                         if (b == 0) {
                             envVars.addLine(new String(environ, pos, i - pos, StandardCharsets.UTF_8));
@@ -1227,7 +1227,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                 ByteArrayOutputStream buf = new ByteArrayOutputStream();
                 int i = 0;
                 while (true) {
-                    if (i++ > LINE_LENGTH_LIMIT) {
+                    if (++i > LINE_LENGTH_LIMIT) {
                         LOGGER.finest("could not find end of line, giving up");
                         throw new IOException("could not find end of line, giving up");
                     }
@@ -1499,7 +1499,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                 ByteArrayOutputStream buf = new ByteArrayOutputStream();
                 int i = 0;
                 while (true) {
-                    if (i++ > LINE_LENGTH_LIMIT) {
+                    if (++i > LINE_LENGTH_LIMIT) {
                         LOGGER.finest("could not find end of line, giving up");
                         throw new IOException("could not find end of line, giving up");
                     }
@@ -1745,7 +1745,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                     String args0 = m.readString(); // exec path
                     m.skip0();
                     try {
-                        for (int i = 0; i < argc; i++) {
+                        for (int i = 0; i < argc; ++i) {
                             arguments.add(m.readString());
                         }
                     } catch (IndexOutOfBoundsException e) {

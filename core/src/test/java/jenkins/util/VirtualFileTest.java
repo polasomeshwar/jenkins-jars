@@ -1565,7 +1565,7 @@ public class VirtualFileTest {
                 return new VirtualFile[0];
             }
             VirtualFile[] vfs = new VirtualFile[kids.length];
-            for (int i = 0; i < kids.length; i++) {
+            for (int i = 0; i < kids.length; ++i) {
                 vfs[i] = child(kids[i], root);
             }
             return vfs;

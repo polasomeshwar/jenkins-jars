@@ -54,7 +54,7 @@ public abstract class MarkFindingOutputStream extends OutputStream {
         for (int i = off; i < end; ) {
             if (MBYTES[match] == b[i]) { // another byte matched. Good. Keep going...
                 match++;
-                i++;
+                ++i;
                 if (match == MBYTES.length) {
                     base.write(b, off, i - off - MBYTES.length);    // flush the portion up to MARK
                     // don't send MARK to the output, but instead notify the callback
@@ -76,7 +76,7 @@ public abstract class MarkFindingOutputStream extends OutputStream {
                     // this b[i] might be a fast byte in MARK, so we'll retry
                 } else {
                     // irrelevant byte.
-                    i++;
+                    ++i;
                 }
             }
 

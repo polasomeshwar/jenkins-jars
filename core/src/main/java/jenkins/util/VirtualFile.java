@@ -625,7 +625,7 @@ public abstract class VirtualFile implements Comparable<VirtualFile>, Serializab
                     return new VirtualFile[0];
                 }
                 VirtualFile[] vfs = new VirtualFile[kids.length];
-                for (int i = 0; i < kids.length; i++) {
+                for (int i = 0; i < kids.length; ++i) {
                     vfs[i] = new FileVF(kids[i], root);
                 }
                 return vfs;
@@ -928,7 +928,7 @@ public abstract class VirtualFile implements Comparable<VirtualFile>, Serializab
 
             private VirtualFile[] convertChildrenToVirtualFile(List<FilePath> kids) {
                 VirtualFile[] vfs = new VirtualFile[kids.size()];
-                for (int i = 0; i < vfs.length; i++) {
+                for (int i = 0; i < vfs.length; ++i) {
                     vfs[i] = new FilePathVF(kids.get(i), this.root);
                 }
                 return vfs;

@@ -153,7 +153,7 @@ public class HsErrPidList extends AdministrativeMonitor {
     }
 
     private boolean findHeader(BufferedReader r) throws IOException {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; ++i) {
             String line = r.readLine();
             if (line == null)
                 return false;

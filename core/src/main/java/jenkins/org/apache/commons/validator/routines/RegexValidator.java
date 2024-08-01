@@ -130,7 +130,7 @@ public class RegexValidator implements Serializable {
         }
         patterns = new Pattern[regexs.length];
         int flags = caseSensitive ? 0 : Pattern.CASE_INSENSITIVE;
-        for (int i = 0; i < regexs.length; i++) {
+        for (int i = 0; i < regexs.length; ++i) {
             if (regexs[i] == null || regexs[i].isEmpty()) {
                 throw new IllegalArgumentException("Regular expression[" + i + "] is missing");
             }
@@ -224,7 +224,7 @@ public class RegexValidator implements Serializable {
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append("RegexValidator{");
-        for (int i = 0; i < patterns.length; i++) {
+        for (int i = 0; i < patterns.length; ++i) {
             if (i > 0) {
                 buffer.append(",");
             }

@@ -35,7 +35,7 @@ public class HudsonPrivateSecurityRealmTest {
         String encoded = encoder.encode("thisIsMyPassword1");
 
         long start = System.nanoTime();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; ++i) {
             System.out.println(encoder.matches("thisIsMyPassword" + i, encoded));
         }
         long end = System.nanoTime();
@@ -61,7 +61,7 @@ public class HudsonPrivateSecurityRealmTest {
         String encoded = encoder.encode("thisIsMyPassword1");
 
         long start = System.nanoTime();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; ++i) {
             System.out.println(encoder.matches("thisIsMyPassword" + i, encoded));
         }
         long end = System.nanoTime();

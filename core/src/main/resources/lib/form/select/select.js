@@ -56,7 +56,7 @@ function updateListBox(listBox, url, config) {
       var possibleIndex = null; // if there's a new option that matches the current value, remember its index
 
       var opts = result.values;
-      for (var i = 0; i < opts.length; i++) {
+      for (var i = 0; i < opts.length; ++i) {
         l.options[i] = new Option(opts[i].name, opts[i].value);
         if (opts[i].selected) {
           l.selectedIndex = i;

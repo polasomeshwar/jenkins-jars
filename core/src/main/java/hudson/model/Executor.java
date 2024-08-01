@@ -51,7 +51,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -145,7 +144,7 @@ public class Executor extends Thread implements ModelObject {
      * Cause of interruption. Access needs to be synchronized.
      */
     @GuardedBy("lock")
-    private final List<CauseOfInterruption> causes = new Vector<>();
+    private final List<CauseOfInterruption> causes = new ArrayList<>();
 
     public Executor(@NonNull Computer owner, int n) {
         super("Executor #" + n + " for " + owner.getDisplayName());

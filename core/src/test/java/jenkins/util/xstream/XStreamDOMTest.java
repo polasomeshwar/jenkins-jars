@@ -150,7 +150,7 @@ public class XStreamDOMTest {
         assertEquals(expected.getValue(), actual.getValue());
 
         assertEquals(expected.getAttributeCount(), actual.getAttributeCount());
-        for (int i = 0; i < expected.getAttributeCount(); i++) {
+        for (int i = 0; i < expected.getAttributeCount(); ++i) {
             assertEquals(expected.getAttributeName(i), actual.getAttributeName(i));
             assertEquals(expected.getAttribute(i), actual.getAttribute(i));
         }
@@ -160,7 +160,7 @@ public class XStreamDOMTest {
         } else {
             assertEquals(expected.getChildren().size(), actual.getChildren().size());
             int childrenCount = expected.getChildren().size();
-            for (int i = 0; i < childrenCount; i++) {
+            for (int i = 0; i < childrenCount; ++i) {
                 assertXStreamDOMEquals(expected.getChildren().get(i), actual.getChildren().get(i));
             }
         }

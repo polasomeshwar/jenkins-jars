@@ -183,7 +183,7 @@ public final class WorkspaceList {
      *      This allows related executors to share the same workspace.
      */
     public synchronized Lease allocate(@NonNull FilePath base, Object context) throws InterruptedException {
-        for (int i = 1; ; i++) {
+        for (int i = 1; ; ++i) {
             FilePath candidate = i == 1 ? base : base.withSuffix(COMBINATOR + i);
             Entry e = inUse.get(candidate.getRemote());
             if (e != null && !e.quick && e.context != context)

@@ -272,7 +272,7 @@ public class MappingWorksheet {
          */
         public Map<WorkChunk, ExecutorChunk> toMap() {
             Map<WorkChunk, ExecutorChunk> r = new HashMap<>();
-            for (int i = 0; i < size(); i++)
+            for (int i = 0; i < size(); ++i)
                 r.put(get(i), assigned(i));
             return r;
         }
@@ -282,7 +282,7 @@ public class MappingWorksheet {
          */
         public boolean isPartiallyValid() {
             int[] used = new int[executors.size()];
-            for (int i = 0; i < mapping.length; i++) {
+            for (int i = 0; i < mapping.length; ++i) {
                 ExecutorChunk ec = mapping[i];
                 if (ec == null)   continue;
                 if (!ec.canAccept(works(i)))
@@ -310,7 +310,7 @@ public class MappingWorksheet {
             if (!isCompletelyValid())
                 throw new IllegalStateException();
 
-            for (int i = 0; i < size(); i++)
+            for (int i = 0; i < size(); ++i)
                 assigned(i).execute(get(i), wuc);
         }
     }

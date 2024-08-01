@@ -1002,13 +1002,15 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
 
             // Ensure we reached the final initialization state. Log the error otherwise
             if (initLevel != InitMilestone.COMPLETED) {
-                LOGGER.log(SEVERE, "Jenkins initialization has not reached the COMPLETED initialization milestone after the startup. " +
-                                "Current state: {0}. " +
-                                "It may cause undefined incorrect behavior in Jenkins plugin relying on this state. " +
-                                "It is likely an issue with the Initialization task graph. " +
-                                "Example: usage of @Initializer(after = InitMilestone.COMPLETED) in a plugin (JENKINS-37759). " +
-                                "Please create a bug in Jenkins bugtracker. ",
-                        initLevel);
+                StringBuilder sb = new StringBuilder();
+                sb.append("Jenkins initialization has not reached the COMPLETED initialization milestone after the startup. ")
+                  .append("Current state: ").append(initLevel).append(". ")
+                  .append("It may cause undefined incorrect behavior in Jenkins plugins relying on this state. ")
+                  .append("It is likely an issue with the Initialization task graph. ")
+                  .append("Example: usage of @Initializer(after = InitMilestone.COMPLETED) in a plugin (JENKINS-37759). ")
+                  .append("Please create a bug in the Jenkins bugtracker.");
+
+                LOGGER.log(Level.SEVERE, sb.toString());
             }
 
 
@@ -4324,7 +4326,7 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
             throw new Failure(Messages.Jenkins_NotAllowedName("."));
         if ("..".equals(name.trim()))
             throw new Failure(Messages.Jenkins_NotAllowedName(".."));
-        for (int i = 0; i < name.length(); i++) {
+        for (int i = 0; i < name.length(); ++i) {
             char ch = name.charAt(i);
             if (Character.isISOControl(ch)) {
                 throw new Failure(Messages.Hudson_ControlCodeNotAllowed(toPrintableName(name)));
@@ -4345,7 +4347,7 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
 
     private static String toPrintableName(String name) {
         StringBuilder printableName = new StringBuilder();
-        for (int i = 0; i < name.length(); i++) {
+        for (int i = 0; i < name.length(); ++i) {
             char ch = name.charAt(i);
             if (Character.isISOControl(ch))
                 printableName.append("\\u").append((int) ch).append(';');
@@ -4466,13 +4468,16 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
 
         // Ensure we reached the final initialization state. Log the error otherwise
         if (initLevel != InitMilestone.COMPLETED) {
-            LOGGER.log(SEVERE, "Jenkins initialization has not reached the COMPLETED initialization milestone after the configuration reload. " +
-                            "Current state: {0}. " +
-                            "It may cause undefined incorrect behavior in Jenkins plugin relying on this state. " +
-                            "It is likely an issue with the Initialization task graph. " +
-                            "Example: usage of @Initializer(after = InitMilestone.COMPLETED) in a plugin (JENKINS-37759). " +
-                            "Please create a bug in Jenkins bugtracker.",
-                    initLevel);
+            StringBuilder sb = new StringBuilder();
+            sb.append("Jenkins initialization has not reached the COMPLETED initialization milestone after the configuration reload. ")
+              .append("Current state: ").append(initLevel).append(". ")
+              .append("It may cause undefined incorrect behavior in Jenkins plugins relying on this state. ")
+              .append("It is likely an issue with the Initialization task graph. ")
+              .append("Example: usage of @Initializer(after = InitMilestone.COMPLETED) in a plugin (JENKINS-37759). ")
+              .append("Please create a bug in Jenkins bugtracker.");
+
+            LOGGER.log(Level.SEVERE, sb.toString());
+
         }
 
         User.reload();

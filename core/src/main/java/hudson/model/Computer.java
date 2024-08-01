@@ -916,7 +916,7 @@ public /*transient*/ abstract class Computer extends Actionable implements Acces
             return;
         }
         Set<Integer> availableNumbers  = new HashSet<>();
-        for (int i = 0; i < numExecutors; i++)
+        for (int i = 0; i < numExecutors; ++i)
             availableNumbers.add(i);
 
         for (Executor executor : executors)

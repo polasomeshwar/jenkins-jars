@@ -312,7 +312,7 @@ class PrettyPrintWriter extends AbstractXmlWriter {
 
     protected void endOfLine() {
         writer.write(getNewLine());
-        for (int i = 0; i < depth; i++) {
+        for (int i = 0; i < depth; ++i) {
             writer.write(lineIndenter);
         }
     }

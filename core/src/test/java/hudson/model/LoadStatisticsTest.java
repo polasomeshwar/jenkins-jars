@@ -76,14 +76,14 @@ public class LoadStatisticsTest {
             }
         };
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; ++i) {
             ls.onlineExecutors.update(4);
             ls.busyExecutors.update(3);
             ls.availableExecutors.update(1);
             ls.queueLength.update(3);
         }
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 50; ++i) {
             ls.onlineExecutors.update(0);
             ls.busyExecutors.update(0);
             ls.availableExecutors.update(0);

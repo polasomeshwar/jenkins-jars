@@ -194,7 +194,7 @@ public class HistoryPageFilter<T> {
                         // we may have popped an extra item off the iterator that did not get added).
                         Iterator<ItemT> skippedIter = items.iterator();
                         Iterators.skip(skippedIter, itemsToAdd.size());
-                        for (int i = itemsToAdd.size(); i < toFillCount && skippedIter.hasNext(); i++) {
+                        for (int i = itemsToAdd.size(); i < toFillCount && skippedIter.hasNext(); ++i) {
                             ItemT item = skippedIter.next();
                             itemsToAdd.addLast(item);
                         }

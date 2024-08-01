@@ -261,7 +261,7 @@ public abstract class DiskSpaceMonitorDescriptor extends AbstractAsyncNodeMonito
             // look for the size suffix. The goal here isn't to detect all invalid size suffix,
             // so we ignore double suffix like "10gkb" or anything like that.
             String suffix = "KMGT";
-            for (int i = 0; i < suffix.length(); i++) {
+            for (int i = 0; i < suffix.length(); ++i) {
                 if (size.endsWith(suffix.substring(i, i + 1))) {
                     multiplier = 1;
                     for (int j = 0; j <= i; j++)

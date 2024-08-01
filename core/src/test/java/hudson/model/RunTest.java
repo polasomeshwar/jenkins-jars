@@ -186,7 +186,7 @@ public class RunTest {
         File f = r.getLogFile();
         f.getParentFile().mkdirs();
         PrintWriter w = new PrintWriter(f, StandardCharsets.UTF_8);
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; ++i) {
             w.println("dummy" + i);
         }
 
@@ -194,7 +194,7 @@ public class RunTest {
         List<String> logLines = r.getLog(10);
         assertFalse(logLines.isEmpty());
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 10; ++i) {
             assertEquals("dummy" + (10 + i), logLines.get(i));
         }
         int truncatedCount = 10 * ("dummyN".length() + System.getProperty("line.separator").length()) - 2;
@@ -291,7 +291,7 @@ public class RunTest {
             PrintStream ps = new PrintStream(buf, true);
             StringWriter writer = new StringWriter()
         ) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; ++i) {
                 ps.print(SAMPLE_BUILD_OUTPUT);
             }
             ps.print("Finished: SUCCESS.\n");

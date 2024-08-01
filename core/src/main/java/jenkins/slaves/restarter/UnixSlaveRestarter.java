@@ -53,7 +53,7 @@ public class UnixSlaveRestarter extends SlaveRestarter {
     public void restart() throws Exception {
         // close all files upon exec, except stdin, stdout, and stderr
         int sz = LIBC.getdtablesize();
-        for (int i = 3; i < sz; i++) {
+        for (int i = 3; i < sz; ++i) {
             int flags = LIBC.fcntl(i, F_GETFD);
             if (flags < 0) continue;
             LIBC.fcntl(i, F_SETFD, flags | FD_CLOEXEC);

@@ -85,7 +85,7 @@ public class ConsistentHashTest {
         Random r = new Random(0);
         int even = 0;
         int odd = 0;
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; ++i) {
             String v = hash.lookup(r.nextInt());
             if (v.equals("Even")) {
                 even++;
@@ -104,14 +104,14 @@ public class ConsistentHashTest {
     @Test
     public void removal() {
         ConsistentHash<Integer> hash = new ConsistentHash<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; ++i) {
             hash.add(i);
         }
 
         // what was the mapping before the mutation?
         Map<Integer, Integer> before = new HashMap<>();
         Random r = new Random(0);
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; ++i) {
             int q = r.nextInt();
             before.put(q, hash.lookup(q));
         }
@@ -182,7 +182,7 @@ public class ConsistentHashTest {
     @Ignore("Helper test for performance, no assertion")
     public void speed() {
         Map<String, Integer> data = new CopyOnWriteMap.Hash<>();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; ++i) {
             data.put("node" + i, 100);
         }
         data.put("tail", 100);

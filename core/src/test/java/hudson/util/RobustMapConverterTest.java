@@ -128,7 +128,7 @@ public class RobustMapConverterTest {
         final Map<Object, Object> map = new HashMap<>();
         Map<Object, Object> m1 = map;
         Map<Object, Object> m2 = new HashMap<>();
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 18; ++i) {
             final Map<Object, Object> t1 = new HashMap<>();
             final Map<Object, Object> t2 = new HashMap<>();
             t1.put("a", "b");

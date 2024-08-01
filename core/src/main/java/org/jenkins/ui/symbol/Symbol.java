@@ -113,7 +113,7 @@ public final class Symbol {
             Document doc = db.parse(new StringInputStream(markup));
             Element root = doc.getDocumentElement();
             NodeList titleList = root.getElementsByTagName("title");
-            for (int i = 0; i < titleList.getLength(); i++) {
+            for (int i = 0; i < titleList.getLength(); ++i) {
                 Node title = titleList.item(i);
                 NodeList titleChildren = title.getChildNodes();
                 for (int j = 0; j < titleChildren.getLength(); j++) {

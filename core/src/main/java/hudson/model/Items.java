@@ -254,11 +254,11 @@ public class Items {
         String[] p = path.split("/");
 
         Stack<String> name = new Stack<>();
-        for (int i = 0; i < c.length; i++) {
+        for (int i = 0; i < c.length; ++i) {
             if (i == 0 && c[i].isEmpty()) continue;
             name.push(c[i]);
         }
-        for (int i = 0; i < p.length; i++) {
+        for (int i = 0; i < p.length; ++i) {
             if (i == 0 && p[i].isEmpty()) {
                 // Absolute path starting with a "/"
                 name.clear();
@@ -319,7 +319,7 @@ public class Items {
     static String getRelativeNameFrom(String itemFullName, String groupFullName) {
         String[] itemFullNameA = itemFullName.isEmpty() ? MemoryReductionUtil.EMPTY_STRING_ARRAY : itemFullName.split("/");
         String[] groupFullNameA = groupFullName.isEmpty() ? MemoryReductionUtil.EMPTY_STRING_ARRAY : groupFullName.split("/");
-        for (int i = 0; ; i++) {
+        for (int i = 0; ; ++i) {
             if (i == itemFullNameA.length) {
                 if (i == groupFullNameA.length) {
                     // itemFullName and groupFullName are identical

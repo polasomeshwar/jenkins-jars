@@ -441,7 +441,7 @@ public class DownloadService {
                 LOGGER.warning("comparator: " + comparator + "does not exist for " + genericList.get(0).getClass() + ", " + e);
                 return false;
             }
-            for (int i = 0; i < genericList.size(); i++) {
+            for (int i = 0; i < genericList.size(); ++i) {
                 T data1 = genericList.get(i);
                 for (int j = i + 1; j < genericList.size(); j++) {
                     T data2 = genericList.get(j);

@@ -27,7 +27,7 @@ public class RewindableRotatingFileOutputStreamTest {
         File base = tmp.newFile("test.log");
         RewindableRotatingFileOutputStream os = new RewindableRotatingFileOutputStream(base, 3);
         PrintWriter w = new PrintWriter(new OutputStreamWriter(os, StandardCharsets.UTF_8), true);
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i <= 4; ++i) {
             w.println("Content" + i);
             os.rewind();
         }
@@ -51,7 +51,7 @@ public class RewindableRotatingFileOutputStreamTest {
         File dir = tmp.newFolder("dir");
         File base = new File(dir, "x.log");
         RewindableRotatingFileOutputStream os = new RewindableRotatingFileOutputStream(base, 3);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 2; ++i) {
             FileUtils.deleteDirectory(dir);
             os.write('.');
             FileUtils.deleteDirectory(dir);

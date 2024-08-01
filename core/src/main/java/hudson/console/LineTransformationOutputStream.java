@@ -80,7 +80,7 @@ public abstract class LineTransformationOutputStream extends OutputStream {
     public void write(byte[] b, int off, int len) throws IOException {
         int end = off + len;
 
-        for (int i = off; i < end; i++)
+        for (int i = off; i < end; ++i)
             write(b[i]);
     }
 

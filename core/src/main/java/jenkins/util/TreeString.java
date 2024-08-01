@@ -102,7 +102,7 @@ public final class TreeString implements Serializable {
     private int depth() {
         int i = 0;
         for (TreeString p = this; p != null; p = p.parent) {
-            i++;
+            ++i;
         }
         return i;
     }

@@ -441,7 +441,7 @@ public class PluginWrapper implements Comparable<PluginWrapper>, ModelObject {
 
             boolean isOptional = false;
             String[] osgiProperties = version.split("[;]");
-            for (int i = 1; i < osgiProperties.length; i++) {
+            for (int i = 1; i < osgiProperties.length; ++i) {
                 String osgiProperty = osgiProperties[i].trim();
                 if (osgiProperty.equalsIgnoreCase("resolution:=optional")) {
                     isOptional = true;

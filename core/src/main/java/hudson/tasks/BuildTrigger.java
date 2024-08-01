@@ -348,7 +348,7 @@ public class BuildTrigger extends Recorder implements DependencyDeclarer {
 
         // we need to do this per string, since old Project object is already gone.
         String[] projects = childProjects.split(",");
-        for (int i = 0; i < projects.length; i++) {
+        for (int i = 0; i < projects.length; ++i) {
             if (projects[i].trim().equals(oldName)) {
                 projects[i] = newName;
                 changed = true;

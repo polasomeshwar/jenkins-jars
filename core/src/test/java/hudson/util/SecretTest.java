@@ -70,7 +70,7 @@ public class SecretTest {
     @Test
     public void encryptedValuePattern() {
         final Random random = new Random();
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < 100; ++i) {
             String plaintext = random(i, random);
             String ciphertext = Secret.fromString(plaintext).getEncryptedValue();
             //println "${plaintext} → ${ciphertext}"
@@ -88,7 +88,7 @@ public class SecretTest {
 
     private static String random(int count, Random random) {
         String result = "";
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; ++i) {
             result += (char) random.nextInt(30000);
         }
         return result;

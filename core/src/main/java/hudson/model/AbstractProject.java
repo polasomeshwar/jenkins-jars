@@ -90,7 +90,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.Vector;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
@@ -241,7 +240,7 @@ public abstract class AbstractProject<P extends AbstractProject<P, R>, R extends
      * come and go as configuration change, so it's kept separate.
      */
     @CopyOnWrite
-    protected transient volatile List<Action> transientActions = new Vector<>();
+    protected transient volatile List<Action> transientActions = new ArrayList<>();
 
     private boolean concurrentBuild;
 
@@ -317,7 +316,7 @@ public abstract class AbstractProject<P extends AbstractProject<P, R>, R extends
             scm = new NullSCM(); // perhaps it was pointing to a plugin that no longer exists.
 
         if (transientActions == null)
-            transientActions = new Vector<>();    // happens when loaded from disk
+            transientActions = new ArrayList<>();    // happens when loaded from disk
         updateTransientActions();
     }
 
@@ -734,7 +733,7 @@ public abstract class AbstractProject<P extends AbstractProject<P, R>, R extends
     }
 
     protected List<Action> createTransientActions() {
-        Vector<Action> ta = new Vector<>();
+        ArrayList<Action> ta = new ArrayList<>();
 
         for (JobProperty<? super P> p : Util.fixNull(properties))
             ta.addAll(p.getJobActions((P) this));
@@ -997,7 +996,7 @@ public abstract class AbstractProject<P extends AbstractProject<P, R>, R extends
     @Override
     public List<Action> getActions() {
         // add all the transient actions, too
-        List<Action> actions = new Vector<>(super.getActions());
+        List<Action> actions = new ArrayList<>(super.getActions());
         actions.addAll(transientActions);
         // return the read only list to cause a failure on plugins who try to add an action here
         return Collections.unmodifiableList(actions);
@@ -1846,7 +1845,7 @@ public abstract class AbstractProject<P extends AbstractProject<P, R>, R extends
         throws FormException, ServletException {
 
         JSONObject data = req.getSubmittedForm();
-        List<T> r = new Vector<>();
+        List<T> r = new ArrayList<>();
         for (Descriptor<T> d : descriptors) {
             String safeName = d.getJsonSafeClassName();
             if (req.getParameter(safeName) != null) {

@@ -84,7 +84,7 @@ class Latch {
     }
 
     private void check(int threshold) throws InterruptedException {
-        i++;
+        ++i;
         if (i == threshold) {
             notifyAll();
         } else {

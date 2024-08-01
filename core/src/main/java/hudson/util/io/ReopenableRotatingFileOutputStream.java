@@ -74,7 +74,7 @@ import java.util.logging.Logger;
      * Deletes all the log files, including rotated files.
      */
     public void deleteAll() {
-        for (int i = 0; i <= size; i++) {
+        for (int i = 0; i <= size; ++i) {
             try {
                 Files.deleteIfExists(getNumberedFileName(i).toPath());
             } catch (IOException | InvalidPathException e) {

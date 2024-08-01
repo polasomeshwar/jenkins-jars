@@ -84,7 +84,7 @@ public class MarkupText extends AbstractMarkupText {
 
             int cnt = m.groupCount();
             groups = new int[cnt * 2];
-            for (int i = 0; i < cnt; i++) {
+            for (int i = 0; i < cnt; ++i) {
                 groups[i * 2  ] = m.start(i + 1) + textOffset;
                 groups[i * 2 + 1] = m.end(i + 1) + textOffset;
             }
@@ -196,13 +196,13 @@ public class MarkupText extends AbstractMarkupText {
         public String replace(String s) {
             StringBuilder buf = new StringBuilder(s.length() + 10);
 
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 char ch = s.charAt(i);
                 if (ch == '\\') { // escape char
-                    i++;
+                    ++i;
                     buf.append(s.charAt(i));
                 } else if (ch == '$') { // replace by group
-                    i++;
+                    ++i;
 
                     ch = s.charAt(i);
                     // get the group number

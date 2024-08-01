@@ -100,7 +100,7 @@ public class ConsoleCommand extends CLICommand {
             int ptr = 0;
 
             RingBuffer() {
-                for (int i = 0; i < n; i++)
+                for (int i = 0; i < n; ++i)
                     lastNlines[i] = -1;
             }
 
@@ -125,7 +125,7 @@ public class ConsoleCommand extends CLICommand {
             long pos = 0;
             boolean prevIsNL = false;
             while ((len = in.read(buf)) >= 0) {
-                for (int i = 0; i < len; i++) {
+                for (int i = 0; i < len; ++i) {
                     byte ch = buf[i];
                     boolean isNL = ch == '\r' || ch == '\n';
                     if (!isNL && prevIsNL)  rb.add(pos);

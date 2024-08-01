@@ -73,7 +73,7 @@
 
     var buttons = configForm.getElementsByTagName("button");
     var name;
-    for (let i = 0; i < buttons.length; i++) {
+    for (let i = 0; i < buttons.length; ++i) {
       var button = buttons[i];
       name = button.getAttribute("name");
       if (name == "Submit" || name == "Apply" || name == "OK") {
@@ -88,7 +88,7 @@
     }
 
     var inputs = configForm.getElementsByTagName("input");
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; ++i) {
       var input = inputs[i];
       if (!isIgnoringConfirm(input)) {
         if (input.type == "checkbox" || input.type == "radio") {
@@ -100,7 +100,7 @@
     }
 
     inputs = configForm.getElementsByTagName("select");
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; ++i) {
       let input = inputs[i];
       if (!isIgnoringConfirm(input)) {
         input.addEventListener("change", confirm);
@@ -108,7 +108,7 @@
     }
 
     inputs = configForm.getElementsByTagName("textarea");
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; ++i) {
       let input = inputs[i];
       if (!isIgnoringConfirm(input)) {
         input.addEventListener("input", confirm);

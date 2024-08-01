@@ -121,7 +121,7 @@ public class ConsistentHash<T> {
             hash = new int[allPoints.length];
             owner = new Object[allPoints.length];
 
-            for (int i = 0; i < allPoints.length; i++) {
+            for (int i = 0; i < allPoints.length; ++i) {
                 Point pt = allPoints[i];
                 hash[i] = pt.hash;
                 owner[i] = pt.item;
@@ -289,7 +289,7 @@ public class ConsistentHash<T> {
         } else {
             Point[] points = new Point[replica];
             String seed = hash.hash(node);
-            for (int i = 0; i < replica; i++) {
+            for (int i = 0; i < replica; ++i) {
                 points[i] = new Point(digest(seed + ':' + i), node);
             }
             items.put(node, points);
@@ -310,7 +310,7 @@ public class ConsistentHash<T> {
             byte[] digest = messageDigest.digest();
 
             // 16 bytes -> 4 bytes
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 4; ++i) {
                 digest[i] ^= digest[i + 4] + digest[i + 8] + digest[i + 12];
             }
             return (b2i(digest[0]) << 24) | (b2i(digest[1]) << 16) | (b2i(digest[2]) << 8) | b2i(digest[3]);

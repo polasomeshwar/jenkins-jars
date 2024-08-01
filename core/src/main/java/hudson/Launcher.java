@@ -832,7 +832,7 @@ public abstract class Launcher {
 
         assert mask.length == cmd.size();
         final String[] masked = new String[cmd.size()];
-        for (int i = 0; i < cmd.size(); i++) {
+        for (int i = 0; i < cmd.size(); ++i) {
             if (mask[i]) {
                 masked[i] = "********";
             } else {

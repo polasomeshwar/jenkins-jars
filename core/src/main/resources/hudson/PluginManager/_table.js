@@ -8,7 +8,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
       .getElementsBySelector("TR.plugin")
       .concat(document.getElementsBySelector("TR.unavailable"));
     var anyVisible = false;
-    for (var i = 0; i < items.length; i++) {
+    for (var i = 0; i < items.length; ++i) {
       if (
         (filterParts.length < 1 || filter.length < 2) &&
         items[i].classList.contains("hidden-by-default")
@@ -98,7 +98,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
 
     // Create a map of the plugin rows, making it easy to index them.
     var plugins = {};
-    for (var i = 0; i < pluginTRs.length; i++) {
+    for (var i = 0; i < pluginTRs.length; ++i) {
       var pluginTR = pluginTRs[i];
       var pluginId = pluginTR.getAttribute("data-plugin-id");
 
@@ -119,7 +119,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
 
     function processSpanSet(spans) {
       var ids = [];
-      for (var i = 0; i < spans.length; i++) {
+      for (var i = 0; i < spans.length; ++i) {
         var span = spans[i];
         var pluginId = span.getAttribute("data-plugin-id");
         var pluginName = getPluginName(pluginId);
@@ -144,7 +144,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
           return;
         }
 
-        for (var i = 0; i < dependentIds.length; i++) {
+        for (var i = 0; i < dependentIds.length; ++i) {
           var dependentId = dependentIds[i];
 
           if (dependentId === "jenkins-core") {
@@ -175,7 +175,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
       var dependencyIds = jenkinsPluginMetadata.dependencyIds;
 
       if (dependencyIds) {
-        for (var i = 0; i < dependencyIds.length; i++) {
+        for (var i = 0; i < dependencyIds.length; ++i) {
           var dependencyPluginTr = getPluginTR(dependencyIds[i]);
           if (
             dependencyPluginTr &&
@@ -192,7 +192,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
     }
 
     function setEnableWidgetStates() {
-      for (var i = 0; i < pluginTRs.length; i++) {
+      for (var i = 0; i < pluginTRs.length; ++i) {
         var pluginMetadata = pluginTRs[i].jenkinsPluginMetadata;
         if (pluginTRs[i].classList.contains("has-dependents-but-disabled")) {
           if (pluginMetadata.enableInput.checked) {
@@ -235,7 +235,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
 
         // Go through each dependency <span> element. Show the spans where the dependency is
         // disabled. Hide the others.
-        for (var i = 0; i < dependencySpans.length; i++) {
+        for (var i = 0; i < dependencySpans.length; ++i) {
           var dependencySpan = dependencySpans[i];
           var pluginId = dependencySpan.getAttribute("data-plugin-id");
           var depPluginTR = getPluginTR(pluginId);
@@ -333,7 +333,7 @@ Behaviour.specify("#filter-box", "_table", 0, function (e) {
 
       // Go through each dependent <span> element. If disabled should be hidden, show the spans where
       // the dependent is enabled and hide the others. Otherwise show them all.
-      for (var i = 0; i < dependentSpans.length; i++) {
+      for (var i = 0; i < dependentSpans.length; ++i) {
         var dependentSpan = dependentSpans[i];
         var dependentId = dependentSpan.getAttribute("data-plugin-id");
 
@@ -467,7 +467,7 @@ window.addEventListener("load", function () {
   if (compatibleCheckbox) {
     compatibleCheckbox.addEventListener("click", () => {
       const inputs = document.getElementsByTagName("input");
-      for (let i = 0; i < inputs.length; i++) {
+      for (let i = 0; i < inputs.length; ++i) {
         const candidate = inputs[i];
         if (candidate.type === "checkbox" && !candidate.disabled) {
           candidate.checked = candidate.dataset.compatWarning === "false";

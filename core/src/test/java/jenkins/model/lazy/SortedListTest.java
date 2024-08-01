@@ -109,7 +109,7 @@ public class SortedListTest {
         SortedList<String> l2 = new SortedList<>(l);
         assertEquals(originalSize, l2.size());
         assertEquals(originalSize, l.size());
-        for (int i = 0; i < originalSize; i++) {
+        for (int i = 0; i < originalSize; ++i) {
             assertEquals(l.get(i), l2.get(i));
         }
         l.remove(0);

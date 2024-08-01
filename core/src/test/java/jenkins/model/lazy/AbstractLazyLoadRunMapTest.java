@@ -144,7 +144,7 @@ public class AbstractLazyLoadRunMapTest {
 
     @Test
     public void idempotentLookup() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; ++i) {
             a.get(1).asserts(1);
             a.get((Object) 1).asserts(1);
         }
@@ -403,7 +403,7 @@ public class AbstractLazyLoadRunMapTest {
     @Issue("JENKINS-22767")
     @Test
     public void slowRetrieve() throws Exception {
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 3; ++i) {
             slowBuilder.add(i);
             slowBuilderStartSemaphores.put(i, new Semaphore(0));
             slowBuilderEndSemaphores.put(i, new Semaphore(0));

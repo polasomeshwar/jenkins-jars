@@ -625,7 +625,7 @@ public class FunctionsTest {
         Stack(String toString, String... stack) {
             this.toString = toString;
             StackTraceElement[] lines = new StackTraceElement[stack.length];
-            for (int i = 0; i < stack.length; i++) {
+            for (int i = 0; i < stack.length; ++i) {
                 Matcher m = LINE.matcher(stack[i]);
                 assertTrue(m.matches());
                 lines[i] = new StackTraceElement(m.group(1) + "." + m.group(2), m.group(3), m.group(2) + ".java", Integer.parseInt(m.group(4)));

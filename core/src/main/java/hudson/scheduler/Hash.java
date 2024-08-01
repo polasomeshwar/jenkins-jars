@@ -57,11 +57,11 @@ public abstract class Hash {
             md5.update(seed.getBytes(StandardCharsets.UTF_8));
             byte[] digest = md5.digest();
 
-            for (int i = 8; i < digest.length; i++)
+            for (int i = 8; i < digest.length; ++i)
                 digest[i % 8] ^= digest[i];
 
             long l = 0;
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; ++i)
                 l = (l << 8) + (digest[i] & 0xFF);
 
             final Random rnd = new Random(l);

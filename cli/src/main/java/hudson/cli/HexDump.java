@@ -15,7 +15,7 @@ class HexDump {
     public static String toHex(byte[] buf, int start, int len) {
         StringBuilder r = new StringBuilder(len * 2);
         boolean inText = false;
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < len; ++i) {
             byte b = buf[start + i];
             if (b >= 0x20 && b <= 0x7e) {
                 if (!inText) {

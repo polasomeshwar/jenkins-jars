@@ -268,7 +268,14 @@ public class Fingerprint implements ModelObject, Saveable {
 
         @Override
         public String toString() {
-            return "[" + start + "," + end + ")";
+            return new StringBuilder()
+                    .append("[")
+                    .append(start)
+                    .append(",")
+                    .append(end)
+                    .append(")")
+                    .toString();
+
         }
 
         /**
@@ -405,7 +412,7 @@ public class Fingerprint implements ModelObject, Saveable {
          * If the set already includes this number, this will be a no-op.
          */
         public synchronized void add(int n) {
-            for (int i = 0; i < ranges.size(); i++) {
+            for (int i = 0; i < ranges.size(); ++i) {
                 Range r = ranges.get(i);
                 if (r.includes(n))   return; // already included
                 if (r.end == n) {
@@ -833,7 +840,15 @@ public class Fingerprint implements ModelObject, Saveable {
                             try {
                                 f.rename(oldName, newName);
                             } catch (IOException e) {
-                                logger.log(Level.WARNING, "Failed to update fingerprint record " + f.getFileName() + " when " + oldName + " was renamed to " + newName, e);
+                                logger.log(Level.WARNING, new StringBuilder()
+                                        .append("Failed to update fingerprint record ")
+                                        .append(f.getFileName())
+                                        .append(" when ")
+                                        .append(oldName)
+                                        .append(" was renamed to ")
+                                        .append(newName)
+                                        .toString(), e);
+
                             }
                         }
                     }
@@ -1420,19 +1435,22 @@ public class Fingerprint implements ModelObject, Saveable {
     }
 
     @Override public String toString() {
-        return "Fingerprint[original="
-                + original
-                + ",hash="
-                + getHashString()
-                + ",fileName="
-                + fileName
-                + ",timestamp="
-                + DATE_CONVERTER.toString(timestamp)
-                + ",usages="
-                + (usages == null ? "null" : new TreeMap<>(getUsages()))
-                + ",facets="
-                + facets
-                + "]";
+        return new StringBuilder()
+                .append("Fingerprint[original=")
+                .append(original)
+                .append(",hash=")
+                .append(getHashString())
+                .append(",fileName=")
+                .append(fileName)
+                .append(",timestamp=")
+                .append(DATE_CONVERTER.toString(timestamp))
+                .append(",usages=")
+                .append(usages == null ? "null" : new TreeMap<>(getUsages()))
+                .append(",facets=")
+                .append(facets)
+                .append("]")
+                .toString();
+
     }
 
     /**

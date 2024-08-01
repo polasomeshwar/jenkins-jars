@@ -153,8 +153,8 @@ public class XStreamDOM {
         String[] r = new String[attributes.size() * 2];
         int i = 0;
         for (Map.Entry<String, String> e : attributes.entrySet()) {
-            r[i++] = e.getKey();
-            r[i++] = e.getValue();
+            r[++i] = e.getKey();
+            r[++i] = e.getValue();
         }
         return r;
     }
@@ -305,11 +305,11 @@ public class XStreamDOM {
             public String xpath() {
                 XStreamDOM child = node.children.get(pos - 1);
                 int count = 0;
-                for (int i = 0; i < pos - 1; i++)
+                for (int i = 0; i < pos - 1; ++i)
                     if (node.children.get(i).tagName.equals(child.tagName))
                         count++;
                 boolean more = false;
-                for (int i = pos; i < node.children.size(); i++) {
+                for (int i = pos; i < node.children.size(); ++i) {
                     if (node.children.get(i).tagName.equals(child.tagName)) {
                         more = true;
                         break;
@@ -544,7 +544,7 @@ public class XStreamDOM {
 
             int c = r.getAttributeCount();
             String[] attributes = new String[c * 2];
-            for (int i = 0; i < c; i++) {
+            for (int i = 0; i < c; ++i) {
                 attributes[i * 2]   = escape(r.getAttributeName(i));
                 attributes[i * 2 + 1] = r.getAttribute(i);
             }

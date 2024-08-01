@@ -81,7 +81,7 @@ import org.kohsuke.stapler.export.Flavor;
  * <pre>
  * public ListBoxModel doOptionValues(&#64;QueryParameter("value") String value) throws IOException, ServletException {
  *   ListBoxModel m = new ListBoxModel();
- *   for (int i=0; i&lt;5; i++)
+ *   for (int i=0; i&lt;5; ++i)
  *     m.add(value+i,value+i);
  *   // make the third option selected initially
  *   m.get(3).selected = true;

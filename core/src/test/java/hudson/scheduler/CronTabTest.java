@@ -227,7 +227,7 @@ public class CronTabTest {
 
     private static String bitset(long bits) {
         StringBuilder b = new StringBuilder();
-        for (int i = 0; i < 64; i++) {
+        for (int i = 0; i < 64; ++i) {
             if ((bits & 1L << i) != 0) {
                 b.append(i).append(';');
             }
@@ -286,7 +286,7 @@ public class CronTabTest {
     @Test public void repeatedHash() throws Exception {
         CronTabList tabs = CronTabList.create("H * * * *\nH * * * *", Hash.from("seed"));
         List<Integer> times = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 60; ++i) {
             if (tabs.check(new GregorianCalendar(2013, Calendar.APRIL, 3, 11, i, 0))) {
                 times.add(i);
             }
@@ -330,7 +330,7 @@ public class CronTabTest {
     @Test public void testTimezone() throws Exception {
         CronTabList tabs = CronTabList.create("TZ=Australia/Sydney\nH * * * *\nH * * * *", Hash.from("seed"));
         List<Integer> times = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
+        for (int i = 0; i < 60; ++i) {
             GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
             calendar.set(2013, Calendar.APRIL, 3, 11, i, 0);
             if (tabs.check(calendar)) {

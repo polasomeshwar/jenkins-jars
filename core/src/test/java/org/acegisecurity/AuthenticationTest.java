@@ -81,14 +81,14 @@ public class AuthenticationTest {
         Collection<Executable> checks = new ArrayList<>();
         Authentication[] acegis = new Authentication[] {acegi, acegi2, acegi3};
         org.springframework.security.core.Authentication[] springs = new org.springframework.security.core.Authentication[] {spring, spring2, spring3};
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; j++) {
                 int _i = i;
                 int _j = j;
                 checks.add(() -> assertEquals(acegis[_i], acegis[_j], "Acegi #" + (_i + 1) + " == #" + (_j + 1)));
             }
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; j++) {
                 int _i = i;
                 int _j = j;

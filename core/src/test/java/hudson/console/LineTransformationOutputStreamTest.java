@@ -57,7 +57,7 @@ public final class LineTransformationOutputStreamTest {
                 count.addAndGet(Integer.parseInt(trimEOL(line)));
             }
         }) {
-            for (long i = 0; i < max; i++) {
+            for (long i = 0; i < max; ++i) {
                 counter.write((i + linefeed).getBytes(StandardCharsets.UTF_8));
             }
         }

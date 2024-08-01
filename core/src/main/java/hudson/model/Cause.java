@@ -309,7 +309,7 @@ public abstract class Cause {
         }
 
         private void indent(TaskListener listener, int depth) {
-            for (int i = 0; i < depth; i++) {
+            for (int i = 0; i < depth; ++i) {
                 listener.getLogger().print(' ');
             }
         }

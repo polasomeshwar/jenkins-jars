@@ -101,7 +101,7 @@ public class TreeStringBuilder {
         private int commonPrefix(final String a, final String b) {
             int m = Math.min(a.length(), b.length());
 
-            for (int i = 0; i < m; i++) {
+            for (int i = 0; i < m; ++i) {
                 if (a.charAt(i) != b.charAt(i)) {
                     return i;
                 }

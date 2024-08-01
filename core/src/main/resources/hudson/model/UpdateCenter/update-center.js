@@ -24,7 +24,7 @@ function refresh() {
           div.innerHTML = responseText;
 
           var rows = div.children[0].rows;
-          for (var i = 0; i < rows.length; i++) {
+          for (var i = 0; i < rows.length; ++i) {
             var row = rows[i];
             var target = document.getElementById(row.id);
             if (target == null) {

@@ -620,7 +620,7 @@ public class DomainValidatorTest extends TestCase {
         boolean strictlySorted = true;
         final int length = array.length;
         boolean lowerCase = isLowerCase(array[length - 1]); // Check the last entry
-        for (int i = 0; i < length - 1; i++) { // compare all but last entry with next
+        for (int i = 0; i < length - 1; ++i) { // compare all but last entry with next
             final String entry = array[i];
             final String nextEntry = array[i + 1];
             final int cmp = entry.compareTo(nextEntry);

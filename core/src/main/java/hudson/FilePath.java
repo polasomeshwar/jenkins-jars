@@ -325,7 +325,7 @@ public final class FilePath implements SerializableOnlyOverRemoting {
         // Split remaining path into tokens, trimming any duplicate or trailing separators
         List<String> tokens = new ArrayList<>();
         int s = 0, end = path.length();
-        for (int i = 0; i < end; i++) {
+        for (int i = 0; i < end; ++i) {
             char c = path.charAt(i);
             if (c == '/' || c == '\\') {
                 tokens.add(path.substring(s, i));
@@ -1008,7 +1008,14 @@ public final class FilePath implements SerializableOnlyOverRemoting {
                         listener.getLogger().println("Following redirect " + archive.toExternalForm() + " -> " + location);
                         return installIfNecessaryFrom(getUrlFactory().newURL(location), listener, message, maxRedirects - 1);
                     } else {
-                        listener.getLogger().println("Skipping installation of " + archive + " to " + remote + " due to too many redirects.");
+                        listener.getLogger().println(new StringBuilder()
+                                .append("Skipping installation of ")
+                                .append(archive)
+                                .append(" to ")
+                                .append(remote)
+                                .append(" due to too many redirects.")
+                                .toString());
+
                         return false;
                     }
                 }
@@ -1016,7 +1023,17 @@ public final class FilePath implements SerializableOnlyOverRemoting {
                     if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
                         return false;
                     } else if (responseCode != HttpURLConnection.HTTP_OK) {
-                        listener.getLogger().println("Skipping installation of " + archive + " to " + remote + " due to server error: " + responseCode + " " + httpCon.getResponseMessage());
+                        listener.getLogger().println(new StringBuilder()
+                                .append("Skipping installation of ")
+                                .append(archive)
+                                .append(" to ")
+                                .append(remote)
+                                .append(" due to server error: ")
+                                .append(responseCode)
+                                .append(" ")
+                                .append(httpCon.getResponseMessage())
+                                .toString());
+
                         return false;
                     }
                 }
@@ -2185,7 +2202,7 @@ public final class FilePath implements SerializableOnlyOverRemoting {
                 String[] files = glob(f, includes, excludes, defaultExcludes);
 
                 FilePath[] r = new FilePath[files.length];
-                for (int i = 0; i < r.length; i++)
+                for (int i = 0; i < r.length; ++i)
                     r[i] = new FilePath(new File(f, files[i]));
 
                 return r;

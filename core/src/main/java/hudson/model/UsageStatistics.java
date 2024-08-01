@@ -174,7 +174,7 @@ public class UsageStatistics extends PageDecorator implements PersistentDescript
         int[] counts = new int[descriptors.length];
         for (TopLevelItem item : j.allItems(TopLevelItem.class)) {
             TopLevelItemDescriptor d = item.getDescriptor();
-            for (int i = 0; i < descriptors.length; i++) {
+            for (int i = 0; i < descriptors.length; ++i) {
                 if (d == descriptors[i]) {
                     counts[i]++;
                     // no point checking any more, we found the match
@@ -182,7 +182,7 @@ public class UsageStatistics extends PageDecorator implements PersistentDescript
                 }
             }
         }
-        for (int i = 0; i < descriptors.length; i++) {
+        for (int i = 0; i < descriptors.length; ++i) {
             jobs.put(descriptors[i].getJsonSafeClassName(), counts[i]);
         }
         o.put("jobs", jobs);

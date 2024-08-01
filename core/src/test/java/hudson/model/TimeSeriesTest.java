@@ -39,7 +39,7 @@ public class TimeSeriesTest {
         TimeSeries ts = new TimeSeries(0, 1 - 0.1f, 100);
         float last = ts.getLatest();
         assertEquals(0f, last, 0f);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; ++i) {
             assertEquals(ts.getHistory().length, i + 1);
             ts.update(1);
             assertTrue(last <= ts.getLatest());
@@ -47,7 +47,7 @@ public class TimeSeriesTest {
             last = ts.getLatest();
         }
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 100; ++i)
         ts.update(1);
     }
 }

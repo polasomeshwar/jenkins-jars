@@ -159,7 +159,7 @@ public class RobustCollectionConverterTest {
         final Set<Object> set = new HashSet<>();
         Set<Object> s1 = set;
         Set<Object> s2 = new HashSet<>();
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 32; ++i) {
             final Set<Object> t1 = new HashSet<>();
             final Set<Object> t2 = new HashSet<>();
             t1.add("a");

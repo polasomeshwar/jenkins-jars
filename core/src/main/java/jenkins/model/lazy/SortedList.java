@@ -124,7 +124,7 @@ class SortedList<T extends Comparable<T>> extends AbstractList<T> {
     }
 
     private boolean isSorted() {
-        for (int i = 1; i < data.size(); i++) {
+        for (int i = 1; i < data.size(); ++i) {
             if (data.get(i).compareTo(data.get(i - 1)) < 0) {
                 return false;
             }

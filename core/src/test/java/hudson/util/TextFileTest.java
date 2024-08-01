@@ -69,7 +69,7 @@ public class TextFileTest {
         TextFile t = new TextFile(f);
 
         try (OutputStream o = new FileOutputStream(f)) {
-            for (int i = 0; i < 80; i++) {
+            for (int i = 0; i < 80; ++i) {
                 for (int j = 0; j < 40; j++) {
                     o.write(0x83);
                     o.write(0x82);

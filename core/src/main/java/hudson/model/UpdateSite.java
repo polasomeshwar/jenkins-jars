@@ -596,7 +596,7 @@ public class UpdateSite {
 
             JSONArray w = o.optJSONArray("warnings");
             if (w != null) {
-                for (int i = 0; i < w.size(); i++) {
+                for (int i = 0; i < w.size(); ++i) {
                     try {
                         warnings.add(new Warning(w.getJSONObject(i)));
                     } catch (JSONException ex) {
@@ -992,7 +992,7 @@ public class UpdateSite {
             if (o.has("versions")) {
                 JSONArray versions = o.getJSONArray("versions");
                 List<WarningVersionRange> ranges = new ArrayList<>(versions.size());
-                for (int i = 0; i < versions.size(); i++) {
+                for (int i = 0; i < versions.size(); ++i) {
                     WarningVersionRange range = new WarningVersionRange(versions.getJSONObject(i));
                     ranges.add(range);
                 }

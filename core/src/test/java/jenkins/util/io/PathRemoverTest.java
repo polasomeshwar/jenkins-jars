@@ -429,11 +429,11 @@ public class PathRemoverTest {
         final int totalFiles = lockedFiles + 5;
         File dir = tmp.newFolder();
         File[] files = new File[totalFiles];
-        for (int i = 0; i < totalFiles; i++) {
+        for (int i = 0; i < totalFiles; ++i) {
             files[i] = new File(dir, "f" + i);
         }
         touchWithFileName(files);
-        for (int i = 0; i < lockedFiles; i++) {
+        for (int i = 0; i < lockedFiles; ++i) {
             locker.acquireLock(files[i]);
         }
 

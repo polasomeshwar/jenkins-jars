@@ -91,7 +91,7 @@ public class CrumbFilter implements Filter {
                         i--;
                     }
                 } else {
-                    i++;
+                    ++i;
                 }
             }
 

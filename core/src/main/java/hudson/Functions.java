@@ -550,7 +550,7 @@ public class Functions {
     public static String[] printLogRecordHtml(LogRecord r, LogRecord prior) {
         String[] oldParts = prior == null ? new String[4] : logRecordPreformat(prior);
         String[] newParts = logRecordPreformat(r);
-        for (int i = 0; i < /* not 4 */3; i++) {
+        for (int i = 0; i < /* not 4 */3; ++i) {
             newParts[i] = "<span class='" + (newParts[i].equals(oldParts[i]) ? "logrecord-metadata-old" : "logrecord-metadata-new") + "'>" + newParts[i] + "</span>";
         }
         newParts[3] = Util.xmlEscape(newParts[3]);
@@ -845,7 +845,7 @@ public class Functions {
      */
     public static String htmlAttributeEscape(String text) {
         StringBuilder buf = new StringBuilder(text.length() + 64);
-        for (int i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); ++i) {
             char ch = text.charAt(i);
             if (ch == '<')
                 buf.append("&lt;");
@@ -1501,7 +1501,7 @@ public class Functions {
             while (tg.getParent() != null) tg = tg.getParent();
             Thread[] threads = new Thread[tg.activeCount() * 2];
             int threadsLen = tg.enumerate(threads, true);
-            for (int i = 0; i < threadsLen; i++) {
+            for (int i = 0; i < threadsLen; ++i) {
                 ThreadGroup group = threads[i].getThreadGroup();
                 map.put(threads[i].getId(), group != null ? group.getName() : null);
             }
@@ -1579,7 +1579,7 @@ public class Functions {
         }
         sb.append('\n');
         StackTraceElement[] stackTrace = ti.getStackTrace();
-        for (int i = 0; i < stackTrace.length; i++) {
+        for (int i = 0; i < stackTrace.length; ++i) {
             StackTraceElement ste = stackTrace[i];
             sb.append("\tat ").append(ste);
             sb.append('\n');
@@ -1636,7 +1636,7 @@ public class Functions {
     public static String jsStringEscape(String s) {
         if (s == null) return null;
         StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); ++i) {
             char ch = s.charAt(i);
             switch (ch) {
             case '\'':
@@ -1774,7 +1774,7 @@ public class Functions {
                 end--;
             }
         }
-        for (int i = 0; i < end; i++) {
+        for (int i = 0; i < end; ++i) {
             s.append(prefix).append("\tat ").append(trace[i]).append(System.lineSeparator());
         }
     }
@@ -1932,7 +1932,7 @@ public class Functions {
     public static String toEmailSafeString(String projectName) {
         // TODO: escape non-ASCII characters
         StringBuilder buf = new StringBuilder(projectName.length());
-        for (int i = 0; i < projectName.length(); i++) {
+        for (int i = 0; i < projectName.length(); ++i) {
             char ch = projectName.charAt(i);
             if (('a' <= ch && ch <= 'z')
             || ('A' <= ch && ch <= 'Z')

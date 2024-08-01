@@ -154,7 +154,7 @@ public class FilePathTest {
     private void givenSomeContentInFile(File file, int size) throws IOException {
         try (OutputStream os = Files.newOutputStream(file.toPath())) {
             byte[] buf = new byte[size];
-            for (int i = 0; i < buf.length; i++)
+            for (int i = 0; i < buf.length; ++i)
                 buf[i] = (byte) (i % 256);
             os.write(buf);
         }
@@ -162,7 +162,7 @@ public class FilePathTest {
 
     private List<Future<Integer>> whenFileIsCopied100TimesConcurrently(final File file) throws InterruptedException {
         List<Callable<Integer>> r = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; ++i) {
             r.add(() -> {
                 class Sink extends OutputStream {
                     private Exception closed;
@@ -230,7 +230,7 @@ public class FilePathTest {
         File dst = temp.newFolder("dst");
             FilePath from = new FilePath(src);
             FilePath to = new FilePath(channels.british, dst.getAbsolutePath());
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 10000; ++i) {
                 // TODO is there a simpler way to force the TarOutputStream to be flushed and the reader to start?
                 // Have not found a way to make the failure guaranteed.
                 try (OutputStream os = from.child("content" + i).write()) {
@@ -476,7 +476,7 @@ public class FilePathTest {
             // JENKINS-11073:
             // Windows seems to have random failures when setting the timestamp on newly generated
             // files. So test that:
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 100; ++i) {
                 copy = new FilePath(channels.british, tmp.getPath()).child("copy" + i);
                 childP.copyToWithPermission(copy);
             }
@@ -542,7 +542,7 @@ public class FilePathTest {
             FilePath d = new FilePath(channels.french, tmp.getPath());
             FilePath d2 = d.child("d1/d2");
             d2.mkdirs();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 100; ++i) {
                 FilePath d3 = d2.child("d" + i);
                 d3.mkdirs();
                 d3.child("f.txt").touch(0);

@@ -126,7 +126,7 @@ public class DefaultConfidentialStore extends ConfidentialStore {
         int payloadLen = payload.length - MAGIC.length;
         if (payloadLen < 0)   return null;    // obviously broken
 
-        for (int i = 0; i < MAGIC.length; i++) {
+        for (int i = 0; i < MAGIC.length; ++i) {
             if (payload[payloadLen + i] != MAGIC[i])
                 return null;    // broken
         }

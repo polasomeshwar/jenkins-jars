@@ -298,7 +298,7 @@ public class ApiTokenProperty extends UserProperty {
             // in case there are multiple tokens
             JSONArray tokenArray = (JSONArray) tokenStoreData;
             Map<String, JSONObject> result = new HashMap<>();
-            for (int i = 0; i < tokenArray.size(); i++) {
+            for (int i = 0; i < tokenArray.size(); ++i) {
                 JSONObject tokenData = tokenArray.getJSONObject(i);
                 addJSONTokenIntoMap(result, tokenData);
             }

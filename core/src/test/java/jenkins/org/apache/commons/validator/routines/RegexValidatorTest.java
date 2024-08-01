@@ -265,7 +265,7 @@ public class RegexValidatorTest extends TestCase {
         }
 
         // Check Values
-        for (int i = 0; i < expect.length; i++) {
+        for (int i = 0; i < expect.length; ++i) {
             assertEquals(label + " value[" + i + "]", expect[i], result[i]);
         }
     }

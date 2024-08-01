@@ -521,7 +521,7 @@ public class XStream2 extends XStream {
 
                 Class<?>[] p = c.getParameterTypes();
                 Object[] args = new Object[p.length];
-                for (int i = 0; i < p.length; i++) {
+                for (int i = 0; i < p.length; ++i) {
                     if (p[i] == XStream.class || p[i] == XStream2.class)
                         args[i] = xstream;
                     else if (p[i] == Mapper.class)

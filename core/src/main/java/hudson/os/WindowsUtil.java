@@ -54,10 +54,10 @@ public class WindowsUtil {
         StringBuilder sb = new StringBuilder();
         sb.append('"');
         int end = argument.length();
-        for (int i = 0; i < end; i++) {
+        for (int i = 0; i < end; ++i) {
             int nrBackslashes = 0;
             while (i < end && argument.charAt(i) == '\\') {
-                i++;
+                ++i;
                 nrBackslashes++;
             }
 

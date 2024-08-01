@@ -113,7 +113,7 @@ var repeatableSupport = {
         children[0].className = "repeated-chunk first last only";
       } else {
         children[0].className = "repeated-chunk first";
-        for (var i = 1; i < children.length - 1; i++) {
+        for (var i = 1; i < children.length - 1; ++i) {
           children[i].className = "repeated-chunk middle";
         }
         children[children.length - 1].className = "repeated-chunk last";
@@ -158,7 +158,7 @@ var repeatableSupport = {
     n.tag.expand(addOnTop);
     // Hack to hide tool home when a new tool has some installers.
     var inputs = n.getElementsByTagName("INPUT");
-    for (var i = 0; i < inputs.length; i++) {
+    for (var i = 0; i < inputs.length; ++i) {
       var input = inputs[i];
       if (input.name == "hudson-tools-InstallSourceProperty") {
         updateOptionalBlock(input);
@@ -241,7 +241,7 @@ Behaviour.specify(
 // Needs to run before the radioBlock behavior so that names are already unique.
 Behaviour.specify("DIV.repeated-chunk", "repeatable", -200, function (d) {
   var inputs = d.getElementsByTagName("INPUT");
-  for (var i = 0; i < inputs.length; i++) {
+  for (var i = 0; i < inputs.length; ++i) {
     if (inputs[i].type == "radio") {
       // Need to uniquify each set of radio buttons in repeatable content.
       // buildFormTree will remove the prefix before form submission.

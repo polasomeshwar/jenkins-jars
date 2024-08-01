@@ -720,7 +720,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
         int displayChars = 0;
         int lastTruncatablePoint = -1;
 
-        for (int i = 0; i < sz; i++) {
+        for (int i = 0; i < sz; ++i) {
             char ch = localDescription.charAt(i);
             if (ch == '<') {
                 inTag = true;
@@ -1306,7 +1306,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
             int maxDepth = 0;
             int[] len = new int[size()];
             String[][] tokens = new String[size()][];
-            for (int i = 0; i < tokens.length; i++) {
+            for (int i = 0; i < tokens.length; ++i) {
                 tokens[i] = get(i).relativePath.split("[\\\\/]+");
                 maxDepth = Math.max(maxDepth, tokens[i].length);
                 len[i] = 1;
@@ -1317,7 +1317,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
             do {
                 collision = false;
                 Map<String, Integer/*index*/> names = new HashMap<>();
-                for (int i = 0; i < tokens.length; i++) {
+                for (int i = 0; i < tokens.length; ++i) {
                     String[] token = tokens[i];
                     String displayName = combineLast(token, len[i]);
                     Integer j = names.put(displayName, i);
@@ -1331,7 +1331,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
                 }
             } while (collision && depth++ < maxDepth);
 
-            for (int i = 0; i < tokens.length; i++)
+            for (int i = 0; i < tokens.length; ++i)
                 get(i).displayPath = combineLast(tokens[i], len[i]);
         }
 
@@ -1340,7 +1340,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
          */
         private String combineLast(String[] token, int n) {
             StringBuilder buf = new StringBuilder();
-            for (int i = Math.max(0, token.length - n); i < token.length; i++) {
+            for (int i = Math.max(0, token.length - n); i < token.length; ++i) {
                 if (buf.length() > 0)  buf.append('/');
                 buf.append(token[i]);
             }
@@ -2151,7 +2151,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
     private String convertBytesToString(List<Byte> bytes) {
         Collections.reverse(bytes);
         byte[] byteArray = new byte[bytes.size()];
-        for (int i = 0; i < byteArray.length; i++) {
+        for (int i = 0; i < byteArray.length; ++i) {
             byteArray[i] = bytes.get(i);
         }
         return new String(byteArray, getCharset());

@@ -67,7 +67,7 @@ public class ComputerTest {
         ArrayList<Future<ClassLoader>> classloaderFuturesList = new ArrayList<>();
         // block all calls to getContextClassloader() so we create more threads.
         synchronized (WaitAndGetContextClassLoader.class) {
-            for (int i = 0; i < numThreads; i++) {
+            for (int i = 0; i < numThreads; ++i) {
                 classloaderFuturesList.add(Computer.threadPoolForRemoting.submit(WaitAndGetContextClassLoader::getContextClassloader));
             }
         }

@@ -115,7 +115,7 @@ public class HudsonAuthenticationEntryPoint implements AuthenticationEntryPoint 
                 "</body></html>");
             // Turn Off "Show Friendly HTTP Error Messages" Feature on the Server Side.
             // See http://support.microsoft.com/kb/294807
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; ++i)
                 out.print("                              ");
             out.close();
         }

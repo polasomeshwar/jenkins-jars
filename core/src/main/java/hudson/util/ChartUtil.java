@@ -211,7 +211,7 @@ public class ChartUtil {
 
         final int nColumns = dataset.getColumnCount();
         final int nRows    = dataset.getRowCount();
-        for (int i = 0; i < nRows; i++) {
+        for (int i = 0; i < nRows; ++i) {
             Comparable rowKey = dataset.getRowKey(i);
             for (int j = 0; j < nColumns; j++) {
                 Comparable columnKey = dataset.getColumnKey(j);
@@ -231,7 +231,7 @@ public class ChartUtil {
         // now see if there are any data points that fall outside (rangeMin,rangeMax)
         boolean found = false;
         double min = 0, max = 0;
-        for (int i = 0; i < nRows; i++) {
+        for (int i = 0; i < nRows; ++i) {
             Comparable rowKey = dataset.getRowKey(i);
             for (int j = 0; j < nColumns; j++) {
                 Comparable columnKey = dataset.getColumnKey(j);

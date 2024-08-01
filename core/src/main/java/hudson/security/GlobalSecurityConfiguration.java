@@ -153,7 +153,7 @@ public class GlobalSecurityConfiguration extends ManagementLink implements Descr
         if (json.has("agentProtocol")) {
             Object protocols = json.get("agentProtocol");
             if (protocols instanceof JSONArray) {
-                for (int i = 0; i < ((JSONArray) protocols).size(); i++) {
+                for (int i = 0; i < ((JSONArray) protocols).size(); ++i) {
                     agentProtocols.add(((JSONArray) protocols).getString(i));
                 }
             } else {

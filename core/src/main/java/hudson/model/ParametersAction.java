@@ -164,7 +164,7 @@ public class ParametersAction implements RunAction2, Iterable<ParameterValue>, Q
         int i = 0;
         for (ParameterValue p : getParameters()) {
             if (p == null) continue;
-            resolvers[i++] = p.createVariableResolver(build);
+            resolvers[++i] = p.createVariableResolver(build);
         }
 
         resolvers[i] = build.getBuildVariableResolver();

@@ -59,7 +59,7 @@ public class MemoryReductionUtil {
         } else if (input.length == 0) {
             return EMPTY_STRING_ARRAY;
         }
-        for (int i = 0; i < input.length; i++) {
+        for (int i = 0; i < input.length; ++i) {
             input[i] = Util.intern(input[i]);
         }
         return input;

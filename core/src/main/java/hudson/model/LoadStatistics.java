@@ -582,15 +582,20 @@ public abstract class LoadStatistics {
 
         @Override
         public String toString() {
-            String sb = "LoadStatisticsSnapshot{" + "definedExecutors=" + definedExecutors +
-                    ", onlineExecutors=" + onlineExecutors +
-                    ", connectingExecutors=" + connectingExecutors +
-                    ", busyExecutors=" + busyExecutors +
-                    ", idleExecutors=" + idleExecutors +
-                    ", availableExecutors=" + availableExecutors +
-                    ", queueLength=" + queueLength +
-                    '}';
-            return sb;
+            StringBuilder sb = new StringBuilder();
+            sb.append("LoadStatisticsSnapshot{")
+              .append("definedExecutors=").append(definedExecutors)
+              .append(", onlineExecutors=").append(onlineExecutors)
+              .append(", connectingExecutors=").append(connectingExecutors)
+              .append(", busyExecutors=").append(busyExecutors)
+              .append(", idleExecutors=").append(idleExecutors)
+              .append(", availableExecutors=").append(availableExecutors)
+              .append(", queueLength=").append(queueLength)
+              .append('}');
+
+            String result = sb.toString();
+
+            return result;
         }
 
         /**

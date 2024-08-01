@@ -342,7 +342,7 @@ public abstract class ConsoleNote<T> implements Serializable, Describable<Consol
         int e = start + len - PREAMBLE.length + 1;
 
         OUTER:
-        for (int i = start; i < e; i++) {
+        for (int i = start; i < e; ++i) {
             if (buf[i] == PREAMBLE[0]) {
                 // check for the rest of the match
                 for (int j = 1; j < PREAMBLE.length; j++) {

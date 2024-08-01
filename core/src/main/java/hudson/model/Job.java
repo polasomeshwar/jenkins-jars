@@ -1045,7 +1045,7 @@ public abstract class Job<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
                     fallbackCandidates.add(r);
                 }
             }
-            i++;
+            ++i;
             r = r.getPreviousBuild();
         }
 

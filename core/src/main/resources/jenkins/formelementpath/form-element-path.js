@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return m;
     }
 
-    for (let i = 0; i < form.elements.length; i++) {
+    for (let i = 0; i < form.elements.length; ++i) {
       var e = form.elements[i];
       if (e.name == "json") {
         continue;
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (v instanceof Array) {
           var i = 0;
           v.forEach(function (v) {
-            child(v, i++, key);
+            child(v, ++i, key);
           });
         } else {
           child(v, 0, key);
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     annotate(form, "");
 
     // clean up
-    for (let i = 0; i < doms.length; i++) {
+    for (let i = 0; i < doms.length; ++i) {
       doms[i].formDom = null;
     }
 

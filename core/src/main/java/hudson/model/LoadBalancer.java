@@ -85,7 +85,7 @@ public abstract class LoadBalancer implements ExtensionPoint {
         public Mapping map(@NonNull Task task, MappingWorksheet ws) {
             // build consistent hash for each work chunk
             List<ConsistentHash<ExecutorChunk>> hashes = new ArrayList<>(ws.works.size());
-            for (int i = 0; i < ws.works.size(); i++) {
+            for (int i = 0; i < ws.works.size(); ++i) {
                 ConsistentHash<ExecutorChunk> hash = new ConsistentHash<>(ExecutorChunk::getName);
 
                 // Build a Map to pass in rather than repeatedly calling hash.add() because each call does lots of expensive work

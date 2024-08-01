@@ -243,7 +243,7 @@ public class UtilTest {
 
             // test a long name
             StringBuilder buf = new StringBuilder(768);
-            for (int i = 0; i < 768; i++)
+            for (int i = 0; i < 768; ++i)
                 buf.append((char) ('0' + (i % 10)));
             Util.createSymlink(d, buf.toString(), "x", l);
 
@@ -393,7 +393,7 @@ public class UtilTest {
 
         @Override
         public void run() {
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 1000; ++i) {
                 String digest = Util.getDigestOf(this.string);
                 if (!this.expectedDigest.equals(digest)) {
                     this.error = "Expected " + this.expectedDigest + ", but got " + digest;

@@ -300,7 +300,7 @@ public class StaplerDispatchValidator implements DispatchValidator {
                     continue;
                 }
                 Validator validator = find(parts[0]);
-                for (int i = 1; i < parts.length; i++) {
+                for (int i = 1; i < parts.length; ++i) {
                     String view = parts[i];
                     if (view.startsWith("!")) {
                         validator.denyView(view.substring(1));

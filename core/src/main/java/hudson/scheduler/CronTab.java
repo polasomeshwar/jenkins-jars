@@ -522,7 +522,7 @@ public final class CronTab {
      * "* 0 * * *"
      */
     public @CheckForNull String checkSanity() {
-        OUTER: for (int i = 0; i < 5; i++) {
+        OUTER: for (int i = 0; i < 5; ++i) {
             long bitMask = i < 4 ? bits[i] : (long) dayOfWeek;
             for (int j = BaseParser.LOWER_BOUNDS[i]; j <= BaseParser.UPPER_BOUNDS[i]; j++) {
                 if (!checkBits(bitMask, j)) {
@@ -537,7 +537,7 @@ public final class CronTab {
         }
 
         int daysOfMonth = 0;
-        for (int i = 1; i < 31; i++) {
+        for (int i = 1; i < 31; ++i) {
             if (checkBits(bits[2], i)) {
                 daysOfMonth++;
             }

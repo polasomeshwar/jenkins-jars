@@ -206,7 +206,7 @@ public class MultiStageTimeSeries implements Serializable {
          */
         protected DefaultCategoryDataset createDataset() {
             float[][] dataPoints = new float[series.size()][];
-            for (int i = 0; i < series.size(); i++)
+            for (int i = 0; i < series.size(); ++i)
                 dataPoints[i] = series.get(i).pick(timeScale).getHistory();
 
             int dataLength = dataPoints[0].length;
@@ -280,7 +280,7 @@ public class MultiStageTimeSeries implements Serializable {
         protected void configureRenderer(LineAndShapeRenderer renderer) {
             renderer.setBaseStroke(new BasicStroke(3));
 
-            for (int i = 0; i < series.size(); i++)
+            for (int i = 0; i < series.size(); ++i)
                 renderer.setSeriesPaint(i, series.get(i).color);
         }
 

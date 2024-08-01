@@ -451,7 +451,7 @@ public final class DirectoryBrowserSupport implements HttpResponse {
         Stream<List<Path>> pathFragmentsStream = pathFragmentsList.stream().map((List<Path> pathFragments) -> {
             List<Path> mappedFragments = new ArrayList<>(pathFragments.size());
             String relativePath = "";
-            for (int i = 0; i < pathFragments.size(); i++) {
+            for (int i = 0; i < pathFragments.size(); ++i) {
                 Path current = pathFragments.get(i);
                 if (i == 0) {
                     relativePath = current.title;

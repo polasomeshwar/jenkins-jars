@@ -710,7 +710,7 @@ public class Util {
     @NonNull
     public static String toHexString(@NonNull byte[] data, int start, int len) {
         StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < len; ++i) {
             int b = data[start + i] & 0xFF;
             if (b < 16)    buf.append('0');
             buf.append(Integer.toHexString(b));
@@ -862,7 +862,7 @@ public class Util {
             ByteArrayOutputStream buf = new ByteArrayOutputStream();
             OutputStreamWriter w = new OutputStreamWriter(buf, StandardCharsets.UTF_8);
 
-            for (int i = 0; i < s.length(); i++) {
+            for (int i = 0; i < s.length(); ++i) {
                 int c = s.charAt(i);
                 if (c < 128 && c != ' ') {
                     out.append((char) c);
@@ -895,8 +895,8 @@ public class Util {
   //  ^--so these are encoded
         int i;
         // Encode control chars and space
-        for (i = 0; i < 33; i++) uriMap[i] = true;
-        for (int j = 0; j < raw.length(); i++, j++)
+        for (i = 0; i < 33; ++i) uriMap[i] = true;
+        for (int j = 0; j < raw.length(); ++i, ++j)
             uriMap[i] = raw.charAt(j) == ' ';
         // If we add encodeQuery() just add a 2nd map to encode &+=
         // queryMap[38] = queryMap[43] = queryMap[61] = true;
@@ -910,8 +910,8 @@ public class Util {
         //  ^--so these are encoded
         int i;
         // Encode control chars and space
-        for (i = 0; i < 33; i++) fullUriMap[i] = true;
-        for (int j = 0; j < raw.length(); i++, j++)
+        for (i = 0; i < 33; ++i) fullUriMap[i] = true;
+        for (int j = 0; j < raw.length(); ++i, ++j)
             fullUriMap[i] = raw.charAt(j) == ' ';
         // If we add encodeQuery() just add a 2nd map to encode &+=
         // queryMap[38] = queryMap[43] = queryMap[61] = true;
@@ -952,7 +952,7 @@ public class Util {
         CharsetEncoder enc = null;
         CharBuffer buf = null;
         char c;
-        for (int i = 0, m = s.length(); i < m; i++) {
+        for (int i = 0, m = s.length(); i < m; ++i) {
             int codePoint = Character.codePointAt(s, i);
             if ((codePoint & 0xffffff80) == 0) { // 1 byte
                 c = s.charAt(i);
@@ -997,7 +997,7 @@ public class Util {
                 }
 
                 if (Character.charCount(codePoint) > 1) {
-                    i++; // we processed two characters
+                    ++i; // we processed two characters
                 }
             }
         }
@@ -1022,7 +1022,7 @@ public class Util {
     public static String escape(@CheckForNull String text) {
         if (text == null)     return null;
         StringBuilder buf = new StringBuilder(text.length() + 64);
-        for (int i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); ++i) {
             char ch = text.charAt(i);
             if (ch == '\n')
                 buf.append("<br>");
@@ -1058,7 +1058,7 @@ public class Util {
     @NonNull
     public static String xmlEscape(@NonNull String text) {
         StringBuilder buf = new StringBuilder(text.length() + 64);
-        for (int i = 0; i < text.length(); i++) {
+        for (int i = 0; i < text.length(); ++i) {
             char ch = text.charAt(i);
             if (ch == '<')
                 buf.append("&lt;");
@@ -1730,7 +1730,7 @@ public class Util {
         }
         PosixFilePermission[] allPermissions = PosixFilePermission.values();
         Set<PosixFilePermission> result = EnumSet.noneOf(PosixFilePermission.class);
-        for (int i = 0; i < allPermissions.length; i++) {
+        for (int i = 0; i < allPermissions.length; ++i) {
             if ((mode & 1) == 1) {
                 result.add(allPermissions[allPermissions.length - i - 1]);
             }

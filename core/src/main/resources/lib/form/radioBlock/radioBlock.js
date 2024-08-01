@@ -3,7 +3,7 @@ var radioBlockSupport = {
   buttons: null, // set of functions, one for updating one radio block each
 
   updateButtons: function () {
-    for (var i = 0; i < this.buttons.length; i++) {
+    for (var i = 0; i < this.buttons.length; ++i) {
       this.buttons[i]();
     }
   },

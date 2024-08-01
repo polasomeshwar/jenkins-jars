@@ -40,7 +40,7 @@ public class TreeStringBuilderTest {
         List<String> a = new ArrayList<>();
         List<TreeString> o = new ArrayList<>();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; ++i) {
             StringBuilder b = new StringBuilder();
             for (int j = 0; j < r.nextInt(10) + 3; j++) {
                 b.append(dict[r.nextInt(4)]);
@@ -54,14 +54,14 @@ public class TreeStringBuilderTest {
         }
 
         // make sure values are still all intact
-        for (int i = 0; i < a.size(); i++) {
+        for (int i = 0; i < a.size(); ++i) {
             verify(a.get(i), o.get(i));
         }
 
         x.dedup();
 
         // verify one more time
-        for (int i = 0; i < a.size(); i++) {
+        for (int i = 0; i < a.size(); ++i) {
             verify(a.get(i), o.get(i));
         }
     }

@@ -156,7 +156,7 @@ public class TarArchiverTest {
             try {
                 openFile.createNewFile();
                 try (OutputStream fos = Files.newOutputStream(openFile.toPath())) {
-                    for (int i = 0; !finish && i < 5000000; i++) { // limit the max size, just in case.
+                    for (int i = 0; !finish && i < 5000000; ++i) { // limit the max size, just in case.
                         fos.write(0);
                         // Thread.sleep(5);
                     }

@@ -257,7 +257,7 @@ public class RobustReflectionConverterTest {
         final Set<Object> set = new HashSet<>();
         Set<Object> s1 = set;
         Set<Object> s2 = new HashSet<>();
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 32; ++i) {
             final Set<Object> t1 = new HashSet<>();
             final Set<Object> t2 = new HashSet<>();
             t1.add("a");
@@ -290,7 +290,7 @@ public class RobustReflectionConverterTest {
         final CustomSet customSet = new CustomSet();
         CustomSet s1 = customSet;
         CustomSet s2 = new CustomSet();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 30; ++i) {
             final CustomSet t1 = new CustomSet();
             final CustomSet t2 = new CustomSet();
             t1.internalSet.add("a");
