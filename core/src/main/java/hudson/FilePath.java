@@ -990,7 +990,13 @@ public final class FilePath implements SerializableOnlyOverRemoting {
             } catch (IOException x) {
                 if (this.exists()) {
                     // Cannot connect now, so assume whatever was last unpacked is still OK.
-                    listener.getLogger().println("Skipping installation of " + archive + " to " + remote + ": " + x);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Skipping installation of ").append(archive)
+                      .append(" to ").append(remote)
+                      .append(": ").append(x);
+
+                    listener.getLogger().println(sb.toString());
+
                     return false;
                 } else {
                     throw x;

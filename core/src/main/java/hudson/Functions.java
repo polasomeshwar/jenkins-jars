@@ -551,7 +551,13 @@ public class Functions {
         String[] oldParts = prior == null ? new String[4] : logRecordPreformat(prior);
         String[] newParts = logRecordPreformat(r);
         for (int i = 0; i < /* not 4 */3; ++i) {
-            newParts[i] = "<span class='" + (newParts[i].equals(oldParts[i]) ? "logrecord-metadata-old" : "logrecord-metadata-new") + "'>" + newParts[i] + "</span>";
+            StringBuilder sb = new StringBuilder();
+            sb.append("<span class='")
+              .append(newParts[i].equals(oldParts[i]) ? "logrecord-metadata-old" : "logrecord-metadata-new")
+              .append("'>")
+              .append(newParts[i])
+              .append("</span>");
+            newParts[i] = sb.toString();
         }
         newParts[3] = Util.xmlEscape(newParts[3]);
         return newParts;
@@ -1560,10 +1566,16 @@ public class Functions {
     // ThreadInfo.toString() truncates the stack trace by first 8, so needed my own version
     public static String dumpThreadInfo(ThreadInfo ti, ThreadGroupMap map) {
         String grp = map.getThreadGroup(ti);
-        StringBuilder sb = new StringBuilder("\"" + ti.getThreadName() + "\"" +
-                                             " Id=" + ti.getThreadId() + " Group=" +
-                                             (grp != null ? grp : "?") + " " +
-                                             ti.getThreadState());
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"")
+          .append(ti.getThreadName())
+          .append("\" Id=")
+          .append(ti.getThreadId())
+          .append(" Group=")
+          .append(grp != null ? grp : "?")
+          .append(" ")
+          .append(ti.getThreadState());
+
         if (ti.getLockName() != null) {
             sb.append(" on " + ti.getLockName());
         }
@@ -1682,10 +1694,15 @@ public class Functions {
         if (it instanceof Descriptor)
             clazz = ((Descriptor) it).clazz;
 
-        String buf = Stapler.getCurrentRequest().getContextPath() + Jenkins.VIEW_RESOURCE_PATH + '/' +
-                clazz.getName().replace('.', '/').replace('$', '/') +
-                '/' + path;
-        return buf;
+        StringBuilder buf = new StringBuilder();
+        buf.append(Stapler.getCurrentRequest().getContextPath())
+           .append(Jenkins.VIEW_RESOURCE_PATH)
+           .append('/')
+           .append(clazz.getName().replace('.', '/').replace('$', '/'))
+           .append('/')
+           .append(path);
+
+        return buf.toString();
     }
 
     public static boolean hasView(Object it, String path) throws IOException {

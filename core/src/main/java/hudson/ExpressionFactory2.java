@@ -79,7 +79,14 @@ final class ExpressionFactory2 implements ExpressionFactory {
                 throw e;
             } catch (Exception e) {
                 StaplerRequest currentRequest = Stapler.getCurrentRequest();
-                LOGGER.log(Level.WARNING, "Caught exception evaluating: " + expression + " in " + (currentRequest != null ? currentRequest.getOriginalRequestURI() : "?") + ". Reason: " + e, e);
+                StringBuilder sb = new StringBuilder();
+                sb.append("Caught exception evaluating: ").append(expression)
+                  .append(" in ")
+                  .append(currentRequest != null ? currentRequest.getOriginalRequestURI() : "?")
+                  .append(". Reason: ").append(e);
+
+                LOGGER.log(Level.WARNING, sb.toString(), e);
+
                 return null;
             } finally {
                 CURRENT_CONTEXT.set(null);
