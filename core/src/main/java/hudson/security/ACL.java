@@ -289,8 +289,19 @@ public abstract class ACL {
             return;
         }
         if (!hasCreatePermission2(a, c, d)) {
-            throw new AccessDeniedException(Messages.AccessDeniedException2_MissingPermission(a.getName(),
-                    View.CREATE.group.title + "/" + View.CREATE.name + View.CREATE + "/" + d.getDisplayName()));
+            throw new AccessDeniedException(
+                    Messages.AccessDeniedException2_MissingPermission(
+                        a.getName(),
+                        new StringBuilder()
+                            .append(View.CREATE.group.title)
+                            .append("/")
+                            .append(View.CREATE.name)
+                            .append(View.CREATE)
+                            .append("/")
+                            .append(d.getDisplayName())
+                            .toString()
+                    )
+                );
         }
     }
 

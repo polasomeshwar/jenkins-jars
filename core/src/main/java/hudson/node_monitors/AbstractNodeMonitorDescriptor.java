@@ -175,7 +175,16 @@ public abstract class AbstractNodeMonitorDescriptor<T> extends Descriptor<NodeMo
             } catch (RuntimeException | IOException e) {
                 LOGGER.log(Level.WARNING, "Failed to monitor " + c.getDisplayName() + " for " + getDisplayName(), e);
             } catch (InterruptedException e) {
-                throw (InterruptedException) new InterruptedException("Node monitoring " + c.getDisplayName() + " for " + getDisplayName() + " aborted.").initCause(e);
+                throw (InterruptedException) new InterruptedException(
+                        new StringBuilder()
+                            .append("Node monitoring ")
+                            .append(c.getDisplayName())
+                            .append(" for ")
+                            .append(getDisplayName())
+                            .append(" aborted.")
+                            .toString()
+                    ).initCause(e);
+
             }
         }
         return data;

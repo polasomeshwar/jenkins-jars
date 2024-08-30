@@ -252,9 +252,27 @@ public abstract class ChangeLogSet<T extends ChangeLogSet.Entry> implements Iter
                 try {
                     a.annotate(parent.run, this, markup);
                 } catch (RuntimeException e) {
-                    LOGGER.info("ChangeLogAnnotator " + a.toString() + " failed to annotate message '" + getMsg() + "'; " + e.getMessage());
+                    LOGGER.info(new StringBuilder()
+                            .append("ChangeLogAnnotator ")
+                            .append(a.toString())
+                            .append(" failed to annotate message '")
+                            .append(getMsg())
+                            .append("'; ")
+                            .append(e.getMessage())
+                            .toString()
+                        );
+
                 } catch (Error e) {
-                    LOGGER.severe("ChangeLogAnnotator " + a + " failed to annotate message '" + getMsg() + "'; " + e.getMessage());
+                    LOGGER.severe(new StringBuilder()
+                            .append("ChangeLogAnnotator ")
+                            .append(a)
+                            .append(" failed to annotate message '")
+                            .append(getMsg())
+                            .append("'; ")
+                            .append(e.getMessage())
+                            .toString()
+                        );
+
                 }
 
             return markup.toString(false);

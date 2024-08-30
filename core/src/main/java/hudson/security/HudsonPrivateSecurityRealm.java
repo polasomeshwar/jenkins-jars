@@ -981,7 +981,17 @@ public class HudsonPrivateSecurityRealm extends AbstractPasswordBasedSecurityRea
         // $PBDKF2 is already checked before we get here.
         // $algorithm(HMACSHA512) : rounds : salt_in_hex $ mac_in_hex
         private static final Pattern PBKDF2_PATTERN =
-                Pattern.compile("^\\$HMACSHA512\\:" + ITTERATIONS + "\\:[a-f0-9]{" + (SALT_LENGTH_BYTES * 2) + "}\\$[a-f0-9]{" + ((KEY_LENGTH_BITS / 8) * 2) + "}$");
+                Pattern.compile(new StringBuilder()
+                        .append("^\\$HMACSHA512\\:")
+                        .append(ITTERATIONS)
+                        .append("\\:[a-f0-9]{")
+                        .append(SALT_LENGTH_BYTES * 2)
+                        .append("}\\$")
+                        .append("[a-f0-9]{")
+                        .append((KEY_LENGTH_BITS / 8) * 2)
+                        .append("}$")
+                        .toString()
+                    );
 
         @Override
         public String encode(CharSequence rawPassword) {
@@ -1005,7 +1015,15 @@ public class HudsonPrivateSecurityRealm extends AbstractPasswordBasedSecurityRea
             byte[] salt = generateSalt();
             PBEKeySpec spec = new PBEKeySpec(password.toString().toCharArray(), salt, ITTERATIONS, KEY_LENGTH_BITS);
             byte[] hash = generateSecretKey(spec);
-            return "$HMACSHA512:" + ITTERATIONS + STRING_SEPARATION + Util.toHexString(salt) + "$" + Util.toHexString(hash);
+            return new StringBuilder()
+                    .append("$HMACSHA512:")
+                    .append(ITTERATIONS)
+                    .append(STRING_SEPARATION)
+                    .append(Util.toHexString(salt))
+                    .append('$')
+                    .append(Util.toHexString(hash))
+                    .toString();
+
         }
 
         private static byte[] generateSecretKey(PBEKeySpec spec) throws NoSuchAlgorithmException, InvalidKeySpecException {

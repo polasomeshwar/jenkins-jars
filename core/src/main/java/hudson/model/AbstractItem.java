@@ -923,7 +923,15 @@ public abstract class AbstractItem extends Actionable implements Loadable, Item,
             if (o != this) {
                 // ensure that we've got the same job type. extending this code to support updating
                 // to different job type requires destroying & creating a new job type
-                throw new IOException("Expecting " + this.getClass() + " but got " + o.getClass() + " instead");
+                throw new IOException(
+                        new StringBuilder()
+                            .append("Expecting ")
+                            .append(this.getClass())
+                            .append(" but got ")
+                            .append(o.getClass())
+                            .append(" instead")
+                            .toString()
+                    );
             }
 
             Items.whileUpdatingByXml(new NotReallyRoleSensitiveCallable<Void, IOException>() {

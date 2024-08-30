@@ -1001,9 +1001,29 @@ public abstract class Descriptor<T extends Describable<T>> implements Loadable, 
         Enumeration<Locale> locales = req.getLocales();
         while (locales.hasMoreElements()) {
             Locale locale = locales.nextElement();
-            url = c.getResource(base + '_' + locale.getLanguage() + '_' + locale.getCountry() + '_' + locale.getVariant() + ".html");
+            url = c.getResource(new StringBuilder()
+                    .append(base)
+                    .append('_')
+                    .append(locale.getLanguage())
+                    .append('_')
+                    .append(locale.getCountry())
+                    .append('_')
+                    .append(locale.getVariant())
+                    .append(".html")
+                    .toString()
+                );
+
             if (url != null)    return url;
-            url = c.getResource(base + '_' + locale.getLanguage() + '_' + locale.getCountry() + ".html");
+            url = c.getResource(new StringBuilder()
+                    .append(base)
+                    .append('_')
+                    .append(locale.getLanguage())
+                    .append('_')
+                    .append(locale.getCountry())
+                    .append(".html")
+                    .toString()
+                );
+
             if (url != null)    return url;
             url = c.getResource(base + '_' + locale.getLanguage() + ".html");
             if (url != null)    return url;

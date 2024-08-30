@@ -95,11 +95,42 @@ public class ChainedServletFilter implements Filter {
                 } else {
                     Filter next = filters[position++];
                     try {
-                        LOGGER.log(level, () -> uri + " @" + position + " " + next + " »");
+                        LOGGER.log(level, () -> new StringBuilder()
+                                .append(uri)
+                                .append(" @")
+                                .append(position)
+                                .append(" ")
+                                .append(next)
+                                .append(" »")
+                                .toString()
+                            );
+
                         next.doFilter(request, response, this);
-                        LOGGER.log(level, () -> uri + " @" + position + " " + next + " « success: " + status());
+                        LOGGER.log(level, () -> new StringBuilder()
+                                .append(uri)
+                                .append(" @")
+                                .append(position)
+                                .append(" ")
+                                .append(next)
+                                .append(" « success: ")
+                                .append(status())
+                                .toString()
+                            );
+
                     } catch (IOException | ServletException | RuntimeException x) {
-                        LOGGER.log(level, () -> uri + " @" + position + " " + next + " « " + x + ": " + status());
+                        LOGGER.log(level, () -> new StringBuilder()
+                                .append(uri)
+                                .append(" @")
+                                .append(position)
+                                .append(" ")
+                                .append(next)
+                                .append(" « ")
+                                .append(x)
+                                .append(": ")
+                                .append(status())
+                                .toString()
+                            );
+
                         throw x;
                     }
                 }
