@@ -271,7 +271,16 @@ public class RobustReflectionConverter implements Converter {
                     writer.endNode();
                 } catch (RuntimeException e) {
                     // intercept an exception so that the stack trace shows how we end up marshalling the object in question
-                    throw new RuntimeException("Failed to serialize " + definedIn.getName() + "#" + fieldName + " for " + source.getClass(), e);
+                    throw new RuntimeException(new StringBuilder()
+                            .append("Failed to serialize ")
+                            .append(definedIn.getName())
+                            .append("#")
+                            .append(fieldName)
+                            .append(" for ")
+                            .append(source.getClass())
+                            .toString(), e
+                        );
+
                 }
             }
 

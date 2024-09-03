@@ -146,8 +146,15 @@ public class TokenBasedRememberMeServices2 extends AbstractRememberMeServices {
                 tokenLifetime, request, response);
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Added remember-me cookie for user '" + username + "', expiry: '" + new Date(expiryTime)
-                            + "'");
+            logger.debug(new StringBuilder()
+                    .append("Added remember-me cookie for user '")
+                    .append(username)
+                    .append("', expiry: '")
+                    .append(new Date(expiryTime))
+                    .append("'")
+                    .toString()
+                );
+
         }
     }
 
@@ -187,14 +194,28 @@ public class TokenBasedRememberMeServices2 extends AbstractRememberMeServices {
         }
         long tokenExpiryTime = getTokenExpiryTime(cookieTokens);
         if (isTokenExpired(tokenExpiryTime)) {
-            throw new InvalidCookieException("Cookie token[1] has expired (expired on '" + new Date(tokenExpiryTime)
-                    + "'; current time is '" + new Date() + "')");
+            throw new InvalidCookieException(new StringBuilder()
+                    .append("Cookie token[1] has expired (expired on '")
+                    .append(new Date(tokenExpiryTime))
+                    .append("'; current time is '")
+                    .append(new Date())
+                    .append("')")
+                    .toString()
+                );
+
         }
         // Check the user exists. Defer lookup until after expiry time checked, to
         // possibly avoid expensive database call.
         UserDetails userDetails = getUserDetailsService().loadUserByUsername(cookieTokens[0]);
-        Objects.requireNonNull(userDetails, "UserDetailsService " + getUserDetailsService()
-                + " returned null for username " + cookieTokens[0] + ". " + "This is an interface contract violation");
+        Objects.requireNonNull(userDetails, new StringBuilder()
+                .append("UserDetailsService ")
+                .append(getUserDetailsService())
+                .append(" returned null for username ")
+                .append(cookieTokens[0])
+                .append(". This is an interface contract violation")
+                .toString()
+            );
+
         // Check signature of token matches remaining details. Must do this after user
         // lookup, as we need the DAO-derived password. If efficiency was a major issue,
         // just add in a UserCache implementation, but recall that this method is usually
@@ -203,8 +224,14 @@ public class TokenBasedRememberMeServices2 extends AbstractRememberMeServices {
         // be cancelled.
         String expectedTokenSignature = makeTokenSignature(tokenExpiryTime, userDetails.getUsername());
         if (!equals(expectedTokenSignature, cookieTokens[2])) {
-            throw new InvalidCookieException("Cookie token[2] contained signature '" + cookieTokens[2]
-                    + "' but expected '" + expectedTokenSignature + "'");
+            throw new InvalidCookieException(new StringBuilder()
+                    .append("Cookie token[2] contained signature '")
+                    .append(cookieTokens[2])
+                    .append("' but expected '")
+                    .append(expectedTokenSignature)
+                    .append("'")
+                    .toString()
+                );
         }
         return userDetails;
     }

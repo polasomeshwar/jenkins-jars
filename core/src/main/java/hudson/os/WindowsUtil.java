@@ -119,7 +119,16 @@ public class WindowsUtil {
         if (result != 0) {
             String stderr = IOUtils.toString(mklink.getErrorStream());
             String stdout = IOUtils.toString(mklink.getInputStream());
-            throw new IOException("Process exited with " + result + "\nStandard Output:\n" + stdout + "\nError Output:\n" + stderr);
+            throw new IOException(new StringBuilder()
+                    .append("Process exited with ")
+                    .append(result)
+                    .append("\nStandard Output:\n")
+                    .append(stdout)
+                    .append("\nError Output:\n")
+                    .append(stderr)
+                    .toString()
+                );
+
         }
         return junction;
     }

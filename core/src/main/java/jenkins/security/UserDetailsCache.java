@@ -170,8 +170,14 @@ public final class UserDetailsCache {
                 UserDetails userDetails = jenkins.getSecurityRealm().loadUserByUsername2(idOrFullName);
                 if (userDetails == null) {
                     existenceCache.put(this.idOrFullName, Boolean.FALSE);
-                    throw new NullPointerException("hudson.security.SecurityRealm should never return null. "
-                                                   + jenkins.getSecurityRealm() + " returned null for idOrFullName='" + idOrFullName + "'");
+                    throw new NullPointerException(new StringBuilder()
+                            .append("hudson.security.SecurityRealm should never return null. ")
+                            .append(jenkins.getSecurityRealm())
+                            .append(" returned null for idOrFullName='")
+                            .append(idOrFullName)
+                            .append("'")
+                            .toString()
+                        );
                 }
                 existenceCache.put(this.idOrFullName, Boolean.TRUE);
                 return userDetails;

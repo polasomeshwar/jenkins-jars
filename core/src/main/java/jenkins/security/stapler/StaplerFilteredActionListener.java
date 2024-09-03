@@ -77,9 +77,17 @@ public class StaplerFilteredActionListener implements FilteredDoActionTriggerLis
 
     @Override
     public boolean onDispatchTrigger(StaplerRequest req, StaplerResponse rsp, Object node, String viewName) {
-        LOGGER.warning(() -> "New Stapler dispatch rules result in the URL \"" + req.getPathInfo() + "\" no longer being allowed. " +
-                "If you consider it safe to use, add the following to the whitelist: \"" + node.getClass().getName() + " " + viewName + "\". " +
-                "Learn more: https://www.jenkins.io/redirect/stapler-facet-restrictions");
+        LOGGER.warning(() -> new StringBuilder()
+            .append("New Stapler dispatch rules result in the URL \"")
+            .append(req.getPathInfo())
+            .append("\" no longer being allowed. If you consider it safe to use, add the following to the whitelist: \"")
+            .append(node.getClass().getName())
+            .append(" ")
+            .append(viewName)
+            .append("\". Learn more: https://www.jenkins.io/redirect/stapler-facet-restrictions")
+            .toString()
+        );
         return false;
     }
+
 }

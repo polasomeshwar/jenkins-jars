@@ -850,10 +850,15 @@ public class NodeProvisioner {
             } catch (Error e) {
                 throw e;
             } catch (Throwable e) {
-                LOGGER.log(Level.SEVERE, "Unexpected uncaught exception encountered while "
-                        + "processing onFailure() listener call in " + cl + " for agent "
-                        + plannedNode.displayName, e);
-            }
+                LOGGER.log(Level.SEVERE, new StringBuilder()
+                        .append("Unexpected uncaught exception encountered while ")
+                        .append("processing onFailure() listener call in ")
+                        .append(cl)
+                        .append(" for agent ")
+                        .append(plannedNode.displayName)
+                        .toString(), e
+                    );
+        }
         }
     }
 

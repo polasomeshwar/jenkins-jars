@@ -107,6 +107,14 @@ public final class WorkUnit {
         if (work == context.task)
             return super.toString() + "[work=" + context.task.getFullDisplayName() + "]";
         else
-            return super.toString() + "[work=" + work + ",context.task=" + context.task.getFullDisplayName() + "]";
+            return new StringBuilder()
+                    .append(super.toString())
+                    .append("[work=")
+                    .append(work)
+                    .append(",context.task=")
+                    .append(context.task.getFullDisplayName())
+                    .append("]")
+                    .toString();
+
     }
 }

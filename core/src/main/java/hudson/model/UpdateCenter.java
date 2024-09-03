@@ -1326,7 +1326,15 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
                         final int count = cin.getCount();
                         job.status = job.new Installing(total == -1 ? -1 : ((int) (count * 100 / total)));
                         if (total != -1 && total < count) {
-                            throw new IOException("Received more data than expected. Expected " + total + " bytes but got " + count + " bytes (so far), aborting download.");
+                            throw new IOException(new StringBuilder()
+                                    .append("Received more data than expected. Expected ")
+                                    .append(total)
+                                    .append(" bytes but got ")
+                                    .append(count)
+                                    .append(" bytes (so far), aborting download.")
+                                    .toString()
+                                );
+
                         }
                     }
                 } catch (IOException | InvalidPathException e) {
@@ -2087,7 +2095,19 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
      * Throws an {@code IOException} with a message about {@code actual} not matching {@code expected} for {@code file} when using {@code algorithm}.
      */
     private static void throwVerificationFailure(String expected, String actual, File file, String algorithm) throws IOException {
-        throw new IOException("Downloaded file " + file.getAbsolutePath() + " does not match expected " + algorithm + ", expected '" + expected + "', actual '" + actual + "'");
+        throw new IOException(new StringBuilder()
+                .append("Downloaded file ")
+                .append(file.getAbsolutePath())
+                .append(" does not match expected ")
+                .append(algorithm)
+                .append(", expected '")
+                .append(expected)
+                .append("', actual '")
+                .append(actual)
+                .append("'")
+                .toString()
+            );
+
     }
 
     /**

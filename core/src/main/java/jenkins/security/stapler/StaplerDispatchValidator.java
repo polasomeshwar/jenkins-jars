@@ -158,7 +158,18 @@ public class StaplerDispatchValidator implements DispatchValidator {
             }
             return cache.find(node.getClass()).isViewValid(viewName);
         });
-        LOGGER.finer(() -> "<" + req.getRequestURI() + ", " + viewName + ", " + node + "> -> " + status.toBool());
+        LOGGER.finer(() -> new StringBuilder()
+                .append("<")
+                .append(req.getRequestURI())
+                .append(", ")
+                .append(viewName)
+                .append(", ")
+                .append(node)
+                .append("> -> ")
+                .append(status.toBool())
+                .toString()
+            );
+
         return status.toBool();
     }
 
