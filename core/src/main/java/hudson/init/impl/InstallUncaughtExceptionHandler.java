@@ -36,13 +36,17 @@ public class InstallUncaughtExceptionHandler {
             LOGGER.log(Level.FINE, "Successfully installed a global UncaughtExceptionHandler.");
         }
         catch (SecurityException ex) {
-            LOGGER.log(Level.SEVERE,
-                                                       "Failed to set the default UncaughtExceptionHandler. " +
-                                                       "If any threads die due to unhandled coding errors then there will be no logging of this information. " +
-                                                       "The lack of this diagnostic information will make it harder to track down issues which will reduce the supportability of Jenkins. " +
-                                                       "It is highly recommended that you consult the documentation that comes with your servlet container on how to allow the " +
-                                                       "`setDefaultUncaughtExceptionHandler` permission and enable it.", ex);
+            LOGGER.log(Level.SEVERE, new StringBuilder()
+                .append("Failed to set the default UncaughtExceptionHandler. ")
+                .append("If any threads die due to unhandled coding errors then there will be no logging of this information. ")
+                .append("The lack of this diagnostic information will make it harder to track down issues which will reduce the supportability of Jenkins. ")
+                .append("It is highly recommended that you consult the documentation that comes with your servlet container on how to allow the ")
+                .append("`setDefaultUncaughtExceptionHandler` permission and enable it.")
+                .toString(),
+                ex
+            );
         }
+
     }
 
     private static void handleException(Jenkins j, Throwable e, HttpServletRequest req, HttpServletResponse rsp, int code) throws IOException, ServletException {

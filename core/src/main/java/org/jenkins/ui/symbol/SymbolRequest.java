@@ -200,7 +200,16 @@ public final class SymbolRequest {
         public SymbolRequest build() {
             if (name == null && pluginName == null && raw != null) {
                 parseRaw(raw);
-                LOGGER.fine(() -> "\"" + raw + "\" parsed to name: " + name + " and pluginName: " + pluginName);
+                LOGGER.fine(() -> new StringBuilder()
+                        .append("\"")
+                        .append(raw)
+                        .append("\" parsed to name: ")
+                        .append(name)
+                        .append(" and pluginName: ")
+                        .append(pluginName)
+                        .toString()
+                    );
+
             }
             if (name == null) {
                 throw new IllegalArgumentException("name cannot be null");

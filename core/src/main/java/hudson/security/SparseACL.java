@@ -78,7 +78,16 @@ public class SparseACL extends SidACL {
 
         if (parent != null) {
             if (LOGGER.isLoggable(FINE))
-                LOGGER.fine("hasPermission(" + a + "," + permission + ") is delegating to parent ACL: " + parent);
+                LOGGER.fine(new StringBuilder()
+                        .append("hasPermission(")
+                        .append(a)
+                        .append(",")
+                        .append(permission)
+                        .append(") is delegating to parent ACL: ")
+                        .append(parent)
+                        .toString()
+                    );
+
             return parent.hasPermission2(a, permission);
         }
 

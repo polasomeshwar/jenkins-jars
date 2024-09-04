@@ -870,9 +870,16 @@ public class NodeProvisioner {
             } catch (Error e) {
                 throw e;
             } catch (Throwable e) {
-                LOGGER.log(Level.SEVERE, "Unexpected uncaught exception encountered while "
-                        + "processing onRollback() listener call in " + cl + " for agent "
-                        + newNode.getDisplayName(), e);
+                LOGGER.log(Level.SEVERE, new StringBuilder()
+                        .append("Unexpected uncaught exception encountered while ")
+                        .append("processing onRollback() listener call in ")
+                        .append(cl)
+                        .append(" for agent ")
+                        .append(newNode.getDisplayName())
+                        .toString(),
+                        e
+                    );
+
             }
         }
     }
@@ -884,9 +891,16 @@ public class NodeProvisioner {
             } catch (Error e) {
                 throw e;
             } catch (Throwable e) {
-                LOGGER.log(Level.SEVERE, "Unexpected uncaught exception encountered while "
-                        + "processing onComplete() listener call in " + cl + " for agent "
-                        + plannedNode.displayName, e);
+                LOGGER.log(Level.SEVERE, new StringBuilder()
+                        .append("Unexpected uncaught exception encountered while ")
+                        .append("processing onComplete() listener call in ")
+                        .append(cl)
+                        .append(" for agent ")
+                        .append(plannedNode.displayName)
+                        .toString(),
+                        e
+                    );
+
             }
         }
     }

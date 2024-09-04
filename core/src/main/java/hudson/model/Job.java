@@ -1135,7 +1135,16 @@ public abstract class Job<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
                 entries, new FeedAdapter<>() {
                     @Override
                     public String getEntryTitle(FeedItem item) {
-                        return "#" + item.getBuild().number + ' ' + item.e.getMsg() + " (" + item.e.getAuthor() + ")";
+                        return new StringBuilder()
+                                .append("#")
+                                .append(item.getBuild().number)
+                                .append(' ')
+                                .append(item.e.getMsg())
+                                .append(" (")
+                                .append(item.e.getAuthor())
+                                .append(")")
+                                .toString();
+
                     }
 
                     @Override

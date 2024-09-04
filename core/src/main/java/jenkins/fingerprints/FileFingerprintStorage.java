@@ -284,7 +284,16 @@ public class FileFingerprintStorage extends FingerprintStorage {
             } else {
                 if (!fp.isAlive()) {
                     FingerprintFacet deletionBlockerFacet = fp.getFacetBlockingDeletion();
-                    listener.getLogger().println(deletionBlockerFacet.getClass().getName() + " created on " + new Date(deletionBlockerFacet.getTimestamp()) + " blocked deletion of " + fingerprintFile);
+                    listener.getLogger().println(
+                            new StringBuilder()
+                                .append(deletionBlockerFacet.getClass().getName())
+                                .append(" created on ")
+                                .append(new Date(deletionBlockerFacet.getTimestamp()))
+                                .append(" blocked deletion of ")
+                                .append(fingerprintFile)
+                                .toString()
+                        );
+
                 }
                 // get the fingerprint in the official map so have the changes visible to Jenkins
                 // otherwise the mutation made in FingerprintMap can override our trimming.
@@ -308,8 +317,17 @@ public class FileFingerprintStorage extends FingerprintStorage {
      * Determines the file name from unique id (md5sum).
      */
     private static @NonNull File getFingerprintFile(@NonNull String id) {
-        return new File(Jenkins.get().getRootDir(),
-                "fingerprints/" + id.substring(0, 2) + '/' + id.substring(2, 4) + '/' + id.substring(4) + ".xml");
+        StringBuilder pathBuilder = new StringBuilder();
+        pathBuilder.append("fingerprints/")
+                   .append(id, 0, 2)
+                   .append('/')
+                   .append(id, 2, 4)
+                   .append('/')
+                   .append(id.substring(4))
+                   .append(".xml");
+
+        return new File(Jenkins.get().getRootDir(), pathBuilder.toString());
+
     }
 
     private static boolean isAllowed(String id) {

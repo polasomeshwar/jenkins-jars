@@ -202,13 +202,18 @@ public abstract class FormValidation extends IOException implements HttpResponse
     private static FormValidation _error(Kind kind, Throwable e, String message) {
         if (e == null)    return _errorWithMarkup(Util.escape(message), kind);
 
-        return _errorWithMarkup(Util.escape(message) +
-            " </div><div><a href='#' class='showDetails'>"
-            + Messages.FormValidation_Error_Details()
-            + "</a><pre style='display:none'>"
-            + Util.escape(Functions.printThrowable(e)) +
-            "</pre>", kind
-        );
+        return _errorWithMarkup(
+                new StringBuilder()
+                    .append(Util.escape(message))
+                    .append(" </div><div><a href='#' class='showDetails'>")
+                    .append(Messages.FormValidation_Error_Details())
+                    .append("</a><pre style='display:none'>")
+                    .append(Util.escape(Functions.printThrowable(e)))
+                    .append("</pre>")
+                    .toString(),
+                kind
+            );
+
     }
 
     public static FormValidation error(Throwable e, String format, Object... args) {

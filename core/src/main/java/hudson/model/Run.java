@@ -1750,7 +1750,17 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
             protected synchronized boolean waitForCheckPoint(@NonNull CheckPoint identifier, @CheckForNull BuildListener listener, @CheckForNull String waiter) throws InterruptedException {
                 final Thread t = Thread.currentThread();
                 final String oldName = t.getName();
-                t.setName(oldName + " : waiting for " + identifier + " on " + getFullDisplayName() + " from " + waiter);
+                t.setName(new StringBuilder()
+                        .append(oldName)
+                        .append(" : waiting for ")
+                        .append(identifier)
+                        .append(" on ")
+                        .append(getFullDisplayName())
+                        .append(" from ")
+                        .append(waiter)
+                        .toString()
+                    );
+
                 try {
                     boolean first = true;
                     while (!allDone && !checkpoints.contains(identifier)) {
@@ -2604,9 +2614,15 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
 
         @Override
         public String getEntryID(Run entry) {
-            return "tag:" + "hudson.dev.java.net,"
-                + entry.getTimestamp().get(Calendar.YEAR) + ":"
-                + entry.getParent().getFullName() + ':' + entry.getId();
+            return new StringBuilder()
+                    .append("tag:")
+                    .append("hudson.dev.java.net,")
+                    .append(entry.getTimestamp().get(Calendar.YEAR))
+                    .append(":")
+                    .append(entry.getParent().getFullName())
+                    .append(':')
+                    .append(entry.getId())
+                    .toString();
         }
 
         @Override

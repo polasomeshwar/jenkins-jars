@@ -473,8 +473,15 @@ public class RobustReflectionConverter implements Converter {
             if (collection == null) {
                 Class fieldType = mapper.defaultImplementationOf(reflectionProvider.getFieldType(result, fieldName, null));
                 if (!Collection.class.isAssignableFrom(fieldType)) {
-                    throw new ObjectAccessException("Field " + fieldName + " of " + result.getClass().getName() +
-                            " is configured for an implicit Collection, but field is of type " + fieldType.getName());
+                    throw new ObjectAccessException(new StringBuilder()
+                            .append("Field ")
+                            .append(fieldName)
+                            .append(" of ")
+                            .append(result.getClass().getName())
+                            .append(" is configured for an implicit Collection, but field is of type ")
+                            .append(fieldType.getName())
+                            .toString()
+                        );
                 }
                 if (pureJavaReflectionProvider == null) {
                     pureJavaReflectionProvider = new PureJavaReflectionProvider();

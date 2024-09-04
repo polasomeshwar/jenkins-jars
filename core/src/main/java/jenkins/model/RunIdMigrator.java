@@ -220,7 +220,18 @@ public final class RunIdMigrator {
                 }
                 int number = Integer.parseInt(m.group(1));
                 String nl = m.group(2);
-                xml = m.replaceFirst("  <id>" + name + "</id>" + nl + "  <timestamp>" + timestamp + "</timestamp>" + nl);
+                xml = m.replaceFirst(new StringBuilder()
+                        .append("  <id>")
+                        .append(name)
+                        .append("</id>")
+                        .append(nl)
+                        .append("  <timestamp>")
+                        .append(timestamp)
+                        .append("</timestamp>")
+                        .append(nl)
+                        .toString()
+                    );
+
                 File newKid = new File(dir, Integer.toString(number));
                 move(kid, newKid);
                 Files.writeString(Util.fileToPath(newKid).resolve("build.xml"), xml, StandardCharsets.UTF_8);
