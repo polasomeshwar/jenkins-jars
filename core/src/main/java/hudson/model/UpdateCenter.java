@@ -1326,6 +1326,9 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
                         final int count = cin.getCount();
                         job.status = job.new Installing(total == -1 ? -1 : ((int) (count * 100 / total)));
                         if (total != -1 && total < count) {
+<<<<<<< HEAD
+                            throw new IOException("Received more data than expected. Expected " + total + " bytes but got " + count + " bytes (so far), aborting download.");
+=======
                             throw new IOException(new StringBuilder()
                                     .append("Received more data than expected. Expected ")
                                     .append(total)
@@ -1335,6 +1338,7 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
                                     .toString()
                                 );
 
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                         }
                     }
                 } catch (IOException | InvalidPathException e) {
@@ -2095,6 +2099,9 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
      * Throws an {@code IOException} with a message about {@code actual} not matching {@code expected} for {@code file} when using {@code algorithm}.
      */
     private static void throwVerificationFailure(String expected, String actual, File file, String algorithm) throws IOException {
+<<<<<<< HEAD
+        throw new IOException("Downloaded file " + file.getAbsolutePath() + " does not match expected " + algorithm + ", expected '" + expected + "', actual '" + actual + "'");
+=======
         throw new IOException(new StringBuilder()
                 .append("Downloaded file ")
                 .append(file.getAbsolutePath())
@@ -2108,6 +2115,7 @@ public class UpdateCenter extends AbstractModelObject implements Loadable, Savea
                 .toString()
             );
 
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     /**

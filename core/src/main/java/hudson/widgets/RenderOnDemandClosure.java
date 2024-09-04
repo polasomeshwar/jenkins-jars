@@ -84,7 +84,11 @@ public class RenderOnDemandClosure {
         this.adjuncts = new String[_adjuncts.size()];
         int i = 0;
         for (String adjunct : _adjuncts) {
+<<<<<<< HEAD
+            this.adjuncts[++i] = adjunct.intern();
+=======
             this.adjuncts[i++] = adjunct.intern();
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
     }
 

@@ -207,6 +207,19 @@ public class CLIAction implements UnprotectedRootAction, StaplerProxy {
 
             @Override
             protected void closed(int statusCode, String reason) {
+<<<<<<< HEAD
+                LOGGER.fine(() -> "closed: " + statusCode + ": " + reason);           	
+            	LOGGER.fine(() -> new StringBuilder()
+                    	.append("received ")
+                    	.append(receivedCount)
+                    	.append(" packets of ")
+                    	.append(receivedBytes)
+                    	.append(" bytes; sent ")
+                    	.append(sentCount)
+                    	.append(" packets of ")
+                    	.append(sentBytes)
+                    	.append(" bytes").toString());
+=======
                 LOGGER.fine(() -> "closed: " + statusCode + ": " + reason);
                 LOGGER.fine(() -> new StringBuilder()
                         .append("received ")
@@ -221,6 +234,7 @@ public class CLIAction implements UnprotectedRootAction, StaplerProxy {
                         .toString()
                     );
 
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                 connection.handleClose();
             }
         });

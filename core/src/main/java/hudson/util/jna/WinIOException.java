@@ -30,6 +30,9 @@ public class WinIOException extends IOException {
 
     @Override
     public String getMessage() {
+<<<<<<< HEAD
+        return super.getMessage() + " error=" + errorCode + ":" + Util.getWin32ErrorMessage(errorCode);
+=======
         return new StringBuilder()
                 .append(super.getMessage())
                 .append(" error=")
@@ -38,6 +41,7 @@ public class WinIOException extends IOException {
                 .append(Util.getWin32ErrorMessage(errorCode))
                 .toString();
 
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     public int getErrorCode() {

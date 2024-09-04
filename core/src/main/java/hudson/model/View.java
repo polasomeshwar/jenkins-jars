@@ -117,6 +117,21 @@ import org.kohsuke.stapler.verb.POST;
 import org.xml.sax.SAXException;
 
 /**
+<<<<<<< HEAD
+ * Encapsulates the rendering of the list of {@link TopLevelItem}s
+ * that {@link Jenkins} owns.
+ *
+ * <p>
+ * This is an extension point in Hudson, allowing different kind of
+ * rendering to be added as plugins.
+ *
+ * <h2>Note for implementers</h2>
+ * <ul>
+ * <li>
+ * {@link View} subtypes need the {@code newViewDetail.jelly} page,
+ * which is included in the "new view" page. This page should have some
+ * description of what the view is about.
+=======
  * Encapsulates the rendering of the list of {@link TopLevelItem}s that
  * {@link Jenkins} owns.
  *
@@ -129,6 +144,7 @@ import org.xml.sax.SAXException;
  * <li>{@link View} subtypes need the {@code newViewDetail.jelly} page, which is
  * included in the "new view" page. This page should have some description of
  * what the view is about.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
  * </ul>
  *
  * @author Kohsuke Kawaguchi
@@ -136,6 +152,15 @@ import org.xml.sax.SAXException;
  * @see ViewGroup
  */
 @ExportedBean
+<<<<<<< HEAD
+public abstract class View extends AbstractModelObject implements AccessControlled, Describable<View>, ExtensionPoint, Saveable, ModelObjectWithChildren, DescriptorByNameOwner, HasWidgets {
+
+    /**
+     * Container of this view. Set right after the construction
+     * and never change thereafter.
+     */
+    protected /*final*/ ViewGroup owner;
+=======
 public abstract class View extends AbstractModelObject implements AccessControlled, Describable<View>, ExtensionPoint,
         Saveable, ModelObjectWithChildren, DescriptorByNameOwner, HasWidgets {
 
@@ -144,6 +169,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
      * thereafter.
      */
     protected /* final */ ViewGroup owner;
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
     /**
      * Name of this view.
@@ -167,7 +193,10 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     /**
      * List of {@link ViewProperty}s configured for this view.
+<<<<<<< HEAD
+=======
      *
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      * @since 1.406
      */
     private volatile DescribableList<ViewProperty, ViewPropertyDescriptor> properties = new PropertyList(this);
@@ -189,12 +218,19 @@ public abstract class View extends AbstractModelObject implements AccessControll
     public abstract Collection<TopLevelItem> getItems();
 
     /**
+<<<<<<< HEAD
+     * Gets all the items recursively contained in this collection in a read-only view.
+     * <p>
+     * The default implementation recursively adds the items of all contained Views
+     * in case this view implements {@link ViewGroup}, which should be enough for most cases.
+=======
      * Gets all the items recursively contained in this collection in a read-only
      * view.
      * <p>
      * The default implementation recursively adds the items of all contained Views
      * in case this view implements {@link ViewGroup}, which should be enough for
      * most cases.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      *
      * @since 1.520
      */
@@ -246,8 +282,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
      * Renames this view.
      */
     public void rename(String newName) throws Failure, FormException {
+<<<<<<< HEAD
+        if (name.equals(newName))    return; // noop
+=======
         if (name.equals(newName))
             return; // noop
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         Jenkins.checkGoodName(newName);
         if (owner.getView(newName) != null)
             throw new FormException(Messages.Hudson_ViewAlreadyExists(newName), "name");
@@ -296,13 +336,20 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     /**
      * Gets the view properties configured for this view.
+<<<<<<< HEAD
+=======
      *
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      * @since 1.406
      */
     public DescribableList<ViewProperty, ViewPropertyDescriptor> getProperties() {
         // readResolve was the best place to do this, but for compatibility reasons,
+<<<<<<< HEAD
+        // this class can no longer have readResolve() (the mechanism itself isn't suitable for class hierarchy)
+=======
         // this class can no longer have readResolve() (the mechanism itself isn't
         // suitable for class hierarchy)
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         // see JENKINS-9431
         //
         // until we have that, putting this logic here.
@@ -317,10 +364,16 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * Returns all the {@link ViewPropertyDescriptor}s that can be potentially configured
+     * on this view. Returns both {@link ViewPropertyDescriptor}s visible and invisible for user, see
+     * {@link View#getVisiblePropertyDescriptors} to filter invisible one.
+=======
      * Returns all the {@link ViewPropertyDescriptor}s that can be potentially
      * configured on this view. Returns both {@link ViewPropertyDescriptor}s visible
      * and invisible for user, see {@link View#getVisiblePropertyDescriptors} to
      * filter invisible one.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public List<ViewPropertyDescriptor> getApplicablePropertyDescriptors() {
         List<ViewPropertyDescriptor> r = new ArrayList<>();
@@ -332,10 +385,15 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * @return all the {@link ViewPropertyDescriptor}s that can be potentially configured on this View and are visible
+     * for the user. Use {@link DescriptorVisibilityFilter} to make a View property invisible for users.
+=======
      * @return all the {@link ViewPropertyDescriptor}s that can be potentially
      *         configured on this View and are visible for the user. Use
      *         {@link DescriptorVisibilityFilter} to make a View property invisible
      *         for users.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      * @since 2.214
      */
     public List<ViewPropertyDescriptor> getVisiblePropertyDescriptors() {
@@ -353,7 +411,10 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     /**
      * List of all {@link ViewProperty}s exposed primarily for the remoting API.
+<<<<<<< HEAD
+=======
      *
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      * @since 1.406
      */
     @Exported(name = "property", inline = true)
@@ -376,9 +437,15 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * By default, return true to render the "Edit view" link on the page.
+     * This method is really just for the default "All" view to hide the edit link
+     * so that the default Hudson top page remains the same as before 1.316.
+=======
      * By default, return true to render the "Edit view" link on the page. This
      * method is really just for the default "All" view to hide the edit link so
      * that the default Hudson top page remains the same as before 1.316.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      *
      * @since 1.316
      */
@@ -429,16 +496,25 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * If this view uses {@code <t:projectView>} for rendering, this method returns columns to be displayed.
+=======
      * If this view uses {@code <t:projectView>} for rendering, this method returns
      * columns to be displayed.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public Iterable<? extends ListViewColumn> getColumns() {
         return ListViewColumn.createDefaultInitialColumnList(this);
     }
 
     /**
+<<<<<<< HEAD
+     * If this view uses {@code t:projectView} for rendering, this method returns the indenter used
+     * to indent each row.
+=======
      * If this view uses {@code t:projectView} for rendering, this method returns
      * the indenter used to indent each row.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public Indenter getIndenter() {
         return null;
@@ -468,8 +544,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
         }
 
         for (Computer c : computers) {
+<<<<<<< HEAD
+            if (isRelevant(labels, c)) result.add(c);
+=======
             if (isRelevant(labels, c))
                 result.add(c);
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
 
         return result;
@@ -477,10 +557,15 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     private boolean isRelevant(Collection<Label> labels, Computer computer) {
         Node node = computer.getNode();
+<<<<<<< HEAD
+        if (node == null) return false;
+        if (labels.contains(null) && node.getMode() == Node.Mode.NORMAL) return true;
+=======
         if (node == null)
             return false;
         if (labels.contains(null) && node.getMode() == Node.Mode.NORMAL)
             return true;
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
         for (Label l : labels)
             if (l != null && l.contains(node))
@@ -495,7 +580,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
             return base;
         }
         Collection<TopLevelItem> items = getItems();
+<<<<<<< HEAD
+        return base.stream().filter(qi -> filterQueueItemTest(qi, items))
+                .collect(Collectors.toList());
+=======
         return base.stream().filter(qi -> filterQueueItemTest(qi, items)).collect(Collectors.toList());
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     private boolean filterQueueItemTest(Queue.Item item, Collection<TopLevelItem> viewItems) {
@@ -515,9 +605,16 @@ public abstract class View extends AbstractModelObject implements AccessControll
             }
             if (count == FILTER_LOOP_MAX_COUNT) {
                 LOGGER.warning(String.format(
+<<<<<<< HEAD
+                        "Failed to find root task for queue item '%s' for " +
+                        "view '%s' in under %d iterations, aborting!",
+                        item.getDisplayName(), getDisplayName(),
+                        FILTER_LOOP_MAX_COUNT));
+=======
                         "Failed to find root task for queue item '%s' for "
                                 + "view '%s' in under %d iterations, aborting!",
                         item.getDisplayName(), getDisplayName(), FILTER_LOOP_MAX_COUNT));
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                 break;
             }
         }
@@ -535,8 +632,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     /**
      * @return The items in the queue.
+<<<<<<< HEAD
+     * @deprecated Use {@link #getQueueItems()}. As of 1.607 the approximation is no longer needed.
+=======
      * @deprecated Use {@link #getQueueItems()}. As of 1.607 the approximation is no
      *             longer needed.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     @Deprecated
     public List<Queue.Item> getApproximateQueueItemsQuickly() {
@@ -546,23 +647,37 @@ public abstract class View extends AbstractModelObject implements AccessControll
     /**
      * Returns the path relative to the context root.
      *
+<<<<<<< HEAD
+     * Doesn't start with '/' but ends with '/' (except returns
+     * empty string when this is the default view).
+=======
      * Doesn't start with '/' but ends with '/' (except returns empty string when
      * this is the default view).
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public String getUrl() {
         return isDefault() ? (owner != null ? owner.getUrl() : "") : getViewUrl();
     }
 
     /**
+<<<<<<< HEAD
+     * Same as {@link #getUrl()} except this returns a view/{name} path
+     * even for the default view.
+=======
      * Same as {@link #getUrl()} except this returns a view/{name} path even for the
      * default view.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public String getViewUrl() {
         return (owner != null ? owner.getUrl() : "") + "view/" + Util.rawEncode(getViewName()) + '/';
     }
 
+<<<<<<< HEAD
+    @Override public String toString() {
+=======
     @Override
     public String toString() {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         return super.toString() + "[" + getViewUrl() + "]";
     }
 
@@ -575,8 +690,13 @@ public abstract class View extends AbstractModelObject implements AccessControll
      * Returns the transient {@link Action}s associated with the top page.
      *
      * <p>
+<<<<<<< HEAD
+     * If views don't want to show top-level actions, this method
+     * can be overridden to return different objects.
+=======
      * If views don't want to show top-level actions, this method can be overridden
      * to return different objects.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      *
      * @see Jenkins#getActions()
      */
@@ -589,19 +709,30 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     /**
      * No-op. Included to maintain backwards compatibility.
+<<<<<<< HEAD
+=======
      *
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      * @deprecated This method does nothing and should not be used
      */
     @Restricted(DoNotUse.class)
     @Deprecated
+<<<<<<< HEAD
+    public void updateTransientActions() {}
+=======
     public void updateTransientActions() {
     }
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
     public Object getDynamic(String token) {
         for (Action a : getActions()) {
             String url = a.getUrlName();
+<<<<<<< HEAD
+            if (url == null)  continue;
+=======
             if (url == null)
                 continue;
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             if (url.equals(token))
                 return a;
         }
@@ -623,8 +754,13 @@ public abstract class View extends AbstractModelObject implements AccessControll
     /**
      * Returns the page to redirect the user to, after the view is created.
      *
+<<<<<<< HEAD
+     * The returned string is appended to "/view/foobar/", so for example
+     * to direct the user to the top page of the view, return "", etc.
+=======
      * The returned string is appended to "/view/foobar/", so for example to direct
      * the user to the top page of the view, return "", etc.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public String getPostConstructLandingPage() {
         return "configure";
@@ -639,6 +775,11 @@ public abstract class View extends AbstractModelObject implements AccessControll
         return Jenkins.get().getAuthorizationStrategy().getACL(this);
     }
 
+<<<<<<< HEAD
+    /** @deprecated Does not work properly with moved jobs. Use {@link ItemListener#onLocationChanged} instead. */
+    @Deprecated
+    public void onJobRenamed(Item item, String oldName, String newName) {}
+=======
     /**
      * @deprecated Does not work properly with moved jobs. Use
      *             {@link ItemListener#onLocationChanged} instead.
@@ -646,12 +787,18 @@ public abstract class View extends AbstractModelObject implements AccessControll
     @Deprecated
     public void onJobRenamed(Item item, String oldName, String newName) {
     }
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
     void addDisplayNamesToSearchIndex(SearchIndexBuilder sib, Collection<TopLevelItem> items) {
         for (TopLevelItem item : items) {
 
             if (LOGGER.isLoggable(Level.FINE)) {
+<<<<<<< HEAD
+                LOGGER.fine(String.format("Adding url=%s,displayName=%s",
+                            item.getSearchUrl(), item.getDisplayName()));
+=======
                 LOGGER.fine(String.format("Adding url=%s,displayName=%s", item.getSearchUrl(), item.getDisplayName()));
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             }
             sib.add(item.getSearchUrl(), item.getDisplayName());
         }
@@ -666,6 +813,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
     protected void makeSearchIndex(SearchIndexBuilder sib) {
         sib.add(new CollectionSearchIndex<TopLevelItem>() { // for jobs in the view
             @Override
+<<<<<<< HEAD
+            protected TopLevelItem get(String key) { return getItem(key); }
+
+            @Override
+            protected Collection<TopLevelItem> all() { return getItems(); }
+=======
             protected TopLevelItem get(String key) {
                 return getItem(key);
             }
@@ -674,6 +827,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
             protected Collection<TopLevelItem> all() {
                 return getItems();
             }
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
             @Override
             protected String getName(TopLevelItem o) {
@@ -698,13 +852,21 @@ public abstract class View extends AbstractModelObject implements AccessControll
      * Accepts the new description.
      */
     @RequirePOST
+<<<<<<< HEAD
+    public synchronized void doSubmitDescription(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
+=======
     public synchronized void doSubmitDescription(StaplerRequest req, StaplerResponse rsp)
             throws IOException, ServletException {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         checkPermission(CONFIGURE);
 
         description = req.getParameter("description");
         save();
+<<<<<<< HEAD
+        rsp.sendRedirect(".");  // go to the top page
+=======
         rsp.sendRedirect("."); // go to the top page
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     /**
@@ -713,8 +875,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
      * Subtypes should override the {@link #submit(StaplerRequest)} method.
      */
     @POST
+<<<<<<< HEAD
+    public final synchronized void doConfigSubmit(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException, FormException {
+=======
     public final synchronized void doConfigSubmit(StaplerRequest req, StaplerResponse rsp)
             throws IOException, ServletException, FormException {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         checkPermission(CONFIGURE);
 
         submit(req);
@@ -751,19 +917,39 @@ public abstract class View extends AbstractModelObject implements AccessControll
         rsp.sendRedirect2(req.getContextPath() + "/" + owner.getUrl());
     }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     /**
      * Creates a new {@link Item} in this collection.
      *
      * <p>
+<<<<<<< HEAD
+     * This method should call {@link ModifiableItemGroup#doCreateItem(StaplerRequest, StaplerResponse)}
+     * and then add the newly created item to this view.
+     *
+     * @return
+     *      null if fails.
+=======
      * This method should call
      * {@link ModifiableItemGroup#doCreateItem(StaplerRequest, StaplerResponse)} and
      * then add the newly created item to this view.
      *
      * @return null if fails.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public abstract Item doCreateItem(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException;
 
     /**
+<<<<<<< HEAD
+     * Makes sure that the given name is good as a job name.
+     * For use from {@code newJob}.
+     */
+    @Restricted(DoNotUse.class) // called from newJob view
+    public FormValidation doCheckJobName(@QueryParameter String value) {
+        // this method can be used to check if a file exists anywhere in the file system,
+=======
      * Makes sure that the given name is good as a job name. For use from
      * {@code newJob}.
      */
@@ -771,6 +957,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
     public FormValidation doCheckJobName(@QueryParameter String value) {
         // this method can be used to check if a file exists anywhere in the file
         // system,
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         // so it should be protected.
         getOwner().checkPermission(Item.CREATE);
 
@@ -780,8 +967,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
         try {
             Jenkins.checkGoodName(value);
+<<<<<<< HEAD
+            value = value.trim(); // why trim *after* checkGoodName? not sure, but ItemGroupMixIn.createTopLevelItem does the same
+=======
             value = value.trim(); // why trim *after* checkGoodName? not sure, but
                                     // ItemGroupMixIn.createTopLevelItem does the same
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             ItemGroup<?> parent = getOwner().getItemGroup();
             Jenkins.get().getProjectNamingStrategy().checkName(parent.getFullName(), value);
         } catch (Failure e) {
@@ -797,14 +988,22 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * An API REST method to get the allowed {$link TopLevelItem}s and its categories.
+=======
      * An API REST method to get the allowed {$link TopLevelItem}s and its
      * categories.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      *
      * @return A {@link Categories} entity that is shown as JSON file.
      */
     @Restricted(DoNotUse.class)
+<<<<<<< HEAD
+    public Categories doItemCategories(StaplerRequest req, StaplerResponse rsp, @QueryParameter String iconStyle) throws IOException, ServletException {
+=======
     public Categories doItemCategories(StaplerRequest req, StaplerResponse rsp, @QueryParameter String iconStyle)
             throws IOException, ServletException {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         getOwner().checkPermission(Item.CREATE);
 
         rsp.addHeader("Cache-Control", "no-cache, no-store, must-revalidate");
@@ -819,8 +1018,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
         } else {
             resUrl = null;
         }
+<<<<<<< HEAD
+        for (TopLevelItemDescriptor descriptor : DescriptorVisibilityFilter.apply(getOwner().getItemGroup(), Items.all2(Jenkins.getAuthentication2(), getOwner().getItemGroup()))) {
+=======
         for (TopLevelItemDescriptor descriptor : DescriptorVisibilityFilter.apply(getOwner().getItemGroup(),
                 Items.all2(Jenkins.getAuthentication2(), getOwner().getItemGroup()))) {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             ItemCategory ic = ItemCategory.getCategory(descriptor);
             Map<String, Serializable> metadata = new HashMap<>();
 
@@ -834,6 +1037,18 @@ public abstract class View extends AbstractModelObject implements AccessControll
             if (iconClassName != null && !iconClassName.isBlank()) {
                 metadata.put("iconClassName", iconClassName);
                 if (iconClassName.startsWith("symbol-")) {
+<<<<<<< HEAD
+                    String iconXml = Symbol.get(new SymbolRequest.Builder()
+                            .withName(iconClassName.split(" ")[0].substring(7))
+                            .withPluginName(Functions.extractPluginNameFromIconSrc(iconClassName))
+                            .withClasses("icon-xlg")
+                            .build());
+                    metadata.put("iconXml", iconXml);
+                } else {
+                    if (resUrl != null) {
+                        Icon icon = IconSet.icons
+                                .getIconByClassSpec(String.join(" ", iconClassName, iconStyle));
+=======
                     String iconXml = Symbol
                             .get(new SymbolRequest.Builder().withName(iconClassName.split(" ")[0].substring(7))
                                     .withPluginName(Functions.extractPluginNameFromIconSrc(iconClassName))
@@ -842,6 +1057,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
                 } else {
                     if (resUrl != null) {
                         Icon icon = IconSet.icons.getIconByClassSpec(String.join(" ", iconClassName, iconStyle));
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                         if (icon != null) {
                             metadata.put("iconQualifiedUrl", icon.getQualifiedUrl(resUrl));
                         }
@@ -855,8 +1071,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
             } else {
                 List<Map<String, Serializable>> temp = new ArrayList<>();
                 temp.add(metadata);
+<<<<<<< HEAD
+                category = new Category(ic.getId(), ic.getDisplayName(), ic.getDescription(), ic.getOrder(), ic.getMinToShow(), temp);
+=======
                 category = new Category(ic.getId(), ic.getDisplayName(), ic.getDescription(), ic.getOrder(),
                         ic.getMinToShow(), temp);
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                 categories.getItems().add(category);
             }
         }
@@ -868,8 +1088,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     public void doRssFailed(StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException {
+<<<<<<< HEAD
+        RSS.rss(req, rsp, "Jenkins:" + getDisplayName() + " (failed builds)", getUrl(), getBuilds().failureOnly().newBuilds());
+=======
         RSS.rss(req, rsp, "Jenkins:" + getDisplayName() + " (failed builds)", getUrl(),
                 getBuilds().failureOnly().newBuilds());
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     public RunList getBuilds() {
@@ -888,12 +1112,19 @@ public abstract class View extends AbstractModelObject implements AccessControll
             if (item instanceof Job) {
                 Job job = (Job) item;
                 Run lb = job.getLastBuild();
+<<<<<<< HEAD
+                if (lb != null)    lastBuilds.add(lb);
+            }
+        }
+        RSS.rss(req, rsp, "Jenkins:" + getDisplayName() + " (latest builds)", getUrl(), RunList.fromRuns(lastBuilds), Run.FEED_ADAPTER_LATEST);
+=======
                 if (lb != null)
                     lastBuilds.add(lb);
             }
         }
         RSS.rss(req, rsp, "Jenkins:" + getDisplayName() + " (latest builds)", getUrl(), RunList.fromRuns(lastBuilds),
                 Run.FEED_ADAPTER_LATEST);
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     /**
@@ -906,8 +1137,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
             checkPermission(READ);
             return new HttpResponse() {
                 @Override
+<<<<<<< HEAD
+                public void generateResponse(StaplerRequest req, StaplerResponse rsp, Object node) throws IOException, ServletException {
+=======
                 public void generateResponse(StaplerRequest req, StaplerResponse rsp, Object node)
                         throws IOException, ServletException {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                     rsp.setContentType("application/xml");
                     View.this.writeXml(rsp.getOutputStream());
                 }
@@ -927,19 +1162,32 @@ public abstract class View extends AbstractModelObject implements AccessControll
      * @since 1.538
      */
     public void writeXml(OutputStream out) throws IOException {
+<<<<<<< HEAD
+        // pity we don't have a handy way to clone Jenkins.XSTREAM to temp add the omit Field
+        XStream2 xStream2 = new XStream2();
+        xStream2.omitField(View.class, "owner");
+        xStream2.toXMLUTF8(View.this,  out);
+=======
         // pity we don't have a handy way to clone Jenkins.XSTREAM to temp add the omit
         // Field
         XStream2 xStream2 = new XStream2();
         xStream2.omitField(View.class, "owner");
         xStream2.toXMLUTF8(View.this, out);
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     /**
      * Updates the View with the new XML definition.
+<<<<<<< HEAD
+     * @param source source of the Item's new definition.
+     *               The source should be either a {@link StreamSource} or {@link SAXSource}, other sources
+     *               may not be handled.
+=======
      *
      * @param source source of the Item's new definition. The source should be
      *               either a {@link StreamSource} or {@link SAXSource}, other
      *               sources may not be handled.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public void updateByXml(Source source) throws IOException {
         checkPermission(CONFIGURE);
@@ -955,14 +1203,25 @@ public abstract class View extends AbstractModelObject implements AccessControll
         }
 
         // try to reflect the changes by reloading
+<<<<<<< HEAD
+        try (InputStream in = new BufferedInputStream(new ByteArrayInputStream(out.toString().getBytes(StandardCharsets.UTF_8)))) {
+=======
         try (InputStream in = new BufferedInputStream(
                 new ByteArrayInputStream(out.toString().getBytes(StandardCharsets.UTF_8)))) {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             // Do not allow overwriting view name as it might collide with another
             // view in same ViewGroup and might not satisfy Jenkins.checkGoodName.
             String oldname = name;
             ViewGroup oldOwner = owner; // oddly, this field is not transient
             Object o = Jenkins.XSTREAM2.unmarshal(XStream2.getDefaultDriver().createReader(in), this, null, true);
             if (!o.getClass().equals(getClass())) {
+<<<<<<< HEAD
+                // ensure that we've got the same view type. extending this code to support updating
+                // to different view type requires destroying & creating a new view type
+                throw new IOException("Expecting view type: " + this.getClass() + " but got: " + o.getClass() + " instead." +
+                    "\nShould you needed to change to a new view type, you must first delete and then re-create " +
+                    "the view with the new view type.");
+=======
                 // ensure that we've got the same view type. extending this code to support
                 // updating
                 // to different view type requires destroying & creating a new view type
@@ -970,6 +1229,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
                         .append(" but got: ").append(o.getClass()).append(" instead.")
                         .append("\nShould you need to change to a new view type, you must first delete and then re-create ")
                         .append("the view with the new view type.").toString());
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             }
             name = oldname;
             owner = oldOwner;
@@ -980,8 +1240,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     @Override
+<<<<<<< HEAD
+    public ModelObjectWithContextMenu.ContextMenu doChildrenContextMenu(StaplerRequest request, StaplerResponse response) throws Exception {
+=======
     public ModelObjectWithContextMenu.ContextMenu doChildrenContextMenu(StaplerRequest request,
             StaplerResponse response) throws Exception {
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         ModelObjectWithContextMenu.ContextMenu m = new ModelObjectWithContextMenu.ContextMenu();
         for (TopLevelItem i : getItems())
             m.add(Functions.getRelativeLinkTo(i), Functions.getRelativeDisplayNameFrom(i, getOwner().getItemGroup()));
@@ -990,9 +1254,14 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     /**
      * A list of available view types.
+<<<<<<< HEAD
+     * @deprecated as of 1.286
+     *      Use {@link #all()} for read access, and use {@link Extension} for registration.
+=======
      *
      * @deprecated as of 1.286 Use {@link #all()} for read access, and use
      *             {@link Extension} for registration.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     @Deprecated
     public static final DescriptorList<View> LIST = new DescriptorList<>(View.class);
@@ -1005,6 +1274,13 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * Returns the {@link ViewDescriptor} instances that can be instantiated for the {@link ViewGroup} in the current
+     * {@link StaplerRequest}.
+     * <p>
+     * <strong>NOTE: Historically this method is only ever called from a {@link StaplerRequest}</strong>
+     * @return the list of instantiable {@link ViewDescriptor} instances for the current {@link StaplerRequest}
+=======
      * Returns the {@link ViewDescriptor} instances that can be instantiated for the
      * {@link ViewGroup} in the current {@link StaplerRequest}.
      * <p>
@@ -1013,6 +1289,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
      *
      * @return the list of instantiable {@link ViewDescriptor} instances for the
      *         current {@link StaplerRequest}
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     @NonNull
     public static List<ViewDescriptor> allInstantiable() {
@@ -1036,6 +1313,16 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
     public static final Comparator<View> SORTER = Comparator.comparing(View::getViewName);
 
+<<<<<<< HEAD
+    public static final PermissionGroup PERMISSIONS = new PermissionGroup(View.class, Messages._View_Permissions_Title());
+    /**
+     * Permission to create new views.
+     */
+    public static final Permission CREATE = new Permission(PERMISSIONS, "Create", Messages._View_CreatePermission_Description(), Permission.CREATE, PermissionScope.ITEM_GROUP);
+    public static final Permission DELETE = new Permission(PERMISSIONS, "Delete", Messages._View_DeletePermission_Description(), Permission.DELETE, PermissionScope.ITEM_GROUP);
+    public static final Permission CONFIGURE = new Permission(PERMISSIONS, "Configure", Messages._View_ConfigurePermission_Description(), Permission.CONFIGURE, PermissionScope.ITEM_GROUP);
+    public static final Permission READ = new Permission(PERMISSIONS, "Read", Messages._View_ReadPermission_Description(), Permission.READ, PermissionScope.ITEM_GROUP);
+=======
     public static final PermissionGroup PERMISSIONS = new PermissionGroup(View.class,
             Messages._View_Permissions_Title());
     /**
@@ -1049,11 +1336,19 @@ public abstract class View extends AbstractModelObject implements AccessControll
             Messages._View_ConfigurePermission_Description(), Permission.CONFIGURE, PermissionScope.ITEM_GROUP);
     public static final Permission READ = new Permission(PERMISSIONS, "Read",
             Messages._View_ReadPermission_Description(), Permission.READ, PermissionScope.ITEM_GROUP);
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
     @SuppressFBWarnings(value = "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT", justification = "to guard against potential future compiler optimizations")
     @Initializer(before = InitMilestone.SYSTEM_CONFIG_LOADED)
     @Restricted(DoNotUse.class)
     public static void registerPermissions() {
+<<<<<<< HEAD
+        // Pending JENKINS-17200, ensure that the above permissions have been registered prior to
+        // allowing plugins to adapt the system configuration, which may depend on these permissions
+        // having been registered. Since this method is static and since it follows the above
+        // construction of static permission objects (and therefore their calls to
+        // PermissionGroup#register), there is nothing further to do in this method. We call
+=======
         // Pending JENKINS-17200, ensure that the above permissions have been registered
         // prior to
         // allowing plugins to adapt the system configuration, which may depend on these
@@ -1063,6 +1358,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
         // construction of static permission objects (and therefore their calls to
         // PermissionGroup#register), there is nothing further to do in this method. We
         // call
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         // Objects.hash() to guard against potential future compiler optimizations.
         Objects.hash(PERMISSIONS, CREATE, DELETE, CONFIGURE, READ);
     }
@@ -1077,11 +1373,21 @@ public abstract class View extends AbstractModelObject implements AccessControll
         String mode = req.getParameter("mode");
 
         String requestContentType = req.getContentType();
+<<<<<<< HEAD
+        if (requestContentType == null
+                && !(mode != null && mode.equals("copy")))
+            throw new Failure("No Content-Type header set");
+
+        boolean isXmlSubmission = requestContentType != null
+                && (requestContentType.startsWith("application/xml")
+                        || requestContentType.startsWith("text/xml"));
+=======
         if (requestContentType == null && !(mode != null && mode.equals("copy")))
             throw new Failure("No Content-Type header set");
 
         boolean isXmlSubmission = requestContentType != null
                 && (requestContentType.startsWith("application/xml") || requestContentType.startsWith("text/xml"));
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
         String name = req.getParameter("name");
         Jenkins.checkGoodName(name);
@@ -1147,8 +1453,12 @@ public abstract class View extends AbstractModelObject implements AccessControll
 
         try (InputStream in = new BufferedInputStream(xml)) {
             View v = (View) Jenkins.XSTREAM.fromXML(in);
+<<<<<<< HEAD
+            if (name != null) v.name = name;
+=======
             if (name != null)
                 v.name = name;
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             Jenkins.checkGoodName(v.name);
             return v;
         } catch (StreamException | ConversionException | Error e) { // mostly reflection errors
@@ -1176,8 +1486,13 @@ public abstract class View extends AbstractModelObject implements AccessControll
     }
 
     /**
+<<<<<<< HEAD
+     * "Job" in "New Job". When a view is used in a context that restricts the child type,
+     * It might be useful to override this.
+=======
      * "Job" in "New Job". When a view is used in a context that restricts the child
      * type, It might be useful to override this.
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
      */
     public static final Message<View> NEW_PRONOUN = new Message<>();
 

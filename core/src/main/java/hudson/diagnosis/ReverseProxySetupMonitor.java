@@ -81,6 +81,11 @@ public class ReverseProxySetupMonitor extends AdministrativeMonitor {
                 // and as only the empty string does not contain a leading slash, we have to also add one at the end
                 contextPath = contextPath.substring(1) + "/";
             }
+<<<<<<< HEAD
+            redirect = j.getRootUrl() + contextPath + "administrativeMonitor/" + id + "/testForReverseProxySetup/" + (referer != null ? Util.rawEncode(referer) : "NO-REFERER") + "/";
+        } else {
+            redirect = j.getRootUrl() + "administrativeMonitor/" + id + "/testForReverseProxySetup/" + (referer != null ? Util.rawEncode(referer) : "NO-REFERER") + "/";
+=======
             redirect = new StringBuilder()
                     .append(j.getRootUrl())
                     .append(contextPath)
@@ -101,6 +106,7 @@ public class ReverseProxySetupMonitor extends AdministrativeMonitor {
                     .append("/")
                     .toString();
 
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
         LOGGER.log(Level.FINE, "coming from {0} and redirecting to {1}", new Object[] {referer, redirect});
         return new HttpRedirect(redirect);

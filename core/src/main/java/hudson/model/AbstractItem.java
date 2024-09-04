@@ -207,7 +207,16 @@ public abstract class AbstractItem extends Actionable implements Loadable, Item,
     @WithBridgeMethods(value = Jenkins.class, castRequired = true)
     @Override public @NonNull ItemGroup getParent() {
         if (parent == null) {
+<<<<<<< HEAD
+            throw new IllegalStateException(new StringBuilder()
+                	.append("no parent set on ")
+                	.append(getClass().getName())
+                	.append("[")
+                	.append(name)
+                	.append("]").toString());
+=======
             throw new IllegalStateException("no parent set on " + getClass().getName() + "[" + name + "]");
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
         return parent;
     }
@@ -923,6 +932,15 @@ public abstract class AbstractItem extends Actionable implements Loadable, Item,
             if (o != this) {
                 // ensure that we've got the same job type. extending this code to support updating
                 // to different job type requires destroying & creating a new job type
+<<<<<<< HEAD
+
+                throw new IOException(new StringBuilder()
+                    	.append("Expecting ")
+                    	.append(this.getClass())
+                    	.append(" but got ")
+                    	.append(o.getClass())
+                    	.append(" instead").toString());
+=======
                 throw new IOException(
                         new StringBuilder()
                             .append("Expecting ")
@@ -932,6 +950,7 @@ public abstract class AbstractItem extends Actionable implements Loadable, Item,
                             .append(" instead")
                             .toString()
                     );
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             }
 
             Items.whileUpdatingByXml(new NotReallyRoleSensitiveCallable<Void, IOException>() {

@@ -154,8 +154,18 @@ public abstract class BuildWrapper extends AbstractDescribableImpl<BuildWrapper>
         if (build instanceof Build && Util.isOverridden(BuildWrapper.class, getClass(), "setUp", Build.class, Launcher.class, BuildListener.class))
             return setUp((Build) build, launcher, listener);
         else // not a supported build type
+<<<<<<< HEAD
+
+            throw new UnsupportedOperationException(new StringBuilder()
+                	.append("Plugin class '")
+                	.append(this.getClass().getName())
+                	.append("' does not support a build of type '")
+                	.append(build.getClass().getName())
+                	.append("'.").toString());
+=======
             throw new UnsupportedOperationException("Plugin class '" + this.getClass().getName() +
                     "' does not support a build of type '" + build.getClass().getName() + "'.");
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     /**

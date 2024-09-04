@@ -77,6 +77,13 @@ public class StaplerFilteredActionListener implements FilteredDoActionTriggerLis
 
     @Override
     public boolean onDispatchTrigger(StaplerRequest req, StaplerResponse rsp, Object node, String viewName) {
+<<<<<<< HEAD
+        LOGGER.warning(() -> "New Stapler dispatch rules result in the URL \"" + req.getPathInfo() + "\" no longer being allowed. " +
+                "If you consider it safe to use, add the following to the whitelist: \"" + node.getClass().getName() + " " + viewName + "\". " +
+                "Learn more: https://www.jenkins.io/redirect/stapler-facet-restrictions");
+        return false;
+    }
+=======
         LOGGER.warning(() -> new StringBuilder()
             .append("New Stapler dispatch rules result in the URL \"")
             .append(req.getPathInfo())
@@ -90,4 +97,5 @@ public class StaplerFilteredActionListener implements FilteredDoActionTriggerLis
         return false;
     }
 
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 }
