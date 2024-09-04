@@ -103,6 +103,7 @@ public interface ConsoleUrlProvider extends Describable<ConsoleUrlProvider> {
                 String tempUrl = provider.getConsoleUrl(run);
                 if (tempUrl != null) {
                     if (new URI(tempUrl).isAbsolute()) {
+<<<<<<< HEAD
                         LOGGER.warning(() -> new StringBuilder()
                          		.append("Ignoring absolute console URL ")
                          		.append(tempUrl)
@@ -110,6 +111,9 @@ public interface ConsoleUrlProvider extends Describable<ConsoleUrlProvider> {
                          		.append(run)
                          		.append(" from ")
                          		.append(provider.getClass()).toString());
+=======
+                        LOGGER.warning(() -> "Ignoring absolute console URL " + tempUrl + " for " + run + " from " + provider.getClass());
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                     } else {
                         // Found a valid non-null URL.
                         url = tempUrl;

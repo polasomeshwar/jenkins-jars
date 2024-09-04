@@ -48,10 +48,24 @@ public class WinswSlaveRestarter extends SlaveRestarter {
         // so it's possible that we end up in the situation where jenkins-slave.exe doesn't support
         // this command. If that is the case, there's nothing we can do about it.
         int r = exec("restart!");
+<<<<<<< HEAD
         throw new IOException("Restart failure. '" + exe + " restart' completed with " + r + " but I'm still alive!  "
                                + "See https://www.jenkins.io/redirect/troubleshooting/windows-agent-restart"
                                + " for a possible explanation and solution");
     }
+=======
+        throw new IOException(new StringBuilder()
+                .append("Restart failure. '")
+                .append(exe)
+                .append(" restart' completed with ")
+                .append(r)
+                .append(" but I'm still alive! ")
+                .append("See https://www.jenkins.io/redirect/troubleshooting/windows-agent-restart")
+                .append(" for a possible explanation and solution")
+                .toString()
+            );
+}
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
     private static final Logger LOGGER = Logger.getLogger(WinswSlaveRestarter.class.getName());
 

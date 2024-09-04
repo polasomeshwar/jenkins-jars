@@ -34,7 +34,10 @@ import hudson.model.Descriptor;
 import hudson.model.Failure;
 import hudson.model.RootAction;
 import hudson.model.UpdateCenter;
+<<<<<<< HEAD
 import hudson.model.View;
+=======
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 import hudson.slaves.Cloud;
 import hudson.util.FormValidation;
 import java.io.IOException;
@@ -251,6 +254,7 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
         }
         Cloud cloud = cloudDescriptor.newInstance(req, req.getSubmittedForm());
         if (!Jenkins.get().clouds.add(cloud)) {
+<<<<<<< HEAD
 
    		LOGGER.log(Level.WARNING, () -> new StringBuilder()
    		   		.append("Creating duplicate cloud name ")
@@ -258,6 +262,9 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
    		   		.append(". Plugin ")
    		   		.append(Jenkins.get().getPluginManager().whichPlugin(cloud.getClass()))
    		   		.append(" should be updated to support user provided name.").toString());
+=======
+            LOGGER.log(Level.WARNING, () -> "Creating duplicate cloud name " + cloud.name + ". Plugin " + Jenkins.get().getPluginManager().whichPlugin(cloud.getClass()) + " should be updated to support user provided name.");
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
         // take the user back to the cloud list top page
         rsp.sendRedirect2(".");

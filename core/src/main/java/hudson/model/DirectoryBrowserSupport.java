@@ -384,6 +384,7 @@ public final class DirectoryBrowserSupport implements HttpResponse {
         long length = baseFile.length();
 
         if (LOGGER.isLoggable(Level.FINE))
+<<<<<<< HEAD
         	
             LOGGER.fine(new StringBuilder()
             		.append("Serving ")
@@ -392,6 +393,9 @@ public final class DirectoryBrowserSupport implements HttpResponse {
             		.append(lastModified)
             		.append(", length=")
             		.append(length).toString());
+=======
+            LOGGER.fine("Serving " + baseFile + " with lastModified=" + lastModified + ", length=" + length);
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
         if (view) {
             InputStream in;

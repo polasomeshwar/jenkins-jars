@@ -93,7 +93,21 @@ class UserIdMigrator {
         Map<String, File> existingUsers = scanExistingUsers();
         for (Map.Entry<String, File> existingUser : existingUsers.entrySet()) {
             File newDirectory = mapper.putIfAbsent(existingUser.getKey(), false);
+<<<<<<< HEAD
             LOGGER.log(Level.INFO, "Migrating user '" + existingUser.getKey() + "' from 'users/" + existingUser.getValue().getName() + "/' to 'users/" + newDirectory.getName() + "/'");
+=======
+            LOGGER.log(Level.INFO, new StringBuilder()
+                    .append("Migrating user '")
+                    .append(existingUser.getKey())
+                    .append("' from 'users/")
+                    .append(existingUser.getValue().getName())
+                    .append("/' to 'users/")
+                    .append(newDirectory.getName())
+                    .append("/'")
+                    .toString()
+                );
+
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             Files.move(existingUser.getValue().toPath(), newDirectory.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
         mapper.save();

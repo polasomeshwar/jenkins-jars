@@ -44,8 +44,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
 
 import jenkins.model.Jenkins;
+=======
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 import jenkins.tasks.filters.EnvVarsFilterException;
 import jenkins.tasks.filters.EnvVarsFilterLocalRule;
 import jenkins.tasks.filters.EnvVarsFilterableBuilder;
@@ -113,6 +116,7 @@ public abstract class CommandInterpreter extends Builder implements EnvVarsFilte
             if (node == null) {
                 throw new NullPointerException("no such build node: " + build.getBuiltOnStr());
             }
+<<<<<<< HEAD
 
             throw new NullPointerException(new StringBuilder()
             		.append("no workspace from node ")
@@ -121,6 +125,9 @@ public abstract class CommandInterpreter extends Builder implements EnvVarsFilte
             		.append(node.toComputer())
             		.append(" and has channel ")
             		.append(node.getChannel()).toString());
+=======
+            throw new NullPointerException("no workspace from node " + node + " which is computer " + node.toComputer() + " and has channel " + node.getChannel());
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
         FilePath script = null;
         int r = -1;

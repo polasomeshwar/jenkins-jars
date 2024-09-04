@@ -1559,9 +1559,23 @@ public class Util {
         if (isOverridden(base, derived, methodName, types)) {
             return supplier.get();
         } else {
+<<<<<<< HEAD
             throw new AbstractMethodError("The class " + derived.getName() + " must override at least one of the "
                     + base.getSimpleName() + "." + methodName + " methods");
         }
+=======
+            throw new AbstractMethodError(new StringBuilder()
+                    .append("The class ")
+                    .append(derived.getName())
+                    .append(" must override at least one of the ")
+                    .append(base.getSimpleName())
+                    .append(".")
+                    .append(methodName)
+                    .append(" methods")
+                    .toString()
+                );
+}
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     private static Method getMethod(@NonNull Class<?> clazz, @Nullable Class<?> base, @NonNull String methodName, @NonNull Class<?>... types) {

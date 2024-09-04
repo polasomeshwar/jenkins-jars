@@ -287,7 +287,19 @@ public class ResourceDomainRootAction implements UnprotectedRootAction {
         }
 
         private String encode() {
+<<<<<<< HEAD
             String value = timestamp.toEpochMilli() + ":" + username.length() + ":" + username + ":" + path;
+=======
+            String value = new StringBuilder()
+                    .append(timestamp.toEpochMilli())
+                    .append(":")
+                    .append(username.length())
+                    .append(":")
+                    .append(username)
+                    .append(":")
+                    .append(path)
+                    .toString();
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             byte[] valueBytes = value.getBytes(StandardCharsets.UTF_8);
             byte[] macBytes = KEY.mac(valueBytes);
             byte[] result = new byte[macBytes.length + valueBytes.length];

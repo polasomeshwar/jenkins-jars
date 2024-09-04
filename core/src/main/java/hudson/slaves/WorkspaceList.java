@@ -100,7 +100,18 @@ public final class WorkspaceList {
 
         @Override
         public String toString() {
+<<<<<<< HEAD
             String s = path + " owned by " + holder.getName() + " from " + new Date(time);
+=======
+            String s = new StringBuilder()
+                    .append(path)
+                    .append(" owned by ")
+                    .append(holder.getName())
+                    .append(" from ")
+                    .append(new Date(time))
+                    .toString();
+
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             if (quick) s += " (quick)";
             s += "\n" + Functions.printThrowable(source);
             return s;

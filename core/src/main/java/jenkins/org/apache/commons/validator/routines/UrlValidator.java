@@ -130,12 +130,28 @@ public class UrlValidator implements Serializable {
     // We assume that password has the same valid chars as user info
     private static final String USERINFO_CHARS_REGEX = "[a-zA-Z0-9%-._~!$&'()*+,;=]";
     // since neither ':' nor '@' are allowed chars, we don't need to use non-greedy matching
+<<<<<<< HEAD
     private static final String USERINFO_FIELD_REGEX =
             USERINFO_CHARS_REGEX + "+" + // At least one character for the name
                     "(?::" + USERINFO_CHARS_REGEX + "*)?@"; // colon and password may be absent
     private static final String AUTHORITY_REGEX =
             "(?:\\[(" + IPV6_REGEX + ")\\]|(?:(?:" + USERINFO_FIELD_REGEX + ")?([" + AUTHORITY_CHARS_REGEX + "]*)))(?::(\\d*))?(.*)?";
     //             1                          e.g. user:pass@          2                                         3       4
+=======
+    private static final String USERINFO_FIELD_REGEX = new StringBuilder()
+            .append(USERINFO_CHARS_REGEX)
+            .append("+") // At least one character for the name
+            .append("(?::")
+            .append(USERINFO_CHARS_REGEX)
+            .append("*)?@") // Colon and password may be absent
+            .toString();
+   private static final String AUTHORITY_REGEX = new StringBuilder()
+            .append("(?:\\[(")
+            .append(IPV6_REGEX)
+            .append(")\\]|(?:(?:" + USERINFO_FIELD_REGEX + ")?([" + AUTHORITY_CHARS_REGEX + "]*)))(?::(\\d*))?(.*)?")
+            .toString();
+//             1                          e.g. user:pass@          2                                         3       4
+>>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     private static final Pattern AUTHORITY_PATTERN = Pattern.compile(AUTHORITY_REGEX);
 
     private static final int PARSE_AUTHORITY_IPV6 = 1;
