@@ -58,11 +58,22 @@ public class ResourceDomainFilter implements HttpServletFilter {
         if (ResourceDomainConfiguration.isResourceRequest(req)) {
             String path = req.getPathInfo();
             if (!path.startsWith("/" + ResourceDomainRootAction.URL + "/") && !ALLOWED_PATHS.contains(path) && !isAllowedPathWithResourcePrefix(path)) {
-                LOGGER.fine(() -> "Rejecting request to " + req.getRequestURL() + " from " + req.getRemoteAddr() + " on resource domain");
+                LOGGER.fine(() -> new StringBuilder()
+                    	.append("Rejecting request to ")
+                    	.append(req.getRequestURL())
+                    	.append(" from ")
+                    	.append(req.getRemoteAddr())
+                    	.append(" on resource domain").toString());
+                
                 rsp.sendError(404, ERROR_RESPONSE);
                 return true;
             }
-            LOGGER.finer(() -> "Accepting request to " + req.getRequestURL() + " from " + req.getRemoteAddr() + " on resource domain");
+            LOGGER.finer(() -> new StringBuilder()
+                	.append("Accepting request to ")
+                	.append(req.getRequestURL())
+                	.append(" from ")
+                	.append(req.getRemoteAddr())
+                	.append(" on resource domain").toString());
         }
         return false;
     }

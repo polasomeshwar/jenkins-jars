@@ -91,7 +91,12 @@ abstract class TaskMethodFinder<T extends Annotation> extends TaskBuilder {
             LOGGER.log(WARNING, "Failed to load " + x.getMessage() + " for " + e, x);
             return key;
         } catch (MissingResourceException x) {
-            LOGGER.log(WARNING, "Could not find key '" + key + "' in " + c.getPackage().getName() + ".Messages", x);
+            LOGGER.log(WARNING, new StringBuilder()
+                	.append("Could not find key '")
+                	.append(key)
+                	.append("' in ")
+                	.append(c.getPackage().getName())
+                	.append(".Messages").toString(), x);
             return key;
         }
     }

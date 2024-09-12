@@ -42,6 +42,12 @@ public class TextParameterValue extends StringParameterValue {
 
     @Override
     public String toString() {
-        return "(TextParameterValue) " + getName() + "='" + value + "'";
+    	
+        return new StringBuilder()
+            	.append("(TextParameterValue) ")
+            	.append(getName())
+            	.append("='")
+            	.append(value)
+            	.append("'").toString();
     }
 }
