@@ -1287,7 +1287,14 @@ public class Fingerprint implements ModelObject, Saveable {
         }
 
         if (logger.isLoggable(Level.FINE))
-            logger.fine("Saving fingerprint " + getHashString() + " took " + (System.currentTimeMillis() - start) + "ms");
+        	
+            logger.fine(new StringBuilder()
+                	.append("Saving fingerprint ")
+                	.append(getHashString())
+                	.append(" took ")
+                	.append((System.currentTimeMillis() - start))
+                	.append("ms")
+                	.toString());
     }
 
     /**

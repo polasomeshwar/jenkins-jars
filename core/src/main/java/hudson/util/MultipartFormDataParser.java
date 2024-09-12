@@ -94,14 +94,26 @@ public class MultipartFormDataParser implements AutoCloseable {
             for (FileItem fi : upload.parseRequest(request))
                 byName.put(fi.getFieldName(), fi);
         } catch (FileUploadFileCountLimitException e) {
-            throw new ServletException("File upload field count limit exceeded. Consider setting the Java system property "
-                    + MultipartFormDataParser.class.getName() + ".FILEUPLOAD_MAX_FILES to a value greater than " + FILEUPLOAD_MAX_FILES + ", or to -1 to disable this limit.", e);
+            throw new ServletException(new StringBuilder()
+                	.append("File upload field count limit exceeded. Consider setting the Java system property ")
+                	.append(MultipartFormDataParser.class.getName())
+                	.append(".FILEUPLOAD_MAX_FILES to a value greater than ")
+                	.append(FILEUPLOAD_MAX_FILES)
+                	.append(", or to -1 to disable this limit.").toString(), e);
         } catch (FileUploadByteCountLimitException e) {
-            throw new ServletException("File upload field size limit exceeded. Consider setting the Java system property "
-                    + MultipartFormDataParser.class.getName() + ".FILEUPLOAD_MAX_FILE_SIZE to a value greater than " + FILEUPLOAD_MAX_FILE_SIZE + ", or to -1 to disable this limit.", e);
+            throw new ServletException(new StringBuilder()
+                	.append("File upload field size limit exceeded. Consider setting the Java system property ")
+                	.append(MultipartFormDataParser.class.getName())
+                	.append(".FILEUPLOAD_MAX_FILE_SIZE to a value greater than ")
+                	.append(FILEUPLOAD_MAX_FILE_SIZE)
+                	.append(", or to -1 to disable this limit.").toString(), e);
         } catch (FileUploadSizeException e) {
-            throw new ServletException("File upload total size limit exceeded. Consider setting the Java system property "
-                    + MultipartFormDataParser.class.getName() + ".FILEUPLOAD_MAX_SIZE to a value greater than " + FILEUPLOAD_MAX_SIZE + ", or to -1 to disable this limit.", e);
+            throw new ServletException(new StringBuilder()
+                	.append("File upload total size limit exceeded. Consider setting the Java system property ")
+                	.append(MultipartFormDataParser.class.getName())
+                	.append(".FILEUPLOAD_MAX_SIZE to a value greater than ")
+                	.append(FILEUPLOAD_MAX_SIZE)
+                	.append(", or to -1 to disable this limit.").toString(), e);
         } catch (FileUploadException e) {
             throw new ServletException(e);
         }

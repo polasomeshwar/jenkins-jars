@@ -414,7 +414,13 @@ public class PluginWrapper implements Comparable<PluginWrapper>, ModelObject {
     public void injectJarsToClasspath(File... jars) throws Exception {
         if (classLoader instanceof URLClassLoader2) {
             for (File f : jars) {
-                LOGGER.log(Level.CONFIG, () -> "Inserting " + f + " into " + shortName + " plugin's classpath");
+            	
+                LOGGER.log(Level.CONFIG, () -> new StringBuilder()
+                    	.append("Inserting ")
+                    	.append(f)
+                    	.append(" into ")
+                    	.append(shortName)
+                    	.append(" plugin's classpath").toString());
                 ((URLClassLoader2) classLoader).addURL(f.toURI().toURL());
             }
         } else {
@@ -458,7 +464,13 @@ public class PluginWrapper implements Comparable<PluginWrapper>, ModelObject {
 
         @Override
         public String toString() {
-            return shortName + " (" + version + ")" + (optional ? " optional" : "");
+        	
+            return new StringBuilder()
+                	.append(shortName)
+                	.append(" (")
+                	.append(version)
+                	.append(")")
+                	.append((optional ? " optional" : "")).toString();
         }
     }
 

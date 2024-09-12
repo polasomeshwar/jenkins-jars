@@ -71,7 +71,12 @@ public class HyperlinkNote extends ConsoleNote {
                 url = Jenkins.get().getRootUrl() + url.substring(1);
             }
         }
-        text.addMarkup(charPos, charPos + length, "<a href='" + Util.escape(url) + "'" + extraAttributes() + ">", "</a>");
+        text.addMarkup(charPos, charPos + length,  new StringBuilder()
+            	.append("<a href='")
+            	.append(Util.escape(url))
+            	.append("'")
+            	.append(extraAttributes())
+            	.append(">").toString(), "</a>");
         return null;
     }
 

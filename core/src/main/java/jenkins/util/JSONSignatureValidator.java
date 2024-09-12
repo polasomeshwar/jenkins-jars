@@ -194,7 +194,13 @@ public class JSONSignatureValidator {
         // (which is more likely than someone tampering with update center), we can tell
 
         if (!digestMatches(digest.digest(), providedDigest)) {
-            String msg = digestName + " digest mismatch: expected=" + providedDigest + " in '" + name + "'";
+            String msg = new StringBuilder()
+                	.append(digestName)
+                	.append(" digest mismatch: expected=")
+                	.append(providedDigest)
+                	.append(" in '")
+                	.append(name)
+                	.append("'").toString();
             if (LOGGER.isLoggable(Level.SEVERE)) {
                 LOGGER.severe(msg);
                 LOGGER.severe(json.toString(2));

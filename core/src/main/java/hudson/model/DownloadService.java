@@ -438,7 +438,13 @@ public class DownloadService {
             try {
                 field = genericList.get(0).getClass().getDeclaredField(comparator);
             } catch (NoSuchFieldException e) {
-                LOGGER.warning("comparator: " + comparator + "does not exist for " + genericList.get(0).getClass() + ", " + e);
+                LOGGER.warning(new StringBuilder()
+                    	.append("comparator: ")
+                    	.append(comparator)
+                    	.append("does not exist for ")
+                    	.append(genericList.get(0).getClass())
+                    	.append(", ")
+                    	.append(e).toString());
                 return false;
             }
             for (int i = 0; i < genericList.size(); ++i) {

@@ -77,13 +77,16 @@ public class FormApply {
             @Override
             public void generateResponse(StaplerRequest req, StaplerResponse rsp, Object node) throws IOException, ServletException {
                 rsp.setContentType("text/html;charset=UTF-8");
-                rsp.getWriter().println("<html><body><script>" +
-                        "window.applyCompletionHandler = function (w) {" +
-                        "  with(w) {" +
-                        script +
-                        "  }" +
-                        "};" +
-                        "</script></body></html>");
+                
+                rsp.getWriter().println(new StringBuilder()
+                    	.append("<html><body><script>")
+                    	.append("window.applyCompletionHandler = function (w) {")
+                    	.append("  with(w) {")
+                    	.append(script)
+                    	.append("  }")
+                    	.append("};")
+                    	.append("</script></body></html>")
+                    	.toString());
             }
         };
     }

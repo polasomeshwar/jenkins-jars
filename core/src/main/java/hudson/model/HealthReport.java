@@ -252,12 +252,22 @@ public class HealthReport implements Serializable, Comparable<HealthReport> {
      */
     public String getIconUrl(String size) {
         if (iconUrl == null) {
-            return Jenkins.RESOURCE_PATH + "/images/" + size + "/" + HEALTH_UNKNOWN_IMG;
+            return new StringBuilder()
+                	.append(Jenkins.RESOURCE_PATH)
+                	.append("/images/")
+                	.append(size)
+                	.append("/")
+                	.append(HEALTH_UNKNOWN_IMG).toString();
         }
         if (iconUrl.startsWith("/")) {
             return iconUrl.replace("/32x32/", "/" + size + "/");
         }
-        return Jenkins.RESOURCE_PATH + "/images/" + size + "/" + iconUrl;
+        return new StringBuilder()
+            	.append(Jenkins.RESOURCE_PATH)
+            	.append("/images/")
+            	.append(size)
+            	.append("/")
+            	.append(iconUrl).toString();
     }
 
     /**

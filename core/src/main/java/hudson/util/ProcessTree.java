@@ -377,7 +377,13 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                     VetoCause cause = vetoExtension.vetoProcessKilling(process);
                     if (cause != null) {
                         if (LOGGER.isLoggable(FINEST))
-                            LOGGER.info("Killing of pid " + getPid() + " vetoed by " + vetoExtension.getClass().getName() + ": " + cause.getMessage());
+                            LOGGER.info(new StringBuilder()
+                                	.append("Killing of pid ")
+                                	.append(getPid())
+                                	.append(" vetoed by ")
+                                	.append(vetoExtension.getClass().getName())
+                                	.append(": ")
+                                	.append(cause.getMessage()).toString());
                         return cause.getMessage();
                     }
                 }

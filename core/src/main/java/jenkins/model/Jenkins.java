@@ -3606,10 +3606,12 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
             // someone is trying to save the config before all extensions are loaded (and possibly after as the task
             // may run in parallel with other tasks.  OMG...!!! this is generally very bad and can lead to dataloss
             LOGGER.log(Level.SEVERE,
-                       "An attempt to save Jenkins'' global configuration before it has been loaded has been "
-                       + "made during milestone " + currentMilestone
-                       + ".  This is indicative of a bug in the caller and may lead to full or partial loss of "
-                       + "configuration.",
+            		new StringBuilder()
+                	.append("An attempt to save Jenkins'' global configuration before it has been loaded has been ")
+                	.append("made during milestone ")
+                	.append(currentMilestone)
+                	.append(".  This is indicative of a bug in the caller and may lead to full or partial loss of ")
+                	.append("configuration.").toString(),
                        new IllegalStateException("call trace"));
             // at this point we may want to terminate but the save may be called from a different thread and we
             // can not call System.halt() because we could be running in a container :(

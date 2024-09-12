@@ -27,6 +27,7 @@ package hudson.cli;
 import hudson.AbortException;
 import hudson.Extension;
 import hudson.PluginManager;
+import hudson.Util;
 import hudson.model.UpdateSite;
 import hudson.model.UpdateSite.Data;
 import hudson.util.EditDistance;

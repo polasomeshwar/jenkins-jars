@@ -235,8 +235,12 @@ public abstract class FormFieldValidator {
                     response.setHeader(header, "sandbox; default-src 'none';");
                 }
             }
-            response.getWriter().print("<div class=" + cssClass + ">" +
-                    message + "</div>");
+            response.getWriter().print(new StringBuilder()
+                	.append("<div class=")
+                	.append(cssClass)
+                	.append(">")
+                	.append(message)
+                	.append("</div>").toString());
         }
     }
 

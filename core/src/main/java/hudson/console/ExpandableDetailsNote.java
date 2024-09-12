@@ -53,7 +53,13 @@ public class ExpandableDetailsNote extends ConsoleNote {
     @Override
     public ConsoleAnnotator annotate(Object context, MarkupText text, int charPos) {
         text.addMarkup(charPos,
-                "<input type=button value='" + Functions.htmlAttributeEscape(caption) + "' class='reveal-expandable-detail'><div class='expandable-detail'>" + html + "</div>");
+            	new StringBuilder()
+            	.append("<input type=button value='")
+            	.append(Functions.htmlAttributeEscape(caption))
+            	.append("' class='reveal-expandable-detail'><div class='expandable-detail'>")
+            	.append(html)
+            	.append("</div>")
+            	.toString());
         return null;
     }
 

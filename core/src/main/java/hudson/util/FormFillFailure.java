@@ -93,12 +93,15 @@ public abstract class FormFillFailure extends IOException implements HttpRespons
             return _errorWithMarkup(Util.escape(message), kind);
         }
 
-        return _errorWithMarkup(Util.escape(message) +
-                " </div><div><a href='#' class='showDetails'>"
-                + Messages.FormValidation_Error_Details()
-                + "</a><pre style='display:none'>"
-                + Util.escape(Functions.printThrowable(e)) +
-                "</pre>", kind
+        
+        return _errorWithMarkup(new StringBuilder()
+            	.append(Util.escape(message))
+            	.append(" </div><div><a href='#' class='showDetails'>")
+            	.append(Messages.FormValidation_Error_Details())
+            	.append("</a><pre style='display:none'>")
+            	.append(Util.escape(Functions.printThrowable(e)))
+            	.append("</pre>")
+            	.toString(), kind
         );
     }
 
@@ -136,8 +139,14 @@ public abstract class FormFillFailure extends IOException implements HttpRespons
                 if (req == null) { // being called from some other context
                     return message;
                 }
-                return "<div class=" + getKind().name().toLowerCase(Locale.ENGLISH) + ">" +
-                        message + "</div>";
+                
+                return new StringBuilder()
+                    	.append("<div class=")
+                    	.append(getKind().name().toLowerCase(Locale.ENGLISH))
+                    	.append(">")
+                    	.append(message)
+                    	.append("</div>")
+                    	.toString();
             }
 
             @Override

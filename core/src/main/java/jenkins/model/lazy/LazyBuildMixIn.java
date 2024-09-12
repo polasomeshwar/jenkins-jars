@@ -186,7 +186,13 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
             RunT lastBuild = getBuildClass().getConstructor(asJob().getClass()).newInstance(asJob());
             var rootDir = lastBuild.getRootDir().toPath();
             if (Files.isDirectory(rootDir)) {
-               LOGGER.warning(() -> "JENKINS-23152: " + rootDir + " already existed; will not overwrite with " + lastBuild + " but will create a fresh build #" + asJob().getNextBuildNumber());
+               LOGGER.warning(() -> new StringBuilder()
+                   	.append("JENKINS-23152: ")
+                	.append(rootDir)
+                	.append(" already existed; will not overwrite with ")
+                	.append(lastBuild)
+                	.append(" but will create a fresh build #")
+                	.append(asJob().getNextBuildNumber()).toString());
                return newBuild();
             }
             builds.put(lastBuild);

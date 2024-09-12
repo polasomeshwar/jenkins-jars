@@ -24,6 +24,8 @@
 
 package hudson.model.queue;
 
+import java.util.Locale;
+
 /**
  * Estimated future load to Hudson.
  *
@@ -52,6 +54,13 @@ public final class FutureLoad {
 
     @Override
     public String toString() {
-        return "startTime=" + startTime + ",#executors=" + numExecutors + ",duration=" + duration;
+    	
+        return new StringBuilder()
+            	.append("startTime=")
+            	.append(startTime)
+            	.append(",#executors=")
+            	.append(numExecutors)
+            	.append(",duration=")
+            	.append(duration).toString();
     }
 }

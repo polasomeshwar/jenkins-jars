@@ -1,6 +1,7 @@
 package hudson.init.impl;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
+import hudson.Util;
 import hudson.init.Initializer;
 import java.io.EOFException;
 import java.io.IOException;
@@ -103,8 +104,12 @@ public class InstallUncaughtExceptionHandler {
         public void uncaughtException(Thread t, Throwable ex) {
             // if this was an OutOfMemoryError then all bets about logging are off - but in the absence of anything else...
             LOGGER.log(Level.SEVERE,
-                       "A thread (" + t.getName() + '/' + t.getId()
-                                     + ") died unexpectedly due to an uncaught exception. This may leave your server corrupted and usually indicates a software bug.",
+            		new StringBuilder()
+                	.append("A thread (")
+                	.append(t.getName())
+                	.append('/')
+                	.append(t.getId())
+                	.append(") died unexpectedly due to an uncaught exception. This may leave your server corrupted and usually indicates a software bug.").toString(),
                        ex);
         }
 

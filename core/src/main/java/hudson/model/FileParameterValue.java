@@ -27,6 +27,7 @@ package hudson.model;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.EnvVars;
 import hudson.FilePath;
+import hudson.Functions;
 import hudson.Launcher;
 import hudson.Util;
 import hudson.tasks.BuildWrapper;
@@ -227,7 +228,14 @@ public class FileParameterValue extends ParameterValue {
 
     @Override
     public String toString() {
-        return "(FileParameterValue) " + getName() + "='" + originalFileName + "'";
+    	
+        return new StringBuilder()
+            	.append("(FileParameterValue) ")
+            	.append(getName())
+            	.append("='")
+            	.append(originalFileName)
+            	.append("'")
+            	.toString();
     }
 
     @Override public String getShortDescription() {
