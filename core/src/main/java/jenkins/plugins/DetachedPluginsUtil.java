@@ -203,16 +203,12 @@ public class DetachedPluginsUtil {
 
         @Override
         public String toString() {
-<<<<<<< HEAD
             return new StringBuilder()
             		.append(shortName)
             		.append(" ")
             		.append(splitWhen.toString().replace(".*", ""))
             		.append(" ")
             		.append(requiredVersion).toString();
-=======
-            return shortName + " " + splitWhen.toString().replace(".*", "") + " " + requiredVersion;
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
     }
 }

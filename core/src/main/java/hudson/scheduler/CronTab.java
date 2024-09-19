@@ -500,21 +500,6 @@ public final class CronTab {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return 	 new StringBuilder()
-        		.append(super.toString())
-        		.append("[")
-        		.append(toString("minute", bits[0]))
-        		.append(',')
-        		.append(toString("hour", bits[1]))
-        		.append(',')
-        		.append(toString("dayOfMonth", bits[2]))
-        		.append(',')
-        		.append(toString("month", bits[3]))
-        		.append(',')
-        		.append(toString("dayOfWeek", dayOfWeek))
-        		.append(']').toString();
-=======
         return new StringBuilder()
                 .append(super.toString())
                 .append('[')
@@ -529,7 +514,6 @@ public final class CronTab {
                 .append(toString("dayOfWeek", dayOfWeek))
                 .append(']')
                 .toString();
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     private String toString(String key, long bit) {

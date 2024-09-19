@@ -214,9 +214,6 @@ public class UpdateSite {
 
     @Restricted(NoExternalUse.class)
     public @NonNull FormValidation updateDirectlyNow(boolean signatureCheck) throws IOException {
-<<<<<<< HEAD
-        return updateData(DownloadService.loadJSON(new URL(getUrl() + "?id=" + URLEncoder.encode(getId(), StandardCharsets.UTF_8) + "&version=" + URLEncoder.encode(Jenkins.VERSION, StandardCharsets.UTF_8))), signatureCheck);
-=======
         return updateData(
                 DownloadService.loadJSON(
                     new URL(
@@ -231,8 +228,6 @@ public class UpdateSite {
                 ),
                 signatureCheck
             );
-
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
     }
 
     private FormValidation updateData(String json, boolean signatureCheck)

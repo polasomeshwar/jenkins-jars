@@ -312,7 +312,6 @@ public final class TcpSlaveAgentListener extends Thread {
                 DataOutputStream out = new DataOutputStream(s.getOutputStream());
                 String response;
                 if (header.startsWith("GET / ")) {
-<<<<<<< HEAD
                     response = "HTTP/1.0 200 OK\r\n" +
                             "Content-Type: text/plain;charset=UTF-8\r\n" +
                             "X-Content-Type-Options: nosniff\r\n" +
@@ -323,7 +322,6 @@ public final class TcpSlaveAgentListener extends Thread {
                             "Client: " + s.getInetAddress().getHostAddress() + "\r\n" +
                             "Server: " + s.getLocalAddress().getHostAddress() + "\r\n" +
                             "Remoting-Minimum-Version: " + getRemotingMinimumVersion() + "\r\n";
-=======
                     response = new StringBuilder()
                             .append("HTTP/1.0 200 OK\r\n")
                             .append("Content-Type: text/plain;charset=UTF-8\r\n")
@@ -337,7 +335,6 @@ public final class TcpSlaveAgentListener extends Thread {
                             .append("Remoting-Minimum-Version: ").append(getRemotingMinimumVersion()).append("\r\n")
                             .toString();
 
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                 } else {
                     response = DEFAULT_RESPONSE_404;
                 }

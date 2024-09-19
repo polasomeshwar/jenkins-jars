@@ -59,15 +59,6 @@ public class UrlHelper {
      */
     private static String DOMAIN_REGEX = System.getProperty(
             UrlHelper.class.getName() + ".DOMAIN_REGEX",
-<<<<<<< HEAD
-            "^" +
-            "\\w" + // must start with letter / number / underscore
-                "(-*(\\.|\\w))*" + // dashes are allowed but not as last character
-                "\\.*" + // can end with zero (most common), one or multiple dots
-                "(:\\d{1,5})?" + // and potentially the port specification
-                "$"
-    );
-=======
             new StringBuilder()
                 .append("^")
                 .append("\\w") // must start with letter / number / underscore
@@ -77,8 +68,6 @@ public class UrlHelper {
                 .append("$")
                 .toString()
         );
-
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
 
     public static boolean isValidRootUrl(String url) {
         UrlValidator validator = new CustomUrlValidator();

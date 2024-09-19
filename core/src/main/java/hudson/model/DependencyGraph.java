@@ -435,8 +435,6 @@ public class DependencyGraph implements Comparator<AbstractProject> {
         }
 
         @Override public String toString() {
-<<<<<<< HEAD
-      		 
             return new StringBuilder()
             		.append(super.toString())
             		.append("[")
@@ -444,9 +442,6 @@ public class DependencyGraph implements Comparator<AbstractProject> {
             		.append("->")
             		.append(downstream)
             		.append("]").toString();
-=======
-            return super.toString() + "[" + upstream + "->" + downstream + "]";
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
         }
     }
 

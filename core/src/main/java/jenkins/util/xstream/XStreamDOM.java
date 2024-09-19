@@ -153,8 +153,8 @@ public class XStreamDOM {
         String[] r = new String[attributes.size() * 2];
         int i = 0;
         for (Map.Entry<String, String> e : attributes.entrySet()) {
-            r[++i] = e.getKey();
-            r[++i] = e.getValue();
+            r[i++] = e.getKey();
+            r[i++] = e.getValue();
         }
         return r;
     }

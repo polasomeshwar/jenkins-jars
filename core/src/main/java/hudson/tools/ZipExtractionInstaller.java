@@ -83,9 +83,6 @@ public class ZipExtractionInstaller extends ToolInstaller {
     @Override
     public FilePath performInstallation(ToolInstallation tool, Node node, TaskListener log) throws IOException, InterruptedException {
         FilePath dir = preferredLocation(tool, node);
-<<<<<<< HEAD
-        if (dir.installIfNecessaryFrom(new URL(url), log, "Unpacking " + url + " to " + dir + " on " + node.getDisplayName())) {
-=======
         if (dir.installIfNecessaryFrom(new URL(url), log, new StringBuilder()
                 .append("Unpacking ")
                 .append(url)
@@ -94,8 +91,6 @@ public class ZipExtractionInstaller extends ToolInstaller {
                 .append(" on ")
                 .append(node.getDisplayName())
                 .toString())) {
-
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
             dir.act(new ChmodRecAPlusX());
         }
         if (subdir == null) {

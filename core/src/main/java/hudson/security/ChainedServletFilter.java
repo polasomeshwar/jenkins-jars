@@ -95,37 +95,6 @@ public class ChainedServletFilter implements Filter {
                 } else {
                     Filter next = filters[position++];
                     try {
-<<<<<<< HEAD
-
-                        LOGGER.log(level, () -> new StringBuilder()
-                            	.append(uri)
-                            	.append(" @")
-                            	.append(position)
-                            	.append(" ")
-                            	.append(next)
-                            	.append(" »").toString());
-                        next.doFilter(request, response, this);
-                        LOGGER.log(level, () -> new StringBuilder()
-                            	.append(uri)
-                            	.append(" @")
-                            	.append(position)
-                            	.append(" ")
-                            	.append(next)
-                            	.append(" « success: ")
-                            	.append(status()).toString());
-                    } catch (IOException | ServletException | RuntimeException x) {
-
-                        LOGGER.log(level, () -> new StringBuilder()
-                            	.append(uri)
-                            	.append(" @")
-                            	.append(position)
-                            	.append(" ")
-                            	.append(next)
-                            	.append(" « ")
-                            	.append(x)
-                            	.append(": ")
-                            	.append(status()).toString());
-=======
                         LOGGER.log(level, () -> new StringBuilder()
                                 .append(uri)
                                 .append(" @")
@@ -161,8 +130,6 @@ public class ChainedServletFilter implements Filter {
                                 .append(status())
                                 .toString()
                             );
-
->>>>>>> 0026ef48d7a85c6ce895084e5fe3fbdf2c241a1b
                         throw x;
                     }
                 }
