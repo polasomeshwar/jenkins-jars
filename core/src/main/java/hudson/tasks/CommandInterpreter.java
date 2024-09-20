@@ -44,7 +44,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jenkins.model.Jenkins;
 import jenkins.tasks.filters.EnvVarsFilterException;
 import jenkins.tasks.filters.EnvVarsFilterLocalRule;
 import jenkins.tasks.filters.EnvVarsFilterableBuilder;
@@ -113,12 +112,12 @@ public abstract class CommandInterpreter extends Builder implements EnvVarsFilte
                 throw new NullPointerException("no such build node: " + build.getBuiltOnStr());
             }
             throw new NullPointerException(new StringBuilder()
-            		.append("no workspace from node ")
-            		.append(node)
-            		.append(" which is computer ")
-            		.append(node.toComputer())
-            		.append(" and has channel ")
-            		.append(node.getChannel()).toString());
+                    .append("no workspace from node ")
+                    .append(node)
+                    .append(" which is computer ")
+                    .append(node.toComputer())
+                    .append(" and has channel ")
+                    .append(node.getChannel()).toString());
         }
         FilePath script = null;
         int r = -1;

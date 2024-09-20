@@ -34,7 +34,6 @@ import hudson.model.Descriptor;
 import hudson.model.Failure;
 import hudson.model.RootAction;
 import hudson.model.UpdateCenter;
-import hudson.model.View;
 import hudson.slaves.Cloud;
 import hudson.util.FormValidation;
 import java.io.IOException;
@@ -63,7 +62,8 @@ import org.kohsuke.stapler.interceptor.RequirePOST;
 import org.kohsuke.stapler.verb.POST;
 
 @Restricted(NoExternalUse.class)
-public class CloudSet extends AbstractModelObject implements Describable<CloudSet>, ModelObjectWithChildren, RootAction, StaplerProxy {
+public class CloudSet extends AbstractModelObject
+        implements Describable<CloudSet>, ModelObjectWithChildren, RootAction, StaplerProxy {
     private static final Logger LOGGER = Logger.getLogger(CloudSet.class.getName());
 
     @Override
@@ -130,7 +130,8 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
     }
 
     @Override
-    public ModelObjectWithContextMenu.ContextMenu doChildrenContextMenu(StaplerRequest request, StaplerResponse response) throws Exception {
+    public ModelObjectWithContextMenu.ContextMenu doChildrenContextMenu(StaplerRequest request,
+            StaplerResponse response) throws Exception {
         ModelObjectWithContextMenu.ContextMenu m = new ModelObjectWithContextMenu.ContextMenu();
         Jenkins.get().clouds.stream().forEach(c -> m.add(c));
         return m;
@@ -154,6 +155,7 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
 
     /**
      * Makes sure that the given name is good as an agent name.
+     *
      * @return trimmed name if valid; throws ParseException if not
      */
     public String checkName(String name) throws Failure {
@@ -188,9 +190,9 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
      * First check point in creating a new cloud.
      */
     @RequirePOST
-    public synchronized void doCreate(StaplerRequest req, StaplerResponse rsp,
-                                          @QueryParameter String name, @QueryParameter String mode,
-                                          @QueryParameter String from) throws IOException, ServletException, Descriptor.FormException {
+    public synchronized void doCreate(StaplerRequest req, StaplerResponse rsp, @QueryParameter String name,
+            @QueryParameter String mode, @QueryParameter String from)
+            throws IOException, ServletException, Descriptor.FormException {
         final Jenkins jenkins = Jenkins.get();
         jenkins.checkPermission(Jenkins.ADMINISTER);
 
@@ -228,7 +230,8 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
         }
     }
 
-    private void handleNewCloudPage(Descriptor<Cloud> descriptor, String name, StaplerRequest req, StaplerResponse rsp) throws IOException, ServletException, Descriptor.FormException {
+    private void handleNewCloudPage(Descriptor<Cloud> descriptor, String name, StaplerRequest req, StaplerResponse rsp)
+            throws IOException, ServletException, Descriptor.FormException {
         checkName(name);
         JSONObject formData = req.getSubmittedForm();
         formData.put("name", name);
@@ -243,7 +246,7 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
      */
     @POST
     public synchronized void doDoCreate(StaplerRequest req, StaplerResponse rsp,
-                                            @QueryParameter String cloudDescriptorName) throws IOException, ServletException, Descriptor.FormException {
+            @QueryParameter String cloudDescriptorName) throws IOException, ServletException, Descriptor.FormException {
         Jenkins.get().checkPermission(Jenkins.ADMINISTER);
         Descriptor<Cloud> cloudDescriptor = Cloud.all().findByName(cloudDescriptorName);
         if (cloudDescriptor == null) {
@@ -251,12 +254,10 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
         }
         Cloud cloud = cloudDescriptor.newInstance(req, req.getSubmittedForm());
         if (!Jenkins.get().clouds.add(cloud)) {
-   		LOGGER.log(Level.WARNING, () -> new StringBuilder()
-   		   		.append("Creating duplicate cloud name ")
-   		   		.append(cloud.name)
-   		   		.append(". Plugin ")
-   		   		.append(Jenkins.get().getPluginManager().whichPlugin(cloud.getClass()))
-   		   		.append(" should be updated to support user provided name.").toString());
+            LOGGER.log(Level.WARNING,
+                    () -> new StringBuilder().append("Creating duplicate cloud name ").append(cloud.name)
+                            .append(". Plugin ").append(Jenkins.get().getPluginManager().whichPlugin(cloud.getClass()))
+                            .append(" should be updated to support user provided name.").toString());
         }
         // take the user back to the cloud list top page
         rsp.sendRedirect2(".");
@@ -290,9 +291,7 @@ public class CloudSet extends AbstractModelObject implements Describable<CloudSe
         @SuppressWarnings("unused") // stapler
         public AutoCompletionCandidates doAutoCompleteCopyNewItemFrom(@QueryParameter final String value) {
             final AutoCompletionCandidates r = new AutoCompletionCandidates();
-            Jenkins.get().clouds.stream()
-                    .filter(c -> c.name.startsWith(value))
-                    .forEach(c -> r.add(c.name));
+            Jenkins.get().clouds.stream().filter(c -> c.name.startsWith(value)).forEach(c -> r.add(c.name));
             return r;
         }
 

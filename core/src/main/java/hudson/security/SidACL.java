@@ -29,8 +29,6 @@ import static java.util.logging.Level.FINER;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import hudson.util.MultipartFormDataParser;
-
 import java.util.logging.Logger;
 import org.acegisecurity.acls.sid.GrantedAuthoritySid;
 import org.acegisecurity.acls.sid.PrincipalSid;
@@ -51,23 +49,23 @@ public abstract class SidACL extends ACL {
         if (a.equals(SYSTEM2)) {
             if (LOGGER.isLoggable(FINE))
                 LOGGER.fine(new StringBuilder()
-                    	.append("hasPermission(")
-                    	.append(a)
-                    	.append(",")
-                    	.append(permission)
-                    	.append(")=>SYSTEM user has full access").toString());
+                        .append("hasPermission(")
+                        .append(a)
+                        .append(",")
+                        .append(permission)
+                        .append(")=>SYSTEM user has full access").toString());
             return true;
         }
         Boolean b = _hasPermission(a, permission);
 
         if (LOGGER.isLoggable(FINE))
             LOGGER.fine(new StringBuilder()
-                	.append("hasPermission(")
-                	.append(a)
-                	.append(",")
-                	.append(permission)
-                	.append(")=>")
-                	.append((b == null ? "null, thus false" : b)).toString());
+                    .append("hasPermission(")
+                    .append(a)
+                    .append(",")
+                    .append(permission)
+                    .append(")=>")
+                    .append((b == null ? "null, thus false" : b)).toString());
 
         if (b == null) b = false;    // default to rejection
         return b;
@@ -86,12 +84,12 @@ public abstract class SidACL extends ACL {
         Boolean b = hasPermission(new PrincipalSid(a), permission);
         if (LOGGER.isLoggable(FINER))
             LOGGER.finer(new StringBuilder()
-                	.append("hasPermission(PrincipalSID:")
-                	.append(a.getPrincipal())
-                	.append(",")
-                	.append(permission)
-                	.append(")=>")
-                	.append(b).toString());
+                    .append("hasPermission(PrincipalSID:")
+                    .append(a.getPrincipal())
+                    .append(",")
+                    .append(permission)
+                    .append(")=>")
+                    .append(b).toString());
         if (b != null)
             return b;
 
@@ -102,12 +100,12 @@ public abstract class SidACL extends ACL {
             b = hasPermission(new GrantedAuthoritySid(ga), permission);
             if (LOGGER.isLoggable(FINER))
                 LOGGER.finer(new StringBuilder()
-                    	.append("hasPermission(GroupSID:")
-                    	.append(ga.getAuthority())
-                    	.append(",")
-                    	.append(permission)
-                    	.append(")=>")
-                    	.append(b).toString());
+                        .append("hasPermission(GroupSID:")
+                        .append(ga.getAuthority())
+                        .append(",")
+                        .append(permission)
+                        .append(")=>")
+                        .append(b).toString());
             if (b != null)
                 return b;
         }
@@ -117,12 +115,12 @@ public abstract class SidACL extends ACL {
             b = hasPermission(sid, permission);
             if (LOGGER.isLoggable(FINER))
                 LOGGER.finer(new StringBuilder()
-                    	.append("hasPermission(")
-                    	.append(sid)
-                    	.append(",")
-                    	.append(permission)
-                    	.append(")=>")
-                    	.append(b).toString());
+                        .append("hasPermission(")
+                        .append(sid)
+                        .append(",")
+                        .append(permission)
+                        .append(")=>")
+                        .append(b).toString());
             if (b != null)
                 return b;
         }

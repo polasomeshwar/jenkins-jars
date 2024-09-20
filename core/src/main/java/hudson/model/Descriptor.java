@@ -300,13 +300,13 @@ public abstract class Descriptor<T extends Describable<T>> implements Loadable, 
             Class t = Types.erasure(pt.getActualTypeArguments()[0]);
             if (!t.isAssignableFrom(clazz))
                 throw new AssertionError(new StringBuilder()
-                		.append("Outer class ")
-                		.append(clazz)
-                		.append(" of ")
-                		.append(getClass())
-                		.append(" is not assignable to ")
-                		.append(t)
-                		.append(". Perhaps wrong outer class?"));
+                        .append("Outer class ")
+                        .append(clazz)
+                        .append(" of ")
+                        .append(getClass())
+                        .append(" is not assignable to ")
+                        .append(t)
+                        .append(". Perhaps wrong outer class?"));
         }
 
         // detect a type error. this Descriptor is supposed to be returned from getDescriptor(), so make sure its type match up.
@@ -1009,21 +1009,21 @@ public abstract class Descriptor<T extends Describable<T>> implements Loadable, 
         while (locales.hasMoreElements()) {
             Locale locale = locales.nextElement();
             url = c.getResource(new StringBuilder()
-            		.append(base)
-            		.append('_')
-            		.append(locale.getLanguage())
-            		.append('_')
-            		.append(locale.getCountry())
-            		.append('_')
-            		.append(locale.getVariant())
-            		.append(".html").toString());
+                    .append(base)
+                    .append('_')
+                    .append(locale.getLanguage())
+                    .append('_')
+                    .append(locale.getCountry())
+                    .append('_')
+                    .append(locale.getVariant())
+                    .append(".html").toString());
             if (url != null)    return url;
             url = c.getResource(new StringBuilder()
-            		.append(base)
-            		.append(locale.getLanguage())
-            		.append('_')
-            		.append(locale.getCountry())
-            		.append(".html").toString());
+                    .append(base)
+                    .append(locale.getLanguage())
+                    .append('_')
+                    .append(locale.getCountry())
+                    .append(".html").toString());
             if (url != null)    return url;
             url = c.getResource(base + '_' + locale.getLanguage() + ".html");
             if (url != null)    return url;

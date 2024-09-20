@@ -378,12 +378,12 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                     if (cause != null) {
                         if (LOGGER.isLoggable(FINEST))
                             LOGGER.info(new StringBuilder()
-                                	.append("Killing of pid ")
-                                	.append(getPid())
-                                	.append(" vetoed by ")
-                                	.append(vetoExtension.getClass().getName())
-                                	.append(": ")
-                                	.append(cause.getMessage()).toString());
+                                    .append("Killing of pid ")
+                                    .append(getPid())
+                                    .append(" vetoed by ")
+                                    .append(vetoExtension.getClass().getName())
+                                    .append(": ")
+                                    .append(cause.getMessage()).toString());
                         return cause.getMessage();
                     }
                 }

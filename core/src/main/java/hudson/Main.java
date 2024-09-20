@@ -170,11 +170,11 @@ public class Main {
                 ret = proc.join();
 
                 w.write(new StringBuilder()
-                    	.append("</log><result>")
-                    	.append(ret)
-                    	.append("</result><duration>")
-                    	.append((System.currentTimeMillis() - start))
-                    	.append("</duration></run>").toString());
+                        .append("</log><result>")
+                        .append(ret)
+                        .append("</result><duration>")
+                        .append((System.currentTimeMillis() - start))
+                        .append("</duration></run>").toString());
             } catch (InvalidPathException e) {
                 throw new IOException(e);
             }

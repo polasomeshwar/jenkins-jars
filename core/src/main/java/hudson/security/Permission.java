@@ -253,11 +253,11 @@ public final class Permission {
     @Override
     public String toString() {
         return new StringBuilder()
-            	.append("Permission[")
-            	.append(owner)
-            	.append(',')
-            	.append(name)
-            	.append(']').toString();
+                .append("Permission[")
+                .append(owner)
+                .append(',')
+                .append(name)
+                .append(']').toString();
     }
 
     public void setEnabled(boolean enable) {

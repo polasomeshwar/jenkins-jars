@@ -114,13 +114,13 @@ public class DefaultJnlpSlaveReceiver extends JnlpAgentReceiver {
                     break;
                 } else {
                     LOGGER.log(Level.WARNING, new StringBuilder()
-                     		.append(super.toString())
-                     		.append("Rejecting connection to {0} from {1} as an inbound agent as the launcher ")
-                     		.append("{2} does not extend JNLPLauncher or does not implement ")
-                     		.append("DelegatingComputerLauncher with a delegation chain leading to a JNLPLauncher. ")
-                     		.append("Set system property ")
-                     		.append("jenkins.slaves.DefaultJnlpSlaveReceiver.disableStrictVerification=true to allow")
-                     		.append("connections until the plugin has been fixed.").toString(),
+                             .append(super.toString())
+                             .append("Rejecting connection to {0} from {1} as an inbound agent as the launcher ")
+                             .append("{2} does not extend JNLPLauncher or does not implement ")
+                             .append("DelegatingComputerLauncher with a delegation chain leading to a JNLPLauncher. ")
+                             .append("Set system property ")
+                             .append("jenkins.slaves.DefaultJnlpSlaveReceiver.disableStrictVerification=true to allow")
+                             .append("connections until the plugin has been fixed.").toString(),
 
                             new Object[]{clientName, event.getRemoteEndpointDescription(), computer.getLauncher().getClass()});
                     event.reject(new ConnectionRefusalException(String.format("%s is not an inbound agent", clientName)));

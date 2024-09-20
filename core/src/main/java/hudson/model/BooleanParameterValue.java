@@ -26,10 +26,8 @@ package hudson.model;
 
 import hudson.EnvVars;
 import hudson.util.VariableResolver;
-import jenkins.model.Jenkins;
 import java.util.Locale;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.export.Exported;
 
 /**
@@ -89,11 +87,11 @@ public class BooleanParameterValue extends ParameterValue {
     @Override
     public String toString() {
         return new StringBuilder()
-            	.append("(BooleanParameterValue) ")
-            	.append(getName())
-            	.append("='")
-            	.append(value)
-            	.append("'").toString();
+                .append("(BooleanParameterValue) ")
+                .append(getName())
+                .append("='")
+                .append(value)
+                .append("'").toString();
 
     }
 

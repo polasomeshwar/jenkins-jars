@@ -93,13 +93,13 @@ public class DomainValidator implements Serializable {
     // If the match fails, input is checked against DOMAIN_LABEL_REGEX (hostnameRegex)
     // RFC1123 sec 2.1 allows hostnames to start with a digit
     private static final String DOMAIN_NAME_REGEX =
-    		new StringBuilder()
-        	.append("^(?:")
-        	.append(DOMAIN_LABEL_REGEX)
-        	.append("\\.)+")
-        	.append("(")
-        	.append(TOP_LABEL_REGEX)
-        	.append(")\\.?$").toString();
+            new StringBuilder()
+            .append("^(?:")
+            .append(DOMAIN_LABEL_REGEX)
+            .append("\\.)+")
+            .append("(")
+            .append(TOP_LABEL_REGEX)
+            .append(")\\.?$").toString();
 
     private static final String UNEXPECTED_ENUM_VALUE = "Unexpected enum value: ";
 

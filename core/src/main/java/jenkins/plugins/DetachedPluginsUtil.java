@@ -204,11 +204,11 @@ public class DetachedPluginsUtil {
         @Override
         public String toString() {
             return new StringBuilder()
-            		.append(shortName)
-            		.append(" ")
-            		.append(splitWhen.toString().replace(".*", ""))
-            		.append(" ")
-            		.append(requiredVersion).toString();
+                    .append(shortName)
+                    .append(" ")
+                    .append(splitWhen.toString().replace(".*", ""))
+                    .append(" ")
+                    .append(requiredVersion).toString();
         }
     }
 }

@@ -461,11 +461,11 @@ public abstract class PluginManager extends AbstractModelObject implements OnMas
                                         String shortName = p.getShortName();
                                         if (inspectedShortNames.containsKey(shortName)) {
                                             LOGGER.info(new StringBuilder()
-                                                	.append("Ignoring ")
-                                                	.append(arc)
-                                                	.append(" because ")
-                                                	.append(inspectedShortNames.get(shortName))
-                                                	.append(" is already loaded").toString());
+                                                    .append("Ignoring ")
+                                                    .append(arc)
+                                                    .append(" because ")
+                                                    .append(inspectedShortNames.get(shortName))
+                                                    .append(" is already loaded").toString());
                                             return true;
                                         }
 

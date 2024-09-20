@@ -217,14 +217,14 @@ public abstract class PeepholePermalink extends Permalink implements Predicate<R
             for (PeepholePermalink pp : Util.filter(j.getPermalinks(), PeepholePermalink.class)) {
                 if (pp.resolve(j) == run) {
                     Run<?, ?> r = pp.find(run.getPreviousBuild());
-                    
+
                     LOGGER.fine(() -> new StringBuilder()
-                        	.append("Updating ")
-                        	.append(pp.getId())
-                        	.append(" permalink from deleted ")
-                        	.append(run)
-                        	.append(" to ")
-                        	.append((r == null ? -1 : r.getNumber())).toString());
+                            .append("Updating ")
+                            .append(pp.getId())
+                            .append(" permalink from deleted ")
+                            .append(run)
+                            .append(" to ")
+                            .append((r == null ? -1 : r.getNumber())).toString());
                     pp.updateCache(j, r);
                 }
             }

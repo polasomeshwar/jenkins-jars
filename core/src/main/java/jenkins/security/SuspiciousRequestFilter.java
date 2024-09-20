@@ -10,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import jenkins.util.SystemProperties;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
@@ -28,7 +27,7 @@ public class SuspiciousRequestFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+//        HttpServletResponse httpResponse = (HttpServletResponse) response;
         if (!allowSemicolonsInPath && httpRequest.getRequestURI().contains(";")) {
             LOGGER.warning(() -> new StringBuilder()
                     .append("Denying HTTP ")

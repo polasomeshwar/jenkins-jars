@@ -385,12 +385,12 @@ public final class DirectoryBrowserSupport implements HttpResponse {
 
         if (LOGGER.isLoggable(Level.FINE))
             LOGGER.fine(new StringBuilder()
-            		.append("Serving ")
-            		.append(baseFile)
-            		.append(" with lastModified=")
-            		.append(lastModified)
-            		.append(", length=")
-            		.append(length).toString());
+                    .append("Serving ")
+                    .append(baseFile)
+                    .append(" with lastModified=")
+                    .append(lastModified)
+                    .append(", length=")
+                    .append(length).toString());
         if (view) {
             InputStream in;
             try {

@@ -653,11 +653,11 @@ public abstract class Node extends AbstractModelObject implements Reconfigurable
     private Nodes getParent() {
         if (parent == null) {
             throw new IllegalStateException(new StringBuilder()
-                	.append("no parent set on ")
-                	.append(getClass().getName())
-                	.append("[")
-                	.append(getNodeName())
-                	.append("]").toString());
+                    .append("no parent set on ")
+                    .append(getClass().getName())
+                    .append("[")
+                    .append(getNodeName())
+                    .append("]").toString());
         }
         return parent;
     }

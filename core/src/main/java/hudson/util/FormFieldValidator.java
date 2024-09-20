@@ -236,11 +236,11 @@ public abstract class FormFieldValidator {
                 }
             }
             response.getWriter().print(new StringBuilder()
-                	.append("<div class=")
-                	.append(cssClass)
-                	.append(">")
-                	.append(message)
-                	.append("</div>").toString());
+                    .append("<div class=")
+                    .append(cssClass)
+                    .append(">")
+                    .append(message)
+                    .append("</div>").toString());
         }
     }
 

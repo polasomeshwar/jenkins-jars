@@ -3573,14 +3573,14 @@ public final class FilePath implements SerializableOnlyOverRemoting {
     private void writeObject(ObjectOutputStream oos) throws IOException {
         Channel target = _getChannelForSerialization();
         if (channel != null && channel != target) {
-        	
+
             throw new IllegalStateException(new StringBuilder()
-                	.append("Can't send a remote FilePath to a different remote channel (current=")
-                	.append(channel)
-                	.append(", target=")
-                	.append(target)
-                	.append(")")
-                	.toString());
+                    .append("Can't send a remote FilePath to a different remote channel (current=")
+                    .append(channel)
+                    .append(", target=")
+                    .append(target)
+                    .append(")")
+                    .toString());
         }
 
         oos.defaultWriteObject();

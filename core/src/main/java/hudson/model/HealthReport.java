@@ -253,21 +253,21 @@ public class HealthReport implements Serializable, Comparable<HealthReport> {
     public String getIconUrl(String size) {
         if (iconUrl == null) {
             return new StringBuilder()
-                	.append(Jenkins.RESOURCE_PATH)
-                	.append("/images/")
-                	.append(size)
-                	.append("/")
-                	.append(HEALTH_UNKNOWN_IMG).toString();
+                    .append(Jenkins.RESOURCE_PATH)
+                    .append("/images/")
+                    .append(size)
+                    .append("/")
+                    .append(HEALTH_UNKNOWN_IMG).toString();
         }
         if (iconUrl.startsWith("/")) {
             return iconUrl.replace("/32x32/", "/" + size + "/");
         }
         return new StringBuilder()
-            	.append(Jenkins.RESOURCE_PATH)
-            	.append("/images/")
-            	.append(size)
-            	.append("/")
-            	.append(iconUrl).toString();
+                .append(Jenkins.RESOURCE_PATH)
+                .append("/images/")
+                .append(size)
+                .append("/")
+                .append(iconUrl).toString();
     }
 
     /**

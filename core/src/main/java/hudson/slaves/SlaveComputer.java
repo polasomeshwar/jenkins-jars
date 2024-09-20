@@ -706,11 +706,11 @@ public class SlaveComputer extends Computer {
         }
         if (_isUnix && !remoteFS.contains("/") && remoteFS.contains("\\"))
             log.println(new StringBuilder()
-                	.append("WARNING: ")
-                	.append(remoteFS)
-                	.append(" looks suspiciously like Windows path. Maybe you meant ")
-                	.append(remoteFS.replace('\\', '/'))
-                	.append("?").toString());
+                    .append("WARNING: ")
+                    .append(remoteFS)
+                    .append(" looks suspiciously like Windows path. Maybe you meant ")
+                    .append(remoteFS.replace('\\', '/'))
+                    .append("?").toString());
         FilePath root = new FilePath(channel, remoteFS);
 
         // reference counting problem is known to happen, such as JENKINS-9017, and so as a preventive measure
@@ -884,11 +884,11 @@ public class SlaveComputer extends Computer {
         LOGGER.log(
                 Level.WARNING,
                 new StringBuilder()
-            	.append("Agent \"")
-            	.append(getName())
-            	.append("\" is connecting with the \"-jnlpUrl\" argument, which is deprecated.")
-            	.append(" Use \"-url\" and \"-name\" instead, potentially also passing in")
-            	.append(" \"-webSocket\", \"-tunnel\", and/or work directory options as needed.").toString());
+                .append("Agent \"")
+                .append(getName())
+                .append("\" is connecting with the \"-jnlpUrl\" argument, which is deprecated.")
+                .append(" Use \"-url\" and \"-name\" instead, potentially also passing in")
+                .append(" \"-webSocket\", \"-tunnel\", and/or work directory options as needed.").toString());
         return new EncryptedSlaveAgentJnlpFile(this, "jenkins-agent.jnlp.jelly", getName(), CONNECT);
     }
 

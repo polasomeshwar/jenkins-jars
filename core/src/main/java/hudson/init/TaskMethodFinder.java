@@ -92,11 +92,11 @@ abstract class TaskMethodFinder<T extends Annotation> extends TaskBuilder {
             return key;
         } catch (MissingResourceException x) {
             LOGGER.log(WARNING, new StringBuilder()
-                	.append("Could not find key '")
-                	.append(key)
-                	.append("' in ")
-                	.append(c.getPackage().getName())
-                	.append(".Messages").toString(), x);
+                    .append("Could not find key '")
+                    .append(key)
+                    .append("' in ")
+                    .append(c.getPackage().getName())
+                    .append(".Messages").toString(), x);
             return key;
         }
     }

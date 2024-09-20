@@ -195,12 +195,12 @@ public class JSONSignatureValidator {
 
         if (!digestMatches(digest.digest(), providedDigest)) {
             String msg = new StringBuilder()
-                	.append(digestName)
-                	.append(" digest mismatch: expected=")
-                	.append(providedDigest)
-                	.append(" in '")
-                	.append(name)
-                	.append("'").toString();
+                    .append(digestName)
+                    .append(" digest mismatch: expected=")
+                    .append(providedDigest)
+                    .append(" in '")
+                    .append(name)
+                    .append("'").toString();
             if (LOGGER.isLoggable(Level.SEVERE)) {
                 LOGGER.severe(msg);
                 LOGGER.severe(json.toString(2));

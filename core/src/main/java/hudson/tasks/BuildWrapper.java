@@ -155,11 +155,11 @@ public abstract class BuildWrapper extends AbstractDescribableImpl<BuildWrapper>
             return setUp((Build) build, launcher, listener);
         else // not a supported build type
             throw new UnsupportedOperationException(new StringBuilder()
-                	.append("Plugin class '")
-                	.append(this.getClass().getName())
-                	.append("' does not support a build of type '")
-                	.append(build.getClass().getName())
-                	.append("'.").toString());
+                    .append("Plugin class '")
+                    .append(this.getClass().getName())
+                    .append("' does not support a build of type '")
+                    .append(build.getClass().getName())
+                    .append("'.").toString());
     }
 
     /**

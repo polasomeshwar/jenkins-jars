@@ -72,11 +72,11 @@ public class HyperlinkNote extends ConsoleNote {
             }
         }
         text.addMarkup(charPos, charPos + length,  new StringBuilder()
-            	.append("<a href='")
-            	.append(Util.escape(url))
-            	.append("'")
-            	.append(extraAttributes())
-            	.append(">").toString(), "</a>");
+                .append("<a href='")
+                .append(Util.escape(url))
+                .append("'")
+                .append(extraAttributes())
+                .append(">").toString(), "</a>");
         return null;
     }
 

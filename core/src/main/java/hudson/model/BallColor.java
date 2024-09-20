@@ -114,11 +114,11 @@ public enum BallColor implements StatusIcon {
     @Override
     public String getImageOf(String size) {
         return  new StringBuilder()
-            	.append(Stapler.getCurrentRequest().getContextPath())
-            	.append(Jenkins.RESOURCE_PATH)
-            	.append("/images/")
-            	.append(size)
-            	.append(image).toString();
+                .append(Stapler.getCurrentRequest().getContextPath())
+                .append(Jenkins.RESOURCE_PATH)
+                .append("/images/")
+                .append(size)
+                .append(image).toString();
     }
 
     /**

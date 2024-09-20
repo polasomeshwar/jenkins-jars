@@ -107,11 +107,11 @@ public class StringParameterValue extends ParameterValue {
     @Override
     public String toString() {
         return new StringBuilder()
-            	.append("(StringParameterValue) ")
-            	.append(getName())
-            	.append("='")
-            	.append(value)
-            	.append("'").toString();
+                .append("(StringParameterValue) ")
+                .append(getName())
+                .append("='")
+                .append(value)
+                .append("'").toString();
     }
 
     @Override public String getShortDescription() {

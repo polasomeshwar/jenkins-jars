@@ -65,11 +65,11 @@ public class RedactSecretJsonInErrorMessageSanitizer implements JsonInErrorMessa
                     } else {
                         // array, object, null, number, boolean
                         LOGGER.log(Level.WARNING, new StringBuilder()
-                            	.append("Unsupported type ")
-                            	.append(o.getClass().getName())
-                            	.append(" for ")
-                            	.append(REDACT_KEY)
-                            	.append(", please use either a single String value or an Array").toString());
+                                .append("Unsupported type ")
+                                .append(o.getClass().getName())
+                                .append(" for ")
+                                .append(REDACT_KEY)
+                                .append(", please use either a single String value or an Array").toString());
                     }
                 }
             } else if (value instanceof String) {
@@ -77,11 +77,11 @@ public class RedactSecretJsonInErrorMessageSanitizer implements JsonInErrorMessa
             } else {
                 // object, null, number, boolean
                 LOGGER.log(Level.WARNING, new StringBuilder()
-                    	.append("Unsupported type ")
-                    	.append(value.getClass().getName())
-                    	.append(" for ")
-                    	.append(REDACT_KEY)
-                    	.append(", please use either a single String value or an Array").toString());
+                        .append("Unsupported type ")
+                        .append(value.getClass().getName())
+                        .append(" for ")
+                        .append(REDACT_KEY)
+                        .append(", please use either a single String value or an Array").toString());
             }
         }
         return redactedKeySet;

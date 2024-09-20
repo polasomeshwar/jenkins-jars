@@ -54,13 +54,16 @@ import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.DoNotUse;
 
 /**
- * Makes it easier to use a lazy {@link RunMap} from a {@link Job} implementation.
- * Provides method implementations for some abstract {@link Job} methods,
- * as well as some methods which are not abstract but which you should override.
- * <p>Should be kept in a {@code transient} field in the job.
+ * Makes it easier to use a lazy {@link RunMap} from a {@link Job}
+ * implementation. Provides method implementations for some abstract {@link Job}
+ * methods, as well as some methods which are not abstract but which you should
+ * override.
+ * <p>
+ * Should be kept in a {@code transient} field in the job.
+ *
  * @since 1.556
  */
-@SuppressWarnings({"unchecked", "rawtypes"}) // BuildHistoryWidget, and AbstractItem.getParent
+@SuppressWarnings({ "unchecked", "rawtypes" }) // BuildHistoryWidget, and AbstractItem.getParent
 public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task & LazyBuildMixIn.LazyLoadingJob<JobT, RunT>, RunT extends Run<JobT, RunT> & LazyBuildMixIn.LazyLoadingRun<JobT, RunT>> {
 
     private static final Logger LOGGER = Logger.getLogger(LazyBuildMixIn.class.getName());
@@ -69,17 +72,18 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
     private @NonNull RunMap<RunT> builds = new RunMap<>(asJob());
 
     /**
-     * Initializes this mixin.
-     * Call this from a constructor and {@link AbstractItem#onLoad} to make sure it is always initialized.
+     * Initializes this mixin. Call this from a constructor and
+     * {@link AbstractItem#onLoad} to make sure it is always initialized.
      */
-    protected LazyBuildMixIn() {}
+    protected LazyBuildMixIn() {
+    }
 
     protected abstract JobT asJob();
 
     /**
-     * Gets the raw model.
-     * Normally should not be called as such.
-     * Note that the initial value is replaced during {@link #onCreatedFromScratch} or {@link #onLoad}.
+     * Gets the raw model. Normally should not be called as such. Note that the
+     * initial value is replaced during {@link #onCreatedFromScratch} or
+     * {@link #onLoad}.
      */
     public final @NonNull RunMap<RunT> getRunMap() {
         return builds;
@@ -109,7 +113,9 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
         int max = _builds.maxNumberOnDisk();
         int next = asJob().getNextBuildNumber();
         if (next <= max) {
-            LOGGER.log(Level.WARNING, "JENKINS-27530: improper nextBuildNumber {0} detected in {1} with highest build number {2}; adjusting", new Object[] {next, asJob(), max});
+            LOGGER.log(Level.WARNING,
+                    "JENKINS-27530: improper nextBuildNumber {0} detected in {1} with highest build number {2}; adjusting",
+                    new Object[] { next, asJob(), max });
             asJob().updateNextBuildNumber(max + 1);
         }
         RunMap<RunT> currentBuilds = this.builds;
@@ -154,16 +160,15 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
     }
 
     /**
-     * Type token for the build type.
-     * The build class must have two constructors:
-     * one taking the project type ({@code P});
-     * and one taking {@code P}, then {@link File}.
+     * Type token for the build type. The build class must have two constructors:
+     * one taking the project type ({@code P}); and one taking {@code P}, then
+     * {@link File}.
      */
     protected abstract Class<RunT> getBuildClass();
 
     /**
-     * Loads an existing build record from disk.
-     * The default implementation just calls the ({@link Job}, {@link File}) constructor of {@link #getBuildClass},
+     * Loads an existing build record from disk. The default implementation just
+     * calls the ({@link Job}, {@link File}) constructor of {@link #getBuildClass},
      * which will call {@link Run#Run(Job, File)}.
      */
     public RunT loadBuild(File dir) throws IOException {
@@ -177,29 +182,26 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
     }
 
     /**
-     * Creates a new build of this project for immediate execution.
-     * Calls the ({@link Job}) constructor of {@link #getBuildClass}, which will call {@link Run#Run(Job)}.
-     * Suitable for {@link SubTask#createExecutable}.
+     * Creates a new build of this project for immediate execution. Calls the
+     * ({@link Job}) constructor of {@link #getBuildClass}, which will call
+     * {@link Run#Run(Job)}. Suitable for {@link SubTask#createExecutable}.
      */
     public final synchronized RunT newBuild() throws IOException {
         try {
             RunT lastBuild = getBuildClass().getConstructor(asJob().getClass()).newInstance(asJob());
             var rootDir = lastBuild.getRootDir().toPath();
             if (Files.isDirectory(rootDir)) {
-               LOGGER.warning(() -> new StringBuilder()
-                   	.append("JENKINS-23152: ")
-                	.append(rootDir)
-                	.append(" already existed; will not overwrite with ")
-                	.append(lastBuild)
-                	.append(" but will create a fresh build #")
-                	.append(asJob().getNextBuildNumber()).toString());
-               return newBuild();
+                LOGGER.warning(() -> new StringBuilder().append("JENKINS-23152: ").append(rootDir)
+                        .append(" already existed; will not overwrite with ").append(lastBuild)
+                        .append(" but will create a fresh build #").append(asJob().getNextBuildNumber()).toString());
+                return newBuild();
             }
             builds.put(lastBuild);
             lastBuild.getPreviousBuild(); // JENKINS-20662: create connection to previous build
             return lastBuild;
         } catch (InvocationTargetException e) {
-            LOGGER.log(Level.WARNING, String.format("A new build could not be created in job %s", asJob().getFullName()), e);
+            LOGGER.log(Level.WARNING,
+                    String.format("A new build could not be created in job %s", asJob().getFullName()), e);
             throw handleInvocationTargetException(e);
         } catch (ReflectiveOperationException e) {
             throw new LinkageError("A new build could not be created in " + asJob().getFullName() + ": " + e, e);
@@ -227,7 +229,7 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
      */
     public final void removeRun(RunT run) {
         if (!builds.remove(run)) {
-            LOGGER.log(Level.WARNING, "{0} did not contain {1} to begin with", new Object[] {asJob(), run});
+            LOGGER.log(Level.WARNING, "{0} did not contain {1} to begin with", new Object[] { asJob(), run });
         }
     }
 
@@ -275,6 +277,7 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
 
     /**
      * Suitable for {@link Job#getEstimatedDurationCandidates}.
+     *
      * @since 2.407
      */
     public List<RunT> getEstimatedDurationCandidates() {
@@ -302,7 +305,8 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
     }
 
     /**
-     * @deprecated Remove any code calling this method, history widget is now created via {@link jenkins.widgets.WidgetFactory} implementation.
+     * @deprecated Remove any code calling this method, history widget is now
+     *             created via {@link jenkins.widgets.WidgetFactory} implementation.
      */
     @Deprecated(forRemoval = true, since = "TODO")
     public final HistoryWidget createHistoryWidget() {
@@ -314,7 +318,9 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
      */
     public interface LazyLoadingJob<JobT extends Job<JobT, RunT> & Queue.Task & LazyBuildMixIn.LazyLoadingJob<JobT, RunT>, RunT extends Run<JobT, RunT> & LazyLoadingRun<JobT, RunT>> {
         LazyBuildMixIn<JobT, RunT> getLazyBuildMixIn();
-        // not offering default implementation for _getRuns(), removeRun(R), getBuild(String), getBuildByNumber(int), getFirstBuild(), getLastBuild(), getNearestBuild(int), getNearestOldBuild(int), or createHistoryWidget()
+        // not offering default implementation for _getRuns(), removeRun(R),
+        // getBuild(String), getBuildByNumber(int), getFirstBuild(), getLastBuild(),
+        // getNearestBuild(int), getNearestOldBuild(int), or createHistoryWidget()
         // since they are defined in Job
         // (could allow implementations to call LazyLoadingJob.super.theMethod())
     }
@@ -324,15 +330,16 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
      */
     public interface LazyLoadingRun<JobT extends Job<JobT, RunT> & Queue.Task & LazyBuildMixIn.LazyLoadingJob<JobT, RunT>, RunT extends Run<JobT, RunT> & LazyLoadingRun<JobT, RunT>> {
         RunMixIn<JobT, RunT> getRunMixIn();
-        // not offering default implementations for createReference() or dropLinks() since they are protected
+        // not offering default implementations for createReference() or dropLinks()
+        // since they are protected
         // (though could use @Restricted(ProtectedExternally.class))
         // nor for getPreviousBuild() or getNextBuild() since they are defined in Run
         // (though could allow implementations to call LazyLoadingRun.super.theMethod())
     }
 
     /**
-     * Accompanying helper for the run type.
-     * Stateful but should be held in a {@code final transient} field.
+     * Accompanying helper for the run type. Stateful but should be held in a
+     * {@code final transient} field.
      */
     public abstract static class RunMixIn<JobT extends Job<JobT, RunT> & Queue.Task & LazyBuildMixIn.LazyLoadingJob<JobT, RunT>, RunT extends Run<JobT, RunT> & LazyLoadingRun<JobT, RunT>> {
 
@@ -341,20 +348,18 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
          * {@link LazyBuildMixIn}.
          *
          * <p>
-         * Some {@link Run}s do lazy-loading, so we don't use
-         * {@link #previousBuildR} and {@link #nextBuildR}, and instead use these
-         * fields and point to {@link #selfReference} (or {@link #none}) of
-         * adjacent builds.
+         * Some {@link Run}s do lazy-loading, so we don't use {@link #previousBuildR}
+         * and {@link #nextBuildR}, and instead use these fields and point to
+         * {@link #selfReference} (or {@link #none}) of adjacent builds.
          */
         private volatile BuildReference<RunT> previousBuildR, nextBuildR;
 
         /**
-         * Used in {@link #previousBuildR} and {@link #nextBuildR} to indicate
-         * that we know there is no next/previous build (as opposed to {@code null},
-         * which is used to indicate we haven't determined if there is a next/previous
-         * build.)
+         * Used in {@link #previousBuildR} and {@link #nextBuildR} to indicate that we
+         * know there is no next/previous build (as opposed to {@code null}, which is
+         * used to indicate we haven't determined if there is a next/previous build.)
          */
-        @SuppressWarnings({"unchecked", "rawtypes"})
+        @SuppressWarnings({ "unchecked", "rawtypes" })
         private static final BuildReference NONE = new BuildReference("NONE", null);
 
         @SuppressWarnings("unchecked")
@@ -364,7 +369,8 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
 
         private BuildReference<RunT> selfReference;
 
-        protected RunMixIn() {}
+        protected RunMixIn() {
+        }
 
         protected abstract RunT asRun();
 
@@ -404,16 +410,18 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
          */
         public final RunT getPreviousBuild() {
             while (true) {
-                BuildReference<RunT> r = previousBuildR;    // capture the value once
+                BuildReference<RunT> r = previousBuildR; // capture the value once
 
                 if (r == null) {
-                    // having two neighbors pointing to each other is important to make RunMap.removeValue work
+                    // having two neighbors pointing to each other is important to make
+                    // RunMap.removeValue work
                     JobT _parent = Objects.requireNonNull(asRun().getParent(), "no parent for " + asRun().number);
-                    RunT pb = _parent.getLazyBuildMixIn()._getRuns().search(asRun().number - 1, AbstractLazyLoadRunMap.Direction.DESC);
+                    RunT pb = _parent.getLazyBuildMixIn()._getRuns().search(asRun().number - 1,
+                            AbstractLazyLoadRunMap.Direction.DESC);
                     if (pb != null) {
-                        pb.getRunMixIn().nextBuildR = createReference();   // establish bi-di link
+                        pb.getRunMixIn().nextBuildR = createReference(); // establish bi-di link
                         this.previousBuildR = pb.getRunMixIn().createReference();
-                        LOGGER.log(FINER, "Linked {0}<->{1} in getPreviousBuild()", new Object[]{this, pb});
+                        LOGGER.log(FINER, "Linked {0}<->{1} in getPreviousBuild()", new Object[] { this, pb });
                         return pb;
                     } else {
                         this.previousBuildR = none();
@@ -439,15 +447,17 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
          */
         public final RunT getNextBuild() {
             while (true) {
-                BuildReference<RunT> r = nextBuildR;    // capture the value once
+                BuildReference<RunT> r = nextBuildR; // capture the value once
 
                 if (r == null) {
-                    // having two neighbors pointing to each other is important to make RunMap.removeValue work
-                    RunT nb = asRun().getParent().getLazyBuildMixIn()._getRuns().search(asRun().number + 1, AbstractLazyLoadRunMap.Direction.ASC);
+                    // having two neighbors pointing to each other is important to make
+                    // RunMap.removeValue work
+                    RunT nb = asRun().getParent().getLazyBuildMixIn()._getRuns().search(asRun().number + 1,
+                            AbstractLazyLoadRunMap.Direction.ASC);
                     if (nb != null) {
-                        nb.getRunMixIn().previousBuildR = createReference();   // establish bi-di link
+                        nb.getRunMixIn().previousBuildR = createReference(); // establish bi-di link
                         this.nextBuildR = nb.getRunMixIn().createReference();
-                        LOGGER.log(FINER, "Linked {0}<->{1} in getNextBuild()", new Object[]{this, nb});
+                        LOGGER.log(FINER, "Linked {0}<->{1} in getNextBuild()", new Object[] { this, nb });
                         return nb;
                     } else {
                         this.nextBuildR = none();
@@ -471,8 +481,10 @@ public abstract class LazyBuildMixIn<JobT extends Job<JobT, RunT> & Queue.Task &
     }
 
     @Restricted(DoNotUse.class)
-    @Extension public static final class ItemListenerImpl extends ItemListener {
-        @Override public void onLocationChanged(Item item, String oldFullName, String newFullName) {
+    @Extension
+    public static final class ItemListenerImpl extends ItemListener {
+        @Override
+        public void onLocationChanged(Item item, String oldFullName, String newFullName) {
             if (item instanceof LazyLoadingJob) {
                 RunMap<?> builds = ((LazyLoadingJob) item).getLazyBuildMixIn().builds;
                 builds.updateBaseDir(((Job) item).getBuildDir());

@@ -73,11 +73,11 @@ public abstract class GenericItemOptionHandler<T extends Item> extends OptionHan
             T nearest = Items.findNearest(type(), src, j);
             if (nearest != null) {
                 throw new IllegalArgumentException(new StringBuilder()
-                    	.append("No such job '")
-                    	.append(src)
-                    	.append("'; perhaps you meant '")
-                    	.append(nearest.getFullName())
-                    	.append("'?").toString());
+                        .append("No such job '")
+                        .append(src)
+                        .append("'; perhaps you meant '")
+                        .append(nearest.getFullName())
+                        .append("'?").toString());
             } else {
                 throw new IllegalArgumentException("No such job '" + src + "'");
             }

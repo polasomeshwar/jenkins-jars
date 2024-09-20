@@ -2422,11 +2422,11 @@ public class Queue extends ResourceController implements Saveable {
         @Override
         public String toString() {
             return new StringBuilder()
-                	.append(getClass().getName())
-                	.append(':')
-                	.append(task)
-                	.append(':')
-                	.append(id).toString();
+                    .append(getClass().getName())
+                    .append(':')
+                    .append(task)
+                    .append(':')
+                    .append(id).toString();
         }
 
         /**
@@ -3017,15 +3017,15 @@ public class Queue extends ResourceController implements Saveable {
         @Override
         public String toString() {
             return new StringBuilder()
-                	.append("Queue.Snapshot{waitingList=")
-                	.append(waitingList)
-                	.append(";blockedProjects=")
-                	.append(blockedProjects)
-                	.append(";buildables=")
-                	.append(buildables)
-                	.append(";pendings=")
-                	.append(pendings)
-                	.append("}").toString();
+                    .append("Queue.Snapshot{waitingList=")
+                    .append(waitingList)
+                    .append(";blockedProjects=")
+                    .append(blockedProjects)
+                    .append(";buildables=")
+                    .append(buildables)
+                    .append(";pendings=")
+                    .append(pendings)
+                    .append("}").toString();
         }
     }
 

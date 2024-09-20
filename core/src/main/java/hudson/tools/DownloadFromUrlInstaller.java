@@ -74,14 +74,14 @@ public abstract class DownloadFromUrlInstaller extends ToolInstaller {
         if (isUpToDate(expected, inst))
             return expected;
 
-        
+
         if (expected.installIfNecessaryFrom(new URL(inst.url), log, new StringBuilder()
-            	.append("Unpacking ")
-            	.append(inst.url)
-            	.append(" to ")
-            	.append(expected)
-            	.append(" on ")
-            	.append(node.getDisplayName()).toString())) {
+                .append("Unpacking ")
+                .append(inst.url)
+                .append(" to ")
+                .append(expected)
+                .append(" on ")
+                .append(node.getDisplayName()).toString())) {
             expected.child(".timestamp").delete(); // we don't use the timestamp
             FilePath base = findPullUpDirectory(expected);
             if (base != null && base != expected)
