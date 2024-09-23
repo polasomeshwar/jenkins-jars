@@ -263,7 +263,7 @@ public class FileFingerprintStorage extends FingerprintStorage {
                     File[] files3 = file2.listFiles(f -> f.isFile() && FINGERPRINT_FILE_PATTERN.matcher(f.getName()).matches());
                     for (File file3 : files3) {
                         if (cleanFingerprint(file3, taskListener))
-                            numFiles++;
+                            ++numFiles;
                     }
                     deleteIfEmpty(file2);
                 }

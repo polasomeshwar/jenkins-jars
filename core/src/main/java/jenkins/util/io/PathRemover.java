@@ -70,7 +70,7 @@ public class PathRemover {
     }
 
     public void forceRemoveFile(@NonNull Path path) throws IOException {
-        for (int retryAttempts = 0; ; retryAttempts++) {
+        for (int retryAttempts = 0; ; ++retryAttempts) {
             Optional<IOException> maybeError = tryRemoveFile(path);
             if (maybeError.isEmpty()) return;
             if (retryStrategy.shouldRetry(retryAttempts)) continue;
@@ -80,7 +80,7 @@ public class PathRemover {
     }
 
     public void forceRemoveDirectoryContents(@NonNull Path path) throws IOException {
-        for (int retryAttempt = 0; ; retryAttempt++) {
+        for (int retryAttempt = 0; ; ++retryAttempt) {
             List<IOException> errors = tryRemoveDirectoryContents(path);
             if (errors.isEmpty()) return;
             if (retryStrategy.shouldRetry(retryAttempt)) continue;
@@ -89,7 +89,7 @@ public class PathRemover {
     }
 
     public void forceRemoveRecursive(@NonNull Path path) throws IOException {
-        for (int retryAttempt = 0; ; retryAttempt++) {
+        for (int retryAttempt = 0; ; ++retryAttempt) {
             List<IOException> errors = tryRemoveRecursive(path);
             if (errors.isEmpty()) return;
             if (retryStrategy.shouldRetry(retryAttempt)) continue;

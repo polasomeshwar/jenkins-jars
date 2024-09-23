@@ -336,7 +336,7 @@ public class ArgumentListBuilder implements Serializable, Cloneable {
             StringBuilder quotedArgs = new StringBuilder();
             String arg = args.get(i);
             quoted = percent = false;
-            for (int j = 0; j < arg.length(); j++) {
+            for (int j = 0; j < arg.length(); ++j) {
                 char c = arg.charAt(j);
                 if (!quoted && (c == ' ' || c == '*' || c == '?' || c == ',' || c == ';')) {
                     quoted = startQuoting(quotedArgs, arg, j);

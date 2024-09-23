@@ -243,7 +243,7 @@ public final class CronTab {
             long bits = bits(c);
             while ((bits | (1L << n)) != bits) {
                 if (n > 60)   return -1;
-                n++;
+                ++n;
             }
             return n;
         }
@@ -532,7 +532,7 @@ public final class CronTab {
     public @CheckForNull String checkSanity() {
         OUTER: for (int i = 0; i < 5; ++i) {
             long bitMask = i < 4 ? bits[i] : (long) dayOfWeek;
-            for (int j = BaseParser.LOWER_BOUNDS[i]; j <= BaseParser.UPPER_BOUNDS[i]; j++) {
+            for (int j = BaseParser.LOWER_BOUNDS[i]; j <= BaseParser.UPPER_BOUNDS[i]; ++j) {
                 if (!checkBits(bitMask, j)) {
                     // this rank has a sparse entry.
                     // if we have a sparse rank, one of them better be the left-most.
@@ -547,7 +547,7 @@ public final class CronTab {
         int daysOfMonth = 0;
         for (int i = 1; i < 31; ++i) {
             if (checkBits(bits[2], i)) {
-                daysOfMonth++;
+                ++daysOfMonth;
             }
         }
         if (daysOfMonth > 5 && daysOfMonth < 28) { // a bit arbitrary

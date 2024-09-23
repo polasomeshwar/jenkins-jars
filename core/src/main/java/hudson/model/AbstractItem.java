@@ -402,7 +402,7 @@ public abstract class AbstractItem extends Actionable implements Loadable, Item,
                     // this may fail on Windows due to some other processes
                     // accessing a file.
                     // so retry few times before we fall back to copy.
-                    for (int retry = 0; retry < 5; retry++) {
+                    for (int retry = 0; retry < 5; ++retry) {
                         if (oldRoot.renameTo(newRoot)) {
                             renamed = true;
                             break; // succeeded

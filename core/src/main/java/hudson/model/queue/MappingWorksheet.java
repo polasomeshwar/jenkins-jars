@@ -167,7 +167,7 @@ public class MappingWorksheet {
             int e = 0;
             for (SubTask s : wc) {
                 while (!get(e).isAvailable())
-                    e++;
+                    ++e;
                 get(e++).set(wuc.createWorkUnit(s));
             }
         }

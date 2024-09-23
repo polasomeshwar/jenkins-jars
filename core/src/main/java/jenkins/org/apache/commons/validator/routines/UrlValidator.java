@@ -520,8 +520,8 @@ public class UrlValidator implements Serializable {
         while (tokenIndex != -1) {
             tokenIndex = target.indexOf(token, tokenIndex);
             if (tokenIndex > -1) {
-                tokenIndex++;
-                count++;
+                ++tokenIndex;
+                ++count;
             }
         }
         return count;

@@ -176,7 +176,7 @@ public class UsageStatistics extends PageDecorator implements PersistentDescript
             TopLevelItemDescriptor d = item.getDescriptor();
             for (int i = 0; i < descriptors.length; ++i) {
                 if (d == descriptors[i]) {
-                    counts[i]++;
+                    ++counts[i];
                     // no point checking any more, we found the match
                     break;
                 }

@@ -731,7 +731,7 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
                 }
             }
             if (!inTag) {
-                displayChars++;
+                ++displayChars;
                 if (displayChars <= maxTruncLength && ch == ' ') {
                     lastTruncatablePoint = i;
                 }
@@ -1324,8 +1324,8 @@ public abstract class Run<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
                     if (j != null) {
                         collision = true;
                         if (j >= 0)
-                            len[j]++;
-                        len[i]++;
+                            ++len[j];
+                        ++len[i];
                         names.put(displayName, -1);  // occupy this name but don't let len[i] incremented with additional collisions
                     }
                 }

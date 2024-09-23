@@ -161,7 +161,7 @@ public class SecretRewriter {
                     try {
                         if (rewrite(child)) {
                             listener.getLogger().println("Rewritten " + child);
-                            rewritten++;
+                            ++rewritten;
                         }
                     } catch (IOException e) {
                         Functions.printStackTrace(e, listener.error("Failed to rewrite " + child));

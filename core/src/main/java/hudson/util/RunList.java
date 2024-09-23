@@ -135,7 +135,7 @@ public class RunList<R extends Run> extends AbstractList<R> {
             int sz = 0;
             for (R r : this) {
                 first = r;
-                sz++;
+                ++sz;
             }
             size = sz;
         }
@@ -180,7 +180,7 @@ public class RunList<R extends Run> extends AbstractList<R> {
         for (R r : this) {
             if (r.equals(o))
                 return index;
-            index++;
+            ++index;
         }
         return -1;
     }
@@ -192,7 +192,7 @@ public class RunList<R extends Run> extends AbstractList<R> {
         for (R r : this) {
             if (r.equals(o))
                 a = index;
-            index++;
+            ++index;
         }
         return a;
     }

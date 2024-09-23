@@ -1155,7 +1155,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                             return arguments;
 
                         // Itterate through argument vector
-                        for (int n = 0; ; n++) {
+                        for (int n = 0; ; ++n) {
 
                             LIBC.pread(fd, m, new NativeLong(psize), new NativeLong(argp + (n * psize)));
                             long addr = b64 ? m.getLong(0) : to64(m.getInt(0));
@@ -1203,7 +1203,7 @@ public abstract class ProcessTree implements Iterable<OSProcess>, IProcessTree, 
                             return envVars;
 
                         // Itterate through environment vector
-                        for (int n = 0; ; n++) {
+                        for (int n = 0; ; ++n) {
 
                             LIBC.pread(fd, m, new NativeLong(psize), new NativeLong(envp + (n * psize)));
                             long addr = b64 ? m.getLong(0) : to64(m.getInt(0));

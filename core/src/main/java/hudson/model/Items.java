@@ -327,7 +327,7 @@ public class Items {
                 } else {
                     // itemFullName is an ancestor of groupFullName; insert ../ for rest of groupFullName
                     StringBuilder b = new StringBuilder();
-                    for (int j = 0; j < groupFullNameA.length - itemFullNameA.length; j++) {
+                    for (int j = 0; j < groupFullNameA.length - itemFullNameA.length; ++j) {
                         if (j > 0) {
                             b.append('/');
                         }
@@ -338,7 +338,7 @@ public class Items {
             } else if (i == groupFullNameA.length) {
                 // groupFullName is an ancestor of itemFullName; insert rest of itemFullName
                 StringBuilder b = new StringBuilder();
-                for (int j = i; j < itemFullNameA.length; j++) {
+                for (int j = i; j < itemFullNameA.length; ++j) {
                     if (j > i) {
                         b.append('/');
                     }
@@ -351,13 +351,13 @@ public class Items {
             } else {
                 // first mismatch; insert ../ for rest of groupFullName, then rest of itemFullName
                 StringBuilder b = new StringBuilder();
-                for (int j = i; j < groupFullNameA.length; j++) {
+                for (int j = i; j < groupFullNameA.length; ++j) {
                     if (j > i) {
                         b.append('/');
                     }
                     b.append("..");
                 }
-                for (int j = i; j < itemFullNameA.length; j++) {
+                for (int j = i; j < itemFullNameA.length; ++j) {
                     b.append('/').append(itemFullNameA[j]);
                 }
                 return b.toString();

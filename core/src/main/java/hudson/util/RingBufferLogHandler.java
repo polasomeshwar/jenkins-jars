@@ -76,7 +76,7 @@ public class RingBufferLogHandler extends Handler {
             if (size == len) {
                 start = (start + 1) % len;
             } else {
-                size++;
+                ++size;
             }
         }
     }

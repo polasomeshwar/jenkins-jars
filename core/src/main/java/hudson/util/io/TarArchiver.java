@@ -72,7 +72,7 @@ final class TarArchiver extends Archiver {
 
         tar.putNextEntry(e);
         tar.closeEntry();
-        entriesWritten++;
+        ++entriesWritten;
     }
 
     @Override
@@ -120,7 +120,7 @@ final class TarArchiver extends Archiver {
         } finally { // always close the entry
             tar.closeEntry();
         }
-        entriesWritten++;
+        ++entriesWritten;
     }
 
     @Override

@@ -248,7 +248,7 @@ public final class DirectoryBrowserSupport implements HttpResponse {
                 if (sb.length() > 0)   sb.append('/');
                 sb.append(pathElement);
                 if (!inBase)
-                    restSize++;
+                    ++restSize;
             }
         }
         restSize = Math.max(restSize, 0);
@@ -522,7 +522,7 @@ public final class DirectoryBrowserSupport implements HttpResponse {
         while (tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
             r.add(new Path(createBackRef(total - current + restSize), token, true, 0, true, 0));
-            current++;
+            ++current;
         }
         return r;
     }

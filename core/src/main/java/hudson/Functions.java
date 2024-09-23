@@ -399,7 +399,7 @@ public class Functions {
         String furl = f.getUrl();
         int slashCount = 0;
         // Count components in ancestor URL
-        for (int i = furl.indexOf('/'); i >= 0; i = furl.indexOf('/', i + 1)) slashCount++;
+        for (int i = furl.indexOf('/'); i >= 0; i = furl.indexOf('/', i + 1)) ++slashCount;
         // Remove that many from request URL, ignoring extra slashes
         String rest = reqUri.replaceFirst("(?:/+[^/]*){" + slashCount + "}", "");
 

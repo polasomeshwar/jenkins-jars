@@ -357,7 +357,7 @@ public final class FilePath implements SerializableOnlyOverRemoting {
                 } else {
                     // Normalize: remove something/.. plus separator before/after
                     i -= 2;
-                    for (int j = 0; j < 3; j++) tokens.remove(i);
+                    for (int j = 0; j < 3; ++j) tokens.remove(i);
                     if (i > 0) tokens.remove(i - 1);
                     else if (!tokens.isEmpty()) tokens.remove(0);
                 }

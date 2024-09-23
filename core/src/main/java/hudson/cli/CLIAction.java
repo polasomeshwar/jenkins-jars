@@ -155,7 +155,7 @@ public class CLIAction implements UnprotectedRootAction, StaplerProxy {
                 public void send(byte[] data) throws IOException {
                     sendBinary(ByteBuffer.wrap(data));
                     sentBytes += data.length;
-                    sentCount++;
+                    ++sentCount;
                 }
 
                 @Override
@@ -194,7 +194,7 @@ public class CLIAction implements UnprotectedRootAction, StaplerProxy {
                 try {
                     connection.handle(new DataInputStream(new ByteArrayInputStream(payload, offset, len)));
                     receivedBytes += len;
-                    receivedCount++;
+                    ++receivedCount;
                 } catch (IOException x) {
                     error(x);
                 }

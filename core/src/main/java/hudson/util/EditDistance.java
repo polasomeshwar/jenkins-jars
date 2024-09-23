@@ -101,7 +101,7 @@ public class EditDistance {
     }
 
     private int calc() {
-        for (int j = 0; j < b.length(); j++) {
+        for (int j = 0; j < b.length(); ++j) {
             flip();
             cost[0] = j + 1;
             for (int i = 0; i < a.length(); ++i) {

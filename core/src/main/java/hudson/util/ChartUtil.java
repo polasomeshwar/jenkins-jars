@@ -213,7 +213,7 @@ public class ChartUtil {
         final int nRows    = dataset.getRowCount();
         for (int i = 0; i < nRows; ++i) {
             Comparable rowKey = dataset.getRowKey(i);
-            for (int j = 0; j < nColumns; j++) {
+            for (int j = 0; j < nColumns; ++j) {
                 Comparable columnKey = dataset.getColumnKey(j);
 
                 double n = dataset.getValue(rowKey, columnKey).doubleValue();
@@ -233,7 +233,7 @@ public class ChartUtil {
         double min = 0, max = 0;
         for (int i = 0; i < nRows; ++i) {
             Comparable rowKey = dataset.getRowKey(i);
-            for (int j = 0; j < nColumns; j++) {
+            for (int j = 0; j < nColumns; ++j) {
                 Comparable columnKey = dataset.getColumnKey(j);
 
                 double n = dataset.getValue(rowKey, columnKey).doubleValue();

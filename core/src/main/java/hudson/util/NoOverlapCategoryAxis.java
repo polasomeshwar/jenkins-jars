@@ -144,7 +144,7 @@ public class NoOverlapCategoryAxis extends CategoryAxis {
                     r.add(r.getCenterX(), r.getMaxX() + r.getHeight() / 2);
                 }
 
-                categoryIndex++;
+                ++categoryIndex;
             }
 
             if (edge.equals(RectangleEdge.TOP)) {

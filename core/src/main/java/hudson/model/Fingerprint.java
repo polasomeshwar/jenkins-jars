@@ -469,19 +469,19 @@ public class Fingerprint implements ModelObject, Saveable {
 
                 // no overlap
                 if (lr.end < rr.start) {
-                    lhs++;
+                    ++lhs;
                     continue;
                 }
                 if (rr.end < lr.start) {
                     ranges.add(lhs, rr);
-                    lhs++;
-                    rhs++;
+                    ++lhs;
+                    ++rhs;
                     continue;
                 }
 
                 // overlap. merge two
                 Range m = lr.combine(rr);
-                rhs++;
+                ++rhs;
 
                 // since ranges[lhs] is expanded, it might overlap with others in this.ranges
                 while (lhs + 1 < this.ranges.size() && !m.isIndependent(this.ranges.get(lhs + 1))) {
@@ -510,11 +510,11 @@ public class Fingerprint implements ModelObject, Saveable {
                 Range rr = that.ranges.get(rhs);
 
                 if (lr.end <= rr.start) { // lr has no overlap with that.ranges
-                    lhs++;
+                    ++lhs;
                     continue;
                 }
                 if (rr.end <= lr.start) { // rr has no overlap with this.ranges
-                    rhs++;
+                    ++rhs;
                     continue;
                 }
 
@@ -524,9 +524,9 @@ public class Fingerprint implements ModelObject, Saveable {
 
                 // move on to the next pair
                 if (lr.end < rr.end) {
-                    lhs++;
+                    ++lhs;
                 } else {
-                    rhs++;
+                    ++rhs;
                 }
             }
 
@@ -557,11 +557,11 @@ public class Fingerprint implements ModelObject, Saveable {
 
                 if (lr.end <= rr.start) { // lr has no overlap with that.ranges. lr stays
                     sub.add(lr);
-                    lhs++;
+                    ++lhs;
                     continue;
                 }
                 if (rr.end <= lr.start) { // rr has no overlap with this.ranges
-                    rhs++;
+                    ++rhs;
                     continue;
                 }
 
@@ -571,7 +571,7 @@ public class Fingerprint implements ModelObject, Saveable {
 
                 if (rr.contains(lr)) {
                     // lr completely removed by rr
-                    lhs++;
+                    ++lhs;
                     continue;
                 }
 
@@ -594,10 +594,10 @@ public class Fingerprint implements ModelObject, Saveable {
                     // we still need to check that with that.ranges, so keep it in the place of lr.
                     // how much of them will eventually stay is up to the remainder of that.ranges
                     this.ranges.set(lhs, new Range(rr.end, lr.end));
-                    rhs++;
+                    ++rhs;
                 } else {
                     // if B is empty, we are done considering lr
-                    lhs++;
+                    ++lhs;
                 }
             }
 

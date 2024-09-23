@@ -942,7 +942,7 @@ public /*transient*/ abstract class Computer extends Actionable implements Acces
         int n = 0;
         for (Executor e : executors) {
             if (e.isIdle())
-                n++;
+                ++n;
         }
         return n;
     }
@@ -1009,14 +1009,14 @@ public /*transient*/ abstract class Computer extends Actionable implements Acces
             if (e.isDisplayCell()) {
                 result.add(new DisplayExecutor(Integer.toString(index + 1), String.format("executors/%d", index), e));
             }
-            index++;
+            ++index;
         }
         index = 0;
         for (OneOffExecutor e : oneOffExecutors) {
             if (e.isDisplayCell()) {
                 result.add(new DisplayExecutor("", String.format("oneOffExecutors/%d", index), e));
             }
-            index++;
+            ++index;
         }
         return result;
     }

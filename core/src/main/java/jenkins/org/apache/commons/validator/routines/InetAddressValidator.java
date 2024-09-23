@@ -184,10 +184,10 @@ public class InetAddressValidator implements Serializable {
         }
         int validOctets = 0;
         int emptyOctets = 0; // consecutive empty chunks
-        for (int index = 0; index < octets.length; index++) {
+        for (int index = 0; index < octets.length; ++index) {
             String octet = octets[index];
             if (octet.isEmpty()) {
-                emptyOctets++;
+                ++emptyOctets;
                 if (emptyOctets > 1) {
                     return false;
                 }
@@ -214,7 +214,7 @@ public class InetAddressValidator implements Serializable {
                     return false;
                 }
             }
-            validOctets++;
+            ++validOctets;
         }
         if (validOctets > IPV6_MAX_HEX_GROUPS || (validOctets < IPV6_MAX_HEX_GROUPS && !containsCompressedZeroes)) {
             return false;

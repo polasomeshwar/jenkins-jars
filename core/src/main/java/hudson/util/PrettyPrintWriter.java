@@ -173,7 +173,7 @@ class PrettyPrintWriter extends AbstractXmlWriter {
         writer.write(escapedName);
         elementStack.push(escapedName);
         tagInProgress = true;
-        depth++;
+        ++depth;
         readyForNewLine = true;
         tagIsEmpty = true;
     }

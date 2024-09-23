@@ -221,7 +221,7 @@ public class MultiStageTimeSeries implements Serializable {
             for (int i = dataLength - 1; i >= 0; i--) {
                 dt = new Date(dt.getTime() + timeScale.tick);
                 String l = format.format(dt);
-                for (int j = 0; j < dataPoints.length; j++)
+                for (int j = 0; j < dataPoints.length; ++j)
                     ds.addValue(dataPoints[j][i], series.get(j).title.toString(), l);
             }
             return ds;

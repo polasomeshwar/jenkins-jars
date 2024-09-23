@@ -363,7 +363,7 @@ public abstract class LoadStatistics {
 
                 for (SubTask st : item.task.getSubTasks()) {
                     if (matches(item, st))
-                        q++;
+                        ++q;
                 }
             }
         }
@@ -413,7 +413,7 @@ public abstract class LoadStatistics {
             for (Queue.BuildableItem bi : bis) {
                 for (SubTask st : bi.task.getSubTasks()) {
                     if (bi.getAssignedLabelFor(st) == l) {
-                        q++;
+                        ++q;
                     }
                 }
             }
@@ -640,13 +640,13 @@ public abstract class LoadStatistics {
                     final List<Executor> executors = computer.getExecutors();
                     final boolean acceptingTasks = computer.isAcceptingTasks();
                     for (Executor e : executors) {
-                        definedExecutors++;
-                        onlineExecutors++;
+                        ++definedExecutors;
+                        ++onlineExecutors;
                         if (e.getCurrentWorkUnit() != null) {
-                            busyExecutors++;
+                            ++busyExecutors;
                         } else {
-                            idleExecutors++;
-                            if (acceptingTasks) availableExecutors++;
+                            ++idleExecutors;
+                            if (acceptingTasks) ++availableExecutors;
                         }
                     }
                 } else {

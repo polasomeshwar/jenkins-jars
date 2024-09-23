@@ -116,7 +116,7 @@ public final class Symbol {
             for (int i = 0; i < titleList.getLength(); ++i) {
                 Node title = titleList.item(i);
                 NodeList titleChildren = title.getChildNodes();
-                for (int j = 0; j < titleChildren.getLength(); j++) {
+                for (int j = 0; j < titleChildren.getLength(); ++j) {
                     title.removeChild(titleChildren.item(j));
                 }
             }

@@ -449,7 +449,7 @@ public class DownloadService {
             }
             for (int i = 0; i < genericList.size(); ++i) {
                 T data1 = genericList.get(i);
-                for (int j = i + 1; j < genericList.size(); j++) {
+                for (int j = i + 1; j < genericList.size(); ++j) {
                     T data2 = genericList.get(j);
                     try {
                         if (field.get(data1).equals(field.get(data2))) {

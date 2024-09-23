@@ -90,7 +90,7 @@ public abstract class PeriodicWork extends SafeTimerTask implements ExtensionPoi
         long l = RANDOM.nextLong();
         // Math.abs(Long.MIN_VALUE)==Long.MIN_VALUE!
         if (l == Long.MIN_VALUE)
-            l++;
+            ++l;
         return Math.abs(l) % getRecurrencePeriod();
     }
 

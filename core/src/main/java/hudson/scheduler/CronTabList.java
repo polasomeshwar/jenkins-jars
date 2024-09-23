@@ -109,7 +109,7 @@ public final class CronTabList {
         String timezone = null;
 
         for (String line : format.split("\\r?\\n")) {
-            lineNumber++;
+            ++lineNumber;
             line = line.trim();
 
             if (lineNumber == 1 && line.startsWith("TZ=")) {

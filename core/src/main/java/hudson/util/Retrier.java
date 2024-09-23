@@ -54,7 +54,7 @@ public class Retrier<V> {
         boolean success = false;
 
         while (currentAttempt < attempts && !success) {
-            currentAttempt++;
+            ++currentAttempt;
             try {
                 if (LOGGER.isLoggable(Level.INFO)) {
                     LOGGER.log(Level.INFO, Messages.Retrier_Attempt(currentAttempt, action));

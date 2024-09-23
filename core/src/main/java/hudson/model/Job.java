@@ -1283,7 +1283,7 @@ public abstract class Job<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
                 RunMap<RunT> runMap = (RunMap<RunT>) runs;
                 for (int index = i.getNumber(); index > u.getNumber() && totalCount < 5; index--) {
                     if (runMap.runExists(index)) {
-                        totalCount++;
+                        ++totalCount;
                     }
                 }
                 if (totalCount < 5) {
@@ -1297,11 +1297,11 @@ public abstract class Job<JobT extends Job<JobT, RunT>, RunT extends Run<JobT, R
             case BLUE:
             case YELLOW:
                 // failCount stays the same
-                totalCount++;
+                ++totalCount;
                 break;
             case RED:
-                failCount++;
-                totalCount++;
+                ++failCount;
+                ++totalCount;
                 break;
 
             default:

@@ -27,7 +27,7 @@ public abstract class MarkFindingOutputStream extends OutputStream {
     @Override
     public synchronized void write(int b) throws IOException {
         if (MBYTES[match] == b) { // another byte matched. Good. Keep going...
-            match++;
+            ++match;
             if (match == MBYTES.length) {
                 // don't send MARK to the output, but instead notify the callback
                 onMarkFound();
@@ -53,7 +53,7 @@ public abstract class MarkFindingOutputStream extends OutputStream {
         final int end = off + len;
         for (int i = off; i < end; ) {
             if (MBYTES[match] == b[i]) { // another byte matched. Good. Keep going...
-                match++;
+                ++match;
                 ++i;
                 if (match == MBYTES.length) {
                     base.write(b, off, i - off - MBYTES.length);    // flush the portion up to MARK

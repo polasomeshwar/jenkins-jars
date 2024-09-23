@@ -174,7 +174,7 @@ public class RegexValidator implements Serializable {
             if (matcher.matches()) {
                 int count = matcher.groupCount();
                 String[] groups = new String[count];
-                for (int j = 0; j < count; j++) {
+                for (int j = 0; j < count; ++j) {
                     groups[j] = matcher.group(j + 1);
                 }
                 return groups;
@@ -204,7 +204,7 @@ public class RegexValidator implements Serializable {
                     return matcher.group(1);
                 }
                 StringBuilder buffer = new StringBuilder();
-                for (int j = 0; j < count; j++) {
+                for (int j = 0; j < count; ++j) {
                     String component = matcher.group(j + 1);
                     if (component != null) {
                         buffer.append(component);

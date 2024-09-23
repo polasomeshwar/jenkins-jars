@@ -130,7 +130,7 @@ public class ConsoleCommand extends CLICommand {
                     boolean isNL = ch == '\r' || ch == '\n';
                     if (!isNL && prevIsNL)  rb.add(pos);
                     if (isNL && prevIsNL && !(prev == '\r' && ch == '\n'))  rb.add(pos);
-                    pos++;
+                    ++pos;
                     prev = ch;
                     prevIsNL = isNL;
                 }

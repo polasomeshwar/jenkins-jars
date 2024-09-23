@@ -83,7 +83,7 @@ public abstract class AperiodicWork extends SafeTimerTask implements ExtensionPo
         long l = RANDOM.nextLong();
         // Math.abs(Long.MIN_VALUE)==Long.MIN_VALUE!
         if (l == Long.MIN_VALUE)
-            l++;
+            ++l;
         return Math.abs(l) % getRecurrencePeriod();
     }
 

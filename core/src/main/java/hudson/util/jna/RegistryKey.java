@@ -198,7 +198,7 @@ public class RegistryKey implements AutoCloseable {
                 null, null, lpftLastWriteTime) == WINERROR.ERROR_SUCCESS) {
             subKeys.add(new String(lpName, 0, lpcName.getValue()));
             lpcName.setValue(256);
-            dwIndex++;
+            ++dwIndex;
         }
 
         return subKeys;
@@ -271,7 +271,7 @@ public class RegistryKey implements AutoCloseable {
             default:
                 check(result);
             }
-            dwIndex++;
+            ++dwIndex;
             lpcbData.setValue(0);
         }
     }

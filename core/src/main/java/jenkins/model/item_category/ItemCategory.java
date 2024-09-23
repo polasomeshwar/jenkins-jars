@@ -105,7 +105,7 @@ public abstract class ItemCategory implements ExtensionPoint {
                 category.setOrder(++order);
                 return category;
             }
-            order++;
+            ++order;
         }
         return new UncategorizedCategory();
     }

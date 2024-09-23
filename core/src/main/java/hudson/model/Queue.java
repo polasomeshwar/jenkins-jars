@@ -1033,11 +1033,11 @@ public class Queue extends ResourceController implements Saveable {
         for (BuildableItem bi : snapshot.buildables)
             for (SubTask st : bi.task.getSubTasks())
                 if (null == l || bi.getAssignedLabelFor(st) == l)
-                    r++;
+                    ++r;
         for (BuildableItem bi : snapshot.pendings)
             for (SubTask st : bi.task.getSubTasks())
                 if (null == l || bi.getAssignedLabelFor(st) == l)
-                    r++;
+                    ++r;
         return r;
     }
 
@@ -1057,11 +1057,11 @@ public class Queue extends ResourceController implements Saveable {
         for (BuildableItem bi : _snapshot.buildables)
             for (SubTask st : bi.task.getSubTasks())
                 if (bi.getAssignedLabelFor(st) == l)
-                    r++;
+                    ++r;
         for (BuildableItem bi : _snapshot.pendings)
             for (SubTask st : bi.task.getSubTasks())
                 if (bi.getAssignedLabelFor(st) == l)
-                    r++;
+                    ++r;
         return r;
     }
 

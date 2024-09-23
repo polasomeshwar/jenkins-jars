@@ -402,11 +402,11 @@ public class Search implements StaplerProxy {
                 paths[w].add(SuggestedItem.build(searchContext, si));
                 LOGGER.log(Level.FINE, "found search item: {0}", si.getSearchName());
             }
-            w++;
+            ++w;
         }
 
         // successive tokens
-        for (int j = 1; j < tokens.length(); j++) {
+        for (int j = 1; j < tokens.length(); ++j) {
             // for each length
             w = 1;
             for (String token : tokens.subSequence(j)) {
@@ -417,7 +417,7 @@ public class Search implements StaplerProxy {
                     for (SearchItem i : items)
                         paths[j + w].add(new SuggestedItem(r, i));
                 }
-                w++;
+                ++w;
             }
         }
 
