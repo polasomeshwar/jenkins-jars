@@ -71,8 +71,8 @@ public final class PackedMap<K, V> extends AbstractMap<K, V> {
         kvpairs = new Object[src.size() * 2];
         int i = 0;
         for (Entry<? extends K, ? extends V> e : src.entrySet()) {
-            kvpairs[++i] = e.getKey();
-            kvpairs[++i] = e.getValue();
+            kvpairs[i++] = e.getKey();
+            kvpairs[i++] = e.getValue();
         }
     }
 
