@@ -15,8 +15,14 @@ import org.kohsuke.stapler.DataBoundSetter;
 public abstract class AbstractDiskSpaceMonitor extends NodeMonitor {
     /**
      * The free space threshold, below which the node monitor will be triggered.
-     * This is a human readable string representation as entered by the user, so that we can retain the original notation.
+     * This is a human readable string representation as entered by the user, so
+     * that we can retain the original notation.
      */
+    private static Matcher createMatcher(String freeSpaceThreshold) {
+        Pattern p = Pattern.compile("(\\d+)(.*)");
+        return p.matcher(freeSpaceThreshold);
+    }
+
     public final String freeSpaceThreshold;
     private String freeSpaceWarningThreshold;
 
@@ -33,8 +39,7 @@ public abstract class AbstractDiskSpaceMonitor extends NodeMonitor {
     public Object readResolve() {
         if (freeSpaceWarningThreshold == null) {
             if (freeSpaceThreshold != null) {
-                Pattern p = Pattern.compile("(\\d+)(.*)");
-                Matcher m = p.matcher(freeSpaceThreshold);
+                Matcher m = createMatcher(freeSpaceThreshold);
                 if (m.matches()) {
                     String digits = m.group(1);
                     String unit = m.group(2);

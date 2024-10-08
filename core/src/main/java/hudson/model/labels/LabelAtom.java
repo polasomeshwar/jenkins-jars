@@ -275,7 +275,8 @@ public class LabelAtom extends Label implements Saveable {
         try {
             Jenkins.checkGoodName(name);
             // additional restricted chars
-            for (int i = 0; i < name.length(); ++i) {
+            int len = name.length();
+            for (int i = 0; i < len; ++i) {
                 char ch = name.charAt(i);
                 if (" ()\t\n".indexOf(ch) != -1)
                     return true;

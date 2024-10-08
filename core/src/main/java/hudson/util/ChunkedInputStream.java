@@ -112,7 +112,7 @@ public class ChunkedInputStream extends InputStream {
     public int read() throws IOException {
 
         if (advanceChunk()) return -1;
-        pos++;
+        ++pos;
         return in.read();
     }
 

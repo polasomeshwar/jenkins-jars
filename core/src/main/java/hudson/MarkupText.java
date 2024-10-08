@@ -196,7 +196,8 @@ public class MarkupText extends AbstractMarkupText {
         public String replace(String s) {
             StringBuilder buf = new StringBuilder(s.length() + 10);
 
-            for (int i = 0; i < s.length(); ++i) {
+            int len = s.length();
+            for (int i = 0; i < len; ++i) {
                 char ch = s.charAt(i);
                 if (ch == '\\') { // escape char
                     ++i;

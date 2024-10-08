@@ -851,7 +851,8 @@ public class Functions {
      */
     public static String htmlAttributeEscape(String text) {
         StringBuilder buf = new StringBuilder(text.length() + 64);
-        for (int i = 0; i < text.length(); ++i) {
+        int len = text.length();
+        for (int i = 0; i < len; ++i) {
             char ch = text.charAt(i);
             if (ch == '<')
                 buf.append("&lt;");
@@ -1648,7 +1649,8 @@ public class Functions {
     public static String jsStringEscape(String s) {
         if (s == null) return null;
         StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < s.length(); ++i) {
+        int len = s.length();
+        for (int i = 0; i < len; ++i) {
             char ch = s.charAt(i);
             switch (ch) {
             case '\'':
@@ -1949,7 +1951,8 @@ public class Functions {
     public static String toEmailSafeString(String projectName) {
         // TODO: escape non-ASCII characters
         StringBuilder buf = new StringBuilder(projectName.length());
-        for (int i = 0; i < projectName.length(); ++i) {
+        int len = projectName.length();
+        for (int i = 0; i < len; ++i) {
             char ch = projectName.charAt(i);
             if (('a' <= ch && ch <= 'z')
             || ('A' <= ch && ch <= 'Z')
@@ -2117,7 +2120,13 @@ public class Functions {
         String cp = Stapler.getCurrentRequest().getContextPath() + Jenkins.RESOURCE_PATH;
         StringBuilder buf = new StringBuilder();
         for (ConsoleAnnotatorFactory f : ConsoleAnnotatorFactory.all()) {
-            String path = cp + "/extensionList/" + ConsoleAnnotatorFactory.class.getName() + "/" + f.getClass().getName();
+            String path = new StringBuilder()
+                    .append(cp)
+                    .append("/extensionList/")
+                    .append(ConsoleAnnotatorFactory.class.getName())
+                    .append("/")
+                    .append(f.getClass().getName())
+                    .toString();
             if (f.hasScript())
                 buf.append("<script src='").append(path).append("/script.js'></script>");
             if (f.hasStylesheet())

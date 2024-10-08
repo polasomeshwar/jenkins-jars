@@ -534,7 +534,7 @@ public abstract class View extends AbstractModelObject implements AccessControll
         // Pipeline jobs and other jobs which allow parts require us to
         // check owner tasks as well.
         Queue.Task currentTask = item.task;
-        for (int count = 1;; count++) {
+        for (int count = 1;; ++count) {
             if (viewItems.contains(currentTask)) {
                 return true;
             }

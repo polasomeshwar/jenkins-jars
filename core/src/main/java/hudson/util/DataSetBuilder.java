@@ -69,7 +69,8 @@ public final class DataSetBuilder<Row extends Comparable, Column extends Compara
         for (Comparable c : _cols)
             ds.setValue(null, _rows[0], c);
 
-        for (int i = 0; i < values.size(); ++i)
+        int vSize = values.size();
+        for (int i = 0; i < vSize ; ++i)
             ds.addValue(values.get(i), rows.get(i), columns.get(i));
         return ds;
     }

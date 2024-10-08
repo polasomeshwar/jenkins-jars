@@ -728,7 +728,8 @@ public class Util {
         if (data.length() % 2 != 0)
             throw new IllegalArgumentException("data must have an even number of hexadecimal digits");
         byte[] r = new byte[data.length() / 2];
-        for (int i = 0; i < data.length(); i += 2)
+        int len = data.length();
+        for (int i = 0; i < len; i += 2)
             r[i / 2] = (byte) Integer.parseInt(data.substring(i, i + 2), 16);
         return r;
     }
@@ -862,7 +863,8 @@ public class Util {
             ByteArrayOutputStream buf = new ByteArrayOutputStream();
             OutputStreamWriter w = new OutputStreamWriter(buf, StandardCharsets.UTF_8);
 
-            for (int i = 0; i < s.length(); ++i) {
+            int len = s.length();
+            for (int i = 0; i < len; ++i) {
                 int c = s.charAt(i);
                 if (c < 128 && c != ' ') {
                     out.append((char) c);
@@ -896,7 +898,8 @@ public class Util {
         int i;
         // Encode control chars and space
         for (i = 0; i < 33; ++i) uriMap[i] = true;
-        for (int j = 0; j < raw.length(); ++i, ++j)
+        int len = raw.length();
+        for (int j = 0; j < len; ++i, ++j)
             uriMap[i] = raw.charAt(j) == ' ';
         // If we add encodeQuery() just add a 2nd map to encode &+=
         // queryMap[38] = queryMap[43] = queryMap[61] = true;
@@ -911,7 +914,8 @@ public class Util {
         int i;
         // Encode control chars and space
         for (i = 0; i < 33; ++i) fullUriMap[i] = true;
-        for (int j = 0; j < raw.length(); ++i, ++j)
+        int len = raw.length();
+        for (int j = 0; j < len; ++i, ++j)
             fullUriMap[i] = raw.charAt(j) == ' ';
         // If we add encodeQuery() just add a 2nd map to encode &+=
         // queryMap[38] = queryMap[43] = queryMap[61] = true;
@@ -1022,7 +1026,8 @@ public class Util {
     public static String escape(@CheckForNull String text) {
         if (text == null)     return null;
         StringBuilder buf = new StringBuilder(text.length() + 64);
-        for (int i = 0; i < text.length(); ++i) {
+        int len = text.length();
+        for (int i = 0; i < len; ++i) {
             char ch = text.charAt(i);
             if (ch == '\n')
                 buf.append("<br>");
@@ -1058,7 +1063,8 @@ public class Util {
     @NonNull
     public static String xmlEscape(@NonNull String text) {
         StringBuilder buf = new StringBuilder(text.length() + 64);
-        for (int i = 0; i < text.length(); ++i) {
+        int len = text.length();
+        for (int i = 0; i < len; ++i) {
             char ch = text.charAt(i);
             if (ch == '<')
                 buf.append("&lt;");
@@ -1369,7 +1375,7 @@ public class Util {
 
             final int maxNumberOfTries = 4;
             final int timeInMillis = 100;
-            for (int tryNumber = 1; tryNumber <= maxNumberOfTries; tryNumber++) {
+            for (int tryNumber = 1; tryNumber <= maxNumberOfTries; ++tryNumber) {
                 Files.deleteIfExists(pathForSymlink);
                 try {
                     Files.createSymbolicLink(pathForSymlink, target);
@@ -1528,7 +1534,13 @@ public class Util {
         // Technically this should also be triggered when base == derived, because it can't override its own method, but
         // the unit tests explicitly test for that as working.
         if (!base.isAssignableFrom(derived)) {
-            throw new IllegalArgumentException("The specified derived class (" + derived.getCanonicalName() + ") does not derive from the specified base class (" + base.getCanonicalName() + ").");
+            throw new IllegalArgumentException(new StringBuilder()
+                    .append("The specified derived class (")
+                    .append(derived.getCanonicalName())
+                    .append(") does not derive from the specified base class (")
+                    .append(base.getCanonicalName())
+                    .append(").")
+                    .toString());
         }
         final Method baseMethod = Util.getMethod(base, null, methodName, types);
         if (baseMethod == null) {

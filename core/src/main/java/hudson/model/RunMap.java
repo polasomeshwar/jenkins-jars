@@ -256,7 +256,13 @@ public final class RunMap<R extends Run<?, R>> extends AbstractLazyLoadRunMap<R>
         }
         for (RunListener<?> l : RunListener.all()) {
             if (!l.allowLoad(job, buildNumber)) {
-                LOGGER.finer(() -> l + " declined to load " + buildNumber + " in " + job);
+                LOGGER.finer(() -> new StringBuilder()
+                        .append(l)
+                        .append(" declined to load ")
+                        .append(buildNumber)
+                        .append(" in ")
+                        .append(job)
+                        .toString());
                 return false;
             }
         }

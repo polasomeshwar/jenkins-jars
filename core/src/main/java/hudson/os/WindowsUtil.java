@@ -58,7 +58,7 @@ public class WindowsUtil {
             int nrBackslashes = 0;
             while (i < end && argument.charAt(i) == '\\') {
                 ++i;
-                nrBackslashes++;
+                ++nrBackslashes;
             }
 
             if (i == end) {

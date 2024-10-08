@@ -275,7 +275,7 @@ public final class WorkspaceList {
             LOGGER.log(Level.FINE, "acquired " + p + (e == null ? "" : " with lock count " + e.lockCount), new Throwable("from " + this));
         }
 
-        if (e != null)    e.lockCount++;
+        if (e != null)    ++e.lockCount;
         else            inUse.put(p.getRemote(), new Entry(p, quick, context));
         return lease(p);
     }

@@ -83,7 +83,8 @@ public class EditDistance {
         cost = new int[a.length() + 1];
         back = new int[a.length() + 1]; // back buffer
 
-        for (int i = 0; i <= a.length(); ++i)
+        int len = a.length();
+        for (int i = 0; i <= len; ++i)
             cost[i] = i;
     }
 
@@ -101,10 +102,12 @@ public class EditDistance {
     }
 
     private int calc() {
-        for (int j = 0; j < b.length(); ++j) {
+        int aLen = a.length();
+        int bLen = b.length();
+        for (int j = 0; j < bLen; ++j) {
             flip();
             cost[0] = j + 1;
-            for (int i = 0; i < a.length(); ++i) {
+            for (int i = 0; i < aLen; ++i) {
                 int match = a.charAt(i) == b.charAt(j) ? 0 : 1;
                 cost[i + 1] = min(back[i] + match, cost[i] + 1, back[i + 1] + 1);
             }

@@ -1669,7 +1669,8 @@ public abstract class PluginManager extends AbstractModelObject implements OnMas
         JSONArray pluginListJSON = request.getJSONArray("plugins");
         List<String> plugins = new ArrayList<>();
 
-        for (int i = 0; i < pluginListJSON.size(); ++i) {
+        int len = pluginListJSON.size();
+        for (int i = 0; i < len; ++i) {
             plugins.add(pluginListJSON.getString(i));
         }
 

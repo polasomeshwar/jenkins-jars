@@ -2307,7 +2307,8 @@ public class DomainValidator implements Serializable {
         if (input == null) {
             return true;
         }
-        for (int i = 0; i < input.length(); ++i) {
+        int len = input.length();
+        for (int i = 0; i < len; ++i) {
             if (input.charAt(i) > 0x7F) { // CHECKSTYLE IGNORE MagicNumber
                 return false;
             }

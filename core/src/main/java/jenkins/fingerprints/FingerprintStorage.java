@@ -121,9 +121,13 @@ public abstract class FingerprintStorage extends AbstractDescribableImpl<Fingerp
             } else {
                 if (!fingerprint.isAlive()) {
                     FingerprintFacet deletionBlockerFacet = fingerprint.getFacetBlockingDeletion();
-                    taskListener.getLogger().println(deletionBlockerFacet.getClass().getName() + " created on " +
-                            new Date(deletionBlockerFacet.getTimestamp()) + " blocked deletion of " +
-                            fingerprint.getHashString());
+                    taskListener.getLogger().println(new StringBuilder()
+                            .append(deletionBlockerFacet.getClass().getName())
+                            .append(" created on ")
+                            .append(new Date(deletionBlockerFacet.getTimestamp()))
+                            .append(" blocked deletion of ")
+                            .append(fingerprint.getHashString())
+                            .toString());
                 }
                 // get the fingerprint in the official map so have the changes visible to Jenkins
                 // otherwise the mutation made in FingerprintMap can override our trimming.

@@ -4527,7 +4527,8 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
             throw new Failure(Messages.Jenkins_NotAllowedName("."));
         if ("..".equals(name.trim()))
             throw new Failure(Messages.Jenkins_NotAllowedName(".."));
-        for (int i = 0; i < name.length(); ++i) {
+        int len = name.length();
+        for (int i = 0; i < len; ++i) {
             char ch = name.charAt(i);
             if (Character.isISOControl(ch)) {
                 throw new Failure(Messages.Hudson_ControlCodeNotAllowed(toPrintableName(name)));
@@ -4548,7 +4549,8 @@ public class Jenkins extends AbstractCIBase implements DirectlyModifiableTopLeve
 
     private static String toPrintableName(String name) {
         StringBuilder printableName = new StringBuilder();
-        for (int i = 0; i < name.length(); ++i) {
+        int len = name.length();
+        for (int i = 0; i < len; ++i) {
             char ch = name.charAt(i);
             if (Character.isISOControl(ch))
                 printableName.append("\\u").append((int) ch).append(';');

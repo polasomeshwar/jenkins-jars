@@ -193,7 +193,13 @@ public class NodeProvisioner {
                 LOGGER.fine(() -> "running suggested review in " + delay + " ms for " + label);
                 Timer.get().schedule(() -> {
                     lastSuggestedReview = System.currentTimeMillis();
-                    LOGGER.fine(() -> "running suggested review for " + label + " after " + delay + " ms");
+                    LOGGER.fine(() -> new StringBuilder()
+                            .append("running suggested review for ")
+                            .append(label)
+                            .append(" after ")
+                            .append(delay)
+                            .append(" ms")
+                            .toString());
                     update();
                 }, delay, TimeUnit.MILLISECONDS);
             }
@@ -333,7 +339,13 @@ public class NodeProvisioner {
             provisioningLock.unlock();
         }
         if (LOGGER.isLoggable(Level.FINER)) {
-            LOGGER.finer(() -> "ran update on " + label + " in " + (System.nanoTime() - start) / 1_000_000 + "ms");
+            LOGGER.finer(() -> new StringBuilder()
+                    .append("ran update on ")
+                    .append(label)
+                    .append(" in ")
+                    .append((System.nanoTime() - start) / 1_000_000)
+                    .append("ms")
+                    .toString());
         }
     }
 
@@ -605,13 +617,16 @@ public class NodeProvisioner {
 
         @Override
         public String toString() {
-            String sb = "StrategyState{" + "label=" + label +
-                    ", snapshot=" + snapshot +
-                    ", plannedCapacitySnapshot=" + plannedCapacitySnapshot +
-                    ", additionalPlannedCapacity=" + additionalPlannedCapacity +
-                    '}';
-            return sb;
+            StringBuilder sb = new StringBuilder();
+            sb.append("StrategyState{")
+              .append("label=").append(label)
+              .append(", snapshot=").append(snapshot)
+              .append(", plannedCapacitySnapshot=").append(plannedCapacitySnapshot)
+              .append(", additionalPlannedCapacity=").append(additionalPlannedCapacity)
+              .append('}');
+            return sb.toString();
         }
+
     }
 
     /**
@@ -912,9 +927,12 @@ public class NodeProvisioner {
             } catch (Error e) {
                 throw e;
             } catch (Throwable e) {
-                LOGGER.log(Level.SEVERE, "Unexpected uncaught exception encountered while "
-                        + "processing onCommit() listener call in " + cl + " for agent "
-                        + newNode.getDisplayName(), e);
+                LOGGER.log(Level.SEVERE, new StringBuilder()
+                        .append("Unexpected uncaught exception encountered while processing onCommit() listener call in ")
+                        .append(cl)
+                        .append(" for agent ")
+                        .append(newNode.getDisplayName())
+                        .toString(), e);
             }
         }
     }
@@ -927,9 +945,12 @@ public class NodeProvisioner {
             } catch (Error e) {
                 throw e;
             } catch (Throwable e) {
-                LOGGER.log(Level.SEVERE, "Unexpected uncaught exception encountered while "
-                        + "processing onStarted() listener call in " + cl + " for label "
-                        + label.toString(), e);
+                LOGGER.log(Level.SEVERE, new StringBuilder()
+                        .append("Unexpected uncaught exception encountered while processing onStarted() listener call in ")
+                        .append(cl)
+                        .append(" for label ")
+                        .append(label.toString())
+                        .toString(), e);
             }
         }
     }

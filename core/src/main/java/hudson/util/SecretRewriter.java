@@ -197,7 +197,8 @@ public class SecretRewriter {
     }
 
     private static boolean isBase64(String s) {
-        for (int i = 0; i < s.length(); ++i)
+        int len = s.length();
+        for (int i = 0; i < len; ++i)
             if (!isBase64(s.charAt(i)))
                 return false;
         return true;
@@ -207,7 +208,8 @@ public class SecretRewriter {
 
     static {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-        for (int i = 0; i < chars.length(); ++i)
+        int len = chars.length();
+        for (int i = 0; i < len; ++i)
             IS_BASE64[chars.charAt(i)] = true;
     }
 }

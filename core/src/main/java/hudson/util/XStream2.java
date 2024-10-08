@@ -245,7 +245,7 @@ public class XStream2 extends XStream {
                     try {
                         super.moveDown();
                     } finally {
-                        depth++;
+                        ++depth;
                     }
                 }
             }, root, dataHolder);

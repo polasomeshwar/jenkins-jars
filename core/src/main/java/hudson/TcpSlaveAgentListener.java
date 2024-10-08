@@ -322,18 +322,18 @@ public final class TcpSlaveAgentListener extends Thread {
                             "Client: " + s.getInetAddress().getHostAddress() + "\r\n" +
                             "Server: " + s.getLocalAddress().getHostAddress() + "\r\n" +
                             "Remoting-Minimum-Version: " + getRemotingMinimumVersion() + "\r\n";
-                    response = new StringBuilder()
-                            .append("HTTP/1.0 200 OK\r\n")
-                            .append("Content-Type: text/plain;charset=UTF-8\r\n")
-                            .append("X-Content-Type-Options: nosniff\r\n")
-                            .append("\r\n")
-                            .append("Jenkins-Agent-Protocols: ").append(getAgentProtocolNames()).append("\r\n")
-                            .append("Jenkins-Version: ").append(Jenkins.VERSION).append("\r\n")
-                            .append("Jenkins-Session: ").append(Jenkins.SESSION_HASH).append("\r\n")
-                            .append("Client: ").append(s.getInetAddress().getHostAddress()).append("\r\n")
-                            .append("Server: ").append(s.getLocalAddress().getHostAddress()).append("\r\n")
-                            .append("Remoting-Minimum-Version: ").append(getRemotingMinimumVersion()).append("\r\n")
-                            .toString();
+//                    response = new StringBuilder()
+//                            .append("HTTP/1.0 200 OK\r\n")
+//                            .append("Content-Type: text/plain;charset=UTF-8\r\n")
+//                            .append("X-Content-Type-Options: nosniff\r\n")
+//                            .append("\r\n")
+//                            .append("Jenkins-Agent-Protocols: ").append(getAgentProtocolNames()).append("\r\n")
+//                            .append("Jenkins-Version: ").append(Jenkins.VERSION).append("\r\n")
+//                            .append("Jenkins-Session: ").append(Jenkins.SESSION_HASH).append("\r\n")
+//                            .append("Client: ").append(s.getInetAddress().getHostAddress()).append("\r\n")
+//                            .append("Server: ").append(s.getLocalAddress().getHostAddress()).append("\r\n")
+//                            .append("Remoting-Minimum-Version: ").append(getRemotingMinimumVersion()).append("\r\n")
+//                            .toString();
 
                 } else {
                     response = DEFAULT_RESPONSE_404;

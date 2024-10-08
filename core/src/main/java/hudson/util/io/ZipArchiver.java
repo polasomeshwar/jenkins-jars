@@ -106,7 +106,7 @@ final class ZipArchiver extends Archiver {
             }
             zip.closeEntry();
         }
-        entriesWritten++;
+        ++entriesWritten;
     }
 
     @Override

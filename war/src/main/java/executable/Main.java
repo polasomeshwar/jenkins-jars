@@ -128,15 +128,18 @@ public class Main {
                                 ENABLE_FUTURE_JAVA_CLI_SWITCH,
                                 SUPPORTED_JAVA_VERSIONS));
             } else {
-                throw new UnsupportedClassVersionError(
-                        String.format(
-                                "Running with Java %d from %s, which is not fully supported.%n"
-                                        + "Run the command again with the %s flag to bypass this error.%n"
-                                        + "Supported Java versions are: %s",
-                                releaseVersion,
-                                System.getProperty("java.home"),
-                                ENABLE_FUTURE_JAVA_CLI_SWITCH,
-                                SUPPORTED_JAVA_VERSIONS));
+                StringBuilder errorMessage = new StringBuilder();
+                errorMessage.append(String.format(
+                        "Running with Java %d from %s, which is not fully supported.%n",
+                        releaseVersion,
+                        System.getProperty("java.home")))
+                    .append("Run the command again with the ")
+                    .append(ENABLE_FUTURE_JAVA_CLI_SWITCH)
+                    .append(" flag to bypass this error.%n")
+                    .append("Supported Java versions are: ")
+                    .append(SUPPORTED_JAVA_VERSIONS);
+
+                throw new UnsupportedClassVersionError(errorMessage.toString());
             }
         } else {
             throw new UnsupportedClassVersionError(

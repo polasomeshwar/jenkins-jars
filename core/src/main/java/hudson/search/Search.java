@@ -386,7 +386,8 @@ public class Search implements StaplerProxy {
         if (tokens.length() == 0) return Collections.emptyList();   // no tokens given
 
         List<SuggestedItem>[] paths = new List[tokens.length() + 1]; // we won't use [0].
-        for (int i = 1; i <= tokens.length(); ++i)
+        int len = tokens.length();
+        for (int i = 1; i <= len; ++i)
             paths[i] = new ArrayList<>();
 
         List<SearchItem> items = new ArrayList<>(); // items found in 1 step
@@ -405,8 +406,9 @@ public class Search implements StaplerProxy {
             ++w;
         }
 
+        int len1 = tokens.length();
         // successive tokens
-        for (int j = 1; j < tokens.length(); ++j) {
+        for (int j = 1; j < len1; ++j) {
             // for each length
             w = 1;
             for (String token : tokens.subSequence(j)) {

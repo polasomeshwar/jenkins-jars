@@ -270,7 +270,15 @@ public class ResourceDomainRootAction implements UnprotectedRootAction {
 
         @Override
         public String toString() {
-            return "[" + super.toString() + ", authentication=" + authenticationName + "; key=" + browserUrl + "]";
+            return new StringBuilder()
+                    .append("[")
+                    .append(super.toString())
+                    .append(", authentication=")
+                    .append(authenticationName)
+                    .append("; key=")
+                    .append(browserUrl)
+                    .append("]")
+                    .toString();
         }
     }
 

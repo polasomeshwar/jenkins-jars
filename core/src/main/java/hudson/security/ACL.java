@@ -236,9 +236,17 @@ public abstract class ACL {
             return;
         }
         if (!hasCreatePermission2(a, c, d)) {
-            throw new AccessDeniedException(Messages.AccessDeniedException2_MissingPermission(a.getName(),
-                    Item.CREATE.group.title + "/" + Item.CREATE.name + Item.CREATE + "/" + d.getDisplayName()));
+            StringBuilder errorMessage = new StringBuilder();
+            errorMessage.append(Messages.AccessDeniedException2_MissingPermission(a.getName(), Item.CREATE.group.title))
+                        .append("/")
+                        .append(Item.CREATE.name)
+                        .append(Item.CREATE)
+                        .append("/")
+                        .append(d.getDisplayName());
+
+            throw new AccessDeniedException(errorMessage.toString());
         }
+
     }
     /**
      * Checks if the given principal has the permission to create top level items within the specified item group.
