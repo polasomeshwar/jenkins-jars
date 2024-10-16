@@ -149,7 +149,8 @@ public class QuotedStringTokenizer
 
         int state = 0;
         boolean escape = false;
-        while (_i < _string.length())
+        int len = _string.length();
+        while (_i < len)
         {
             char c = _string.charAt(_i++);
 
@@ -344,8 +345,8 @@ public class QuotedStringTokenizer
         if (s.isEmpty())
             return "\"\"";
 
-
-        for (int i = 0; i < s.length(); i++)
+        int len = s.length();
+        for (int i = 0; i < len; ++i)
         {
             char c = s.charAt(i);
             if (c == '\\' || c == '"' || c == '\'' || Character.isWhitespace(c) || delim.indexOf(c) >= 0)
@@ -446,7 +447,8 @@ public class QuotedStringTokenizer
 
         StringBuilder b = new StringBuilder(s.length() - 2);
         boolean escape = false;
-        for (int i = 1; i < s.length() - 1; i++)
+        int len = s.length();
+        for (int i = 1; i < len - 1; ++i)
         {
             char c = s.charAt(i);
 
